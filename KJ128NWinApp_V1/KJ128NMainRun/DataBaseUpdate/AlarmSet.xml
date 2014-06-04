@@ -1,0 +1,99 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="AlarmSet" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="AlarmSet">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="AlarmSetID" type="xs:int" minOccurs="0" />
+                <xs:element name="AlarmSetType" type="xs:int" minOccurs="0" />
+                <xs:element name="AlarmWaveType" type="xs:int" minOccurs="0" />
+                <xs:element name="AlarmWavePath" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <AlarmSet>
+    <AlarmSetID>1</AlarmSetID>
+    <AlarmSetType>1</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>2</AlarmSetID>
+    <AlarmSetType>2</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>3</AlarmSetID>
+    <AlarmSetType>3</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>4</AlarmSetID>
+    <AlarmSetType>4</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>5</AlarmSetID>
+    <AlarmSetType>5</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>6</AlarmSetID>
+    <AlarmSetType>6</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>7</AlarmSetID>
+    <AlarmSetType>7</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>8</AlarmSetID>
+    <AlarmSetType>8</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>9</AlarmSetID>
+    <AlarmSetType>9</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>10</AlarmSetID>
+    <AlarmSetType>10</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>11</AlarmSetID>
+    <AlarmSetType>12</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>12</AlarmSetID>
+    <AlarmSetType>11</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+  <AlarmSet>
+    <AlarmSetID>13</AlarmSetID>
+    <AlarmSetType>13</AlarmSetType>
+    <AlarmWaveType>1</AlarmWaveType>
+    <AlarmWavePath />
+  </AlarmSet>
+</NewDataSet>

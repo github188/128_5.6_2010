@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <IPHostBuild>
+    <IsStartHost>True</IsStartHost>
+    <IsHost>True</IsHost>
+    <IPAddress>.</IPAddress>
+    <PortID>60001</PortID>
+  </IPHostBuild>
+</DocumentElement>

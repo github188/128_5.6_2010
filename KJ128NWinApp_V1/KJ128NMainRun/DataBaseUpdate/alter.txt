@@ -1,0 +1,3889 @@
+--****************************************************修改字段*********************************************************************--
+--传输分站表
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Station_Info
+	DROP CONSTRAINT DF_Station_Info_StationModel
+GO
+CREATE TABLE dbo.Tmp_Station_Info
+	(
+	StationID int NOT NULL,
+	StationAddress int NOT NULL,
+	StationPlace nvarchar(30) NULL,
+	StationTel nvarchar(20) NULL,
+	StationTypeID int NULL,
+	StationType nvarchar(10) NULL,
+	StationState int NULL,
+	BreakTimes int NULL,
+	BreakTime datetime NULL,
+	StationX float(53) NULL,
+	StationY float(53) NULL,
+	EditBaseInfo int NULL,
+	StationGroup int NULL,
+	StationVersion int NULL,
+	Remark nvarchar(200) NULL,
+	IPAddressID int NULL,
+	StationModel int NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'StationID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationID'
+GO
+SET @v = N'StationAddress（基站地址）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationAddress'
+GO
+SET @v = N'基站安装地点'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationPlace'
+GO
+SET @v = N'基站联系电话'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationTel'
+GO
+SET @v = N'基站类型编号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationTypeID'
+GO
+SET @v = N'基站类型'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationType'
+GO
+SET @v = N'基站状态'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationState'
+GO
+SET @v = N'基站故障时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'BreakTime'
+GO
+SET @v = N'基站在 GIS 图上的 X 坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationX'
+GO
+SET @v = N'基站在 GIS 图上的 Y 坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationY'
+GO
+SET @v = N'基本信息是否已经被编辑'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'EditBaseInfo'
+GO
+SET @v = N'基站分组'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationGroup'
+GO
+SET @v = N'基站版本号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationVersion'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'Remark'
+GO
+SET @v = N'传输协议(1:A版;2:V2)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Info', N'column', N'StationModel'
+GO
+ALTER TABLE dbo.Tmp_Station_Info ADD CONSTRAINT
+	DF_Station_Info_StationModel DEFAULT (1) FOR StationModel
+GO
+IF EXISTS(SELECT * FROM dbo.Station_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Station_Info (StationID, StationAddress, StationPlace, StationTel, StationTypeID, StationType, StationState, BreakTimes, BreakTime, StationX, StationY, EditBaseInfo, StationGroup, StationVersion, Remark, IPAddressID, StationModel)
+		SELECT StationID, StationAddress, StationPlace, StationTel, StationTypeID, StationType, StationState, BreakTimes, BreakTime, StationX, StationY, EditBaseInfo, StationGroup, StationVersion, Remark, IPAddressID, StationModel FROM dbo.Station_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT FK_Station_Head_Info_Station_Info
+GO
+DROP TABLE dbo.Station_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Station_Info', N'Station_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Station_Info ADD CONSTRAINT
+	PK_Station_Info PRIMARY KEY CLUSTERED 
+	(
+	StationAddress
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Station_Head_Info WITH NOCHECK ADD CONSTRAINT
+	FK_Station_Head_Info_Station_Info FOREIGN KEY
+	(
+	StationAddress
+	) REFERENCES dbo.Station_Info
+	(
+	StationAddress
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+  
+  GO   
+--读卡分站表
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT FK_Station_Head_Info_Station_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT DF_Station_Head_Info_AntennaAX
+GO
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT DF_Station_Head_Info_AntennaAY
+GO
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT DF_Station_Head_Info_AntennaBX
+GO
+ALTER TABLE dbo.Station_Head_Info
+	DROP CONSTRAINT DF_Station_Head_Info_AntennaBY
+GO
+CREATE TABLE dbo.Tmp_Station_Head_Info
+	(
+	StationHeadID int NOT NULL,
+	StationAddress int NOT NULL,
+	StationHeadAddress int NULL,
+	StationHeadPlace nvarchar(50) NULL,
+	StationHeadTel nvarchar(20) NULL,
+	StationHeadTypeID int NULL,
+	StationHeadType nvarchar(20) NULL,
+	StationHeadX float(53) NULL,
+	StationHeadY float(53) NULL,
+	StationHeadState int NULL,
+	EditBaseInfo int NULL,
+	AntennaA nvarchar(20) NULL,
+	AntennaB nvarchar(20) NULL,
+	AntennaAX float(53) NULL,
+	AntennaAY float(53) NULL,
+	AntennaBX float(53) NULL,
+	AntennaBY float(53) NULL,
+	BreakTimes int NULL,
+	BreakTime datetime NULL,
+	Remark nvarchar(200) NULL,
+        StationHeadNO nvarchar(10) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'StationHeadID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadID'
+GO
+SET @v = N'StationAddress（基站地址）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationAddress'
+GO
+SET @v = N'StationHeadAddress（探头地址）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadAddress'
+GO
+SET @v = N'探头安装位置'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadPlace'
+GO
+SET @v = N'探头联系电话'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadTel'
+GO
+SET @v = N'探头类型编号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadTypeID'
+GO
+SET @v = N'探头类型'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadType'
+GO
+SET @v = N'探头在 GIS 图上的 X 坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadX'
+GO
+SET @v = N'探头在 GIS 图上的 Y 坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadY'
+GO
+SET @v = N'探头状态'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'StationHeadState'
+GO
+SET @v = N'探头编辑状态'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'EditBaseInfo'
+GO
+SET @v = N'天线 A 位置描述'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaA'
+GO
+SET @v = N'天线 B 位置描述'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaB'
+GO
+SET @v = N'天线A的x坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaAX'
+GO
+SET @v = N'天线A的y坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaAY'
+GO
+SET @v = N'天线B的x坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaBX'
+GO
+SET @v = N'天线A的y坐标'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'AntennaBY'
+GO
+SET @v = N'探头故障开始时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'BreakTime'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Station_Head_Info', N'column', N'Remark'
+GO
+ALTER TABLE dbo.Tmp_Station_Head_Info ADD CONSTRAINT
+	DF_Station_Head_Info_AntennaAX DEFAULT (0) FOR AntennaAX
+GO
+ALTER TABLE dbo.Tmp_Station_Head_Info ADD CONSTRAINT
+	DF_Station_Head_Info_AntennaAY DEFAULT (0) FOR AntennaAY
+GO
+ALTER TABLE dbo.Tmp_Station_Head_Info ADD CONSTRAINT
+	DF_Station_Head_Info_AntennaBX DEFAULT (0) FOR AntennaBX
+GO
+ALTER TABLE dbo.Tmp_Station_Head_Info ADD CONSTRAINT
+	DF_Station_Head_Info_AntennaBY DEFAULT (0) FOR AntennaBY
+GO
+IF EXISTS(SELECT * FROM dbo.Station_Head_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Station_Head_Info (StationHeadID, StationAddress, StationHeadAddress, StationHeadPlace, StationHeadTel, StationHeadTypeID, StationHeadType, StationHeadX, StationHeadY, StationHeadState, EditBaseInfo, AntennaA, AntennaB, AntennaAX, AntennaAY, AntennaBX, AntennaBY, BreakTimes, BreakTime, Remark)
+		SELECT StationHeadID, StationAddress, StationHeadAddress, StationHeadPlace, StationHeadTel, StationHeadTypeID, StationHeadType, StationHeadX, StationHeadY, StationHeadState, EditBaseInfo, AntennaA, AntennaB, AntennaAX, AntennaAY, AntennaBX, AntennaBY, BreakTimes, BreakTime, Remark FROM dbo.Station_Head_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.RT_InStationHeadInfo
+	DROP CONSTRAINT FK_RT_InStationHeadInfo_Station_Head_Info
+GO
+ALTER TABLE dbo.RT_InOutMine
+	DROP CONSTRAINT FK_Rt_InOutMine_Station_Head_Info
+GO
+ALTER TABLE dbo.Territorial_Set
+	DROP CONSTRAINT FK_Territorial_Set_Station_Head_Info
+GO
+ALTER TABLE dbo.InMineStationInfo
+	DROP CONSTRAINT FK_InMineStationInfo_Station_Head_Info
+GO
+DROP TABLE dbo.Station_Head_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Station_Head_Info', N'Station_Head_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Station_Head_Info ADD CONSTRAINT
+	PK_Station_Head_Info PRIMARY KEY CLUSTERED 
+	(
+	StationHeadID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Station_Head_Info WITH NOCHECK ADD CONSTRAINT
+	FK_Station_Head_Info_Station_Info FOREIGN KEY
+	(
+	StationAddress
+	) REFERENCES dbo.Station_Info
+	(
+	StationAddress
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.InMineStationInfo WITH NOCHECK ADD CONSTRAINT
+	FK_InMineStationInfo_Station_Head_Info FOREIGN KEY
+	(
+	StationHeadID
+	) REFERENCES dbo.Station_Head_Info
+	(
+	StationHeadID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Set WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Set_Station_Head_Info FOREIGN KEY
+	(
+	StationHeadID
+	) REFERENCES dbo.Station_Head_Info
+	(
+	StationHeadID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_InOutMine WITH NOCHECK ADD CONSTRAINT
+	FK_Rt_InOutMine_Station_Head_Info FOREIGN KEY
+	(
+	StationHeadID
+	) REFERENCES dbo.Station_Head_Info
+	(
+	StationHeadID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_InStationHeadInfo WITH NOCHECK ADD CONSTRAINT
+	FK_RT_InStationHeadInfo_Station_Head_Info FOREIGN KEY
+	(
+	StationHeadID
+	) REFERENCES dbo.Station_Head_Info
+	(
+	StationHeadID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+go 
+--人员表
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Info
+	(
+	EmpID int NOT NULL,
+	EmpName nvarchar(20) NULL,
+	Sex bit NULL,
+	Remark nvarchar(200) NULL,
+	EmpNo nvarchar(10) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Info', N'column', N'EmpID'
+GO
+SET @v = N'员工姓名'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Info', N'column', N'EmpName'
+GO
+SET @v = N'性别'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Info', N'column', N'Sex'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Info', N'column', N'Remark'
+GO
+SET @v = N'员工编号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Info', N'column', N'EmpNo'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Info (EmpID, EmpName, Sex, Remark, EmpNo)
+		SELECT EmpID, EmpName, Sex, Remark, EmpNo FROM dbo.Emp_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Emp_SysSet
+	DROP CONSTRAINT FK_Emp_SysSet_Emp_Info
+GO
+ALTER TABLE dbo.Emp_WorkType
+	DROP CONSTRAINT FK_Emp_WorkType_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Detail
+	DROP CONSTRAINT FK_Emp_Detail_Emp_Info
+GO
+ALTER TABLE dbo.Emp_InCompany
+	DROP CONSTRAINT FK_Emp_InCompany_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Home
+	DROP CONSTRAINT FK_Emp_Home_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Health
+	DROP CONSTRAINT FK_Emp_Health_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Certificate
+	DROP CONSTRAINT FK_Emp_Certificate_Emp_Info
+GO
+ALTER TABLE dbo.Dept_Lead
+	DROP CONSTRAINT FK_Dept_Lead_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Photo
+	DROP CONSTRAINT FK_Emp_Photo_Emp_Info
+GO
+ALTER TABLE dbo.WalkConfigInfo
+	DROP CONSTRAINT FK_WalkConfigInfo_Emp_Info
+GO
+ALTER TABLE dbo.RealTimeWalkInfo
+	DROP CONSTRAINT FK_RealTimeWalkInfo_Emp_Info
+GO
+ALTER TABLE dbo.Emp_Post
+	DROP CONSTRAINT FK_Emp_Post_Emp_Info
+GO
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Emp_Info
+GO
+DROP TABLE dbo.Emp_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Info', N'Emp_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_Info ADD CONSTRAINT
+	PK_Emp_Info PRIMARY KEY CLUSTERED 
+	(
+	EmpID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Post WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Post_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RealTimeWalkInfo WITH NOCHECK ADD CONSTRAINT
+	FK_RealTimeWalkInfo_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.WalkConfigInfo WITH NOCHECK ADD CONSTRAINT
+	FK_WalkConfigInfo_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Photo WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Photo_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_Lead WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_Lead_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Certificate WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Certificate_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Health WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Health_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Home WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Home_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_InCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_InCompany_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Detail WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Detail_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_WorkType WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_WorkType_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_SysSet WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_SysSet_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+go
+--
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Duty_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Dept_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_NowCompany
+	(
+	EmpNowCoID int NOT NULL,
+	EmpID int NULL,
+	DeptID int NULL,
+	DutyID int NULL,
+	MaxSecTime int NULL,
+	MinSecTime int NULL,
+	Selectmode int NULL,
+	Remark nvarchar(200) NULL,
+	ClassGroup nvarchar(50) NULL,
+	WorkPlace nvarchar(50) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpInCoID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'EmpNowCoID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'EmpID'
+GO
+SET @v = N'DeptID（所在部门）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'DeptID'
+GO
+SET @v = N'DutyID（担任职务）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'DutyID'
+GO
+SET @v = N'最大工作时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'MaxSecTime'
+GO
+SET @v = N'最小工作时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'MinSecTime'
+GO
+SET @v = N'启用最大最小时间的模式'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'Selectmode'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_NowCompany', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_NowCompany)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_NowCompany (EmpNowCoID, EmpID, DeptID, DutyID, MaxSecTime, MinSecTime, Selectmode, Remark, ClassGroup, WorkPlace)
+		SELECT EmpNowCoID, EmpID, DeptID, DutyID, MaxSecTime, MinSecTime, Selectmode, Remark, ClassGroup, WorkPlace FROM dbo.Emp_NowCompany (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_NowCompany
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_NowCompany', N'Emp_NowCompany', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_NowCompany ADD CONSTRAINT
+	PK_Emp_NowCompany PRIMARY KEY CLUSTERED 
+	(
+	EmpNowCoID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Duty_Info FOREIGN KEY
+	(
+	DutyID
+	) REFERENCES dbo.Duty_Info
+	(
+	DutyID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO 
+  
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Photo
+	DROP CONSTRAINT FK_Emp_Photo_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Photo
+	(
+	PhotoID int NOT NULL,
+	EmpID int NULL,
+	Photo image NULL,
+	Remark nchar(100) NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'PhotoID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Photo', N'column', N'PhotoID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Photo', N'column', N'EmpID'
+GO
+SET @v = N'照片'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Photo', N'column', N'Photo'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Photo', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Photo)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Photo (PhotoID, EmpID, Photo, Remark)
+		SELECT PhotoID, EmpID, Photo, Remark FROM dbo.Emp_Photo (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_Photo
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Photo', N'Emp_Photo', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_Photo ADD CONSTRAINT
+	PK_Emp_Photo PRIMARY KEY CLUSTERED 
+	(
+	PhotoID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_Photo WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Photo_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO 
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Search
+	(
+	EmpSearchID int NOT NULL,
+	EmpID int NULL,
+	EmpTel1 nvarchar(20) NULL,
+	EmpTel2 nvarchar(20) NULL,
+	EmpTel3 nvarchar(20) NULL,
+	EmpQQ nvarchar(20) NULL,
+	EmpMsn nvarchar(100) NULL,
+	HomePage nvarchar(200) NULL,
+	EmpEmail nvarchar(80) NULL,
+	EmpEmailBackup nvarchar(80) NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpSearchID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpSearchID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpID'
+GO
+SET @v = N'手机'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpTel1'
+GO
+SET @v = N'小灵通'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpTel2'
+GO
+SET @v = N'备用电话'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpTel3'
+GO
+SET @v = N'QQ'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpQQ'
+GO
+SET @v = N'Msn'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpMsn'
+GO
+SET @v = N'主页'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'HomePage'
+GO
+SET @v = N'电子信箱（主）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpEmail'
+GO
+SET @v = N'电子信箱（备用）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'EmpEmailBackup'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Search', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Search)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Search (EmpSearchID, EmpID, EmpTel1, EmpTel2, EmpTel3, EmpQQ, EmpMsn, HomePage, EmpEmail, EmpEmailBackup, Remark)
+		SELECT EmpSearchID, EmpID, EmpTel1, EmpTel2, EmpTel3, EmpQQ, EmpMsn, HomePage, EmpEmail, EmpEmailBackup, Remark FROM dbo.Emp_Search (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_Search
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Search', N'Emp_Search', 'OBJECT'
+GO
+COMMIT
+
+  GO 
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Detail
+	DROP CONSTRAINT FK_Emp_Detail_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Detail
+	(
+	EmpDetailID int NOT NULL,
+	EmpID int NULL,
+	Nation nvarchar(30) NULL,
+	WedlockID int NULL,
+	ClanID int NULL,
+	NativePlace nvarchar(50) NULL,
+	CensusRegister nvarchar(50) NULL,
+	SchoolRecordID int NULL,
+	GraduateFrom nvarchar(35) NULL,
+	Specialty nvarchar(50) NULL,
+	OfficialDesignation nvarchar(50) NULL,
+	PhotoID int NULL,
+	Idcard nvarchar(20) NULL,
+	BirthDay datetime NULL,
+	Remark nvarchar(200) NULL,
+	Company nvarchar(20) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpDetailID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'EmpDetailID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'EmpID'
+GO
+SET @v = N'民族'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'Nation'
+GO
+SET @v = N'WedlockID（婚姻状况）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'WedlockID'
+GO
+SET @v = N'ClanID(政治面貌)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'ClanID'
+GO
+SET @v = N'籍贯'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'NativePlace'
+GO
+SET @v = N'户籍'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'CensusRegister'
+GO
+SET @v = N'SchoolRecordID(学历)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'SchoolRecordID'
+GO
+SET @v = N'毕业院校'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'GraduateFrom'
+GO
+SET @v = N'专业'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'Specialty'
+GO
+SET @v = N'职称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'OfficialDesignation'
+GO
+SET @v = N'PhotoID(照片)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'PhotoID'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'Remark'
+GO
+SET @v = N'血型'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Detail', N'column', N'Company'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Detail)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Detail (EmpDetailID, EmpID, Nation, WedlockID, ClanID, NativePlace, CensusRegister, SchoolRecordID, GraduateFrom, Specialty, OfficialDesignation, PhotoID, Idcard, BirthDay, Remark, Company)
+		SELECT EmpDetailID, EmpID, Nation, WedlockID, ClanID, NativePlace, CensusRegister, SchoolRecordID, GraduateFrom, Specialty, OfficialDesignation, PhotoID, Idcard, BirthDay, Remark, Company FROM dbo.Emp_Detail (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_Detail
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Detail', N'Emp_Detail', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_Detail ADD CONSTRAINT
+	PK_Emp_Detail PRIMARY KEY CLUSTERED 
+	(
+	EmpDetailID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_Detail WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Detail_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO 
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Health
+	DROP CONSTRAINT FK_Emp_Health_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Health
+	(
+	EmpHealthID int NOT NULL,
+	EmpID int NULL,
+	Height int NULL,
+	Weight int NULL,
+	StateOfHealth nvarchar(200) NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpHealthID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'EmpHealthID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'EmpID'
+GO
+SET @v = N'身高'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'Height'
+GO
+SET @v = N'体重'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'Weight'
+GO
+SET @v = N'健康状况'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'StateOfHealth'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Health', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Health)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Health (EmpHealthID, EmpID, Height, Weight, StateOfHealth, Remark)
+		SELECT EmpHealthID, EmpID, Height, Weight, StateOfHealth, Remark FROM dbo.Emp_Health (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_Health
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Health', N'Emp_Health', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_Health ADD CONSTRAINT
+	PK_Emp_Health PRIMARY KEY CLUSTERED 
+	(
+	EmpHealthID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_Health WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Health_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Home
+	DROP CONSTRAINT FK_Emp_Home_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_Home
+	(
+	EmpHomeID int NOT NULL,
+	EmpID int NULL,
+	HomeTel1 nvarchar(20) NULL,
+	HomeTel2 nvarchar(20) NULL,
+	HomeAddress nvarchar(250) NULL,
+	Postalcode nvarchar(6) NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpHomeID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'EmpHomeID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'EmpID'
+GO
+SET @v = N'家庭电话1'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'HomeTel1'
+GO
+SET @v = N'家庭电话2'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'HomeTel2'
+GO
+SET @v = N'家庭住址'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'HomeAddress'
+GO
+SET @v = N'邮政编码'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'Postalcode'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_Home', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_Home)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_Home (EmpHomeID, EmpID, HomeTel1, HomeTel2, HomeAddress, Postalcode, Remark)
+		SELECT EmpHomeID, EmpID, HomeTel1, HomeTel2, HomeAddress, Postalcode, Remark FROM dbo.Emp_Home (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_Home
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_Home', N'Emp_Home', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_Home ADD CONSTRAINT
+	PK_Emp_Home PRIMARY KEY CLUSTERED 
+	(
+	EmpHomeID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_Home WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Home_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_InCompany
+	DROP CONSTRAINT FK_Emp_InCompany_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_InCompany
+	(
+	EmpInCoID int NOT NULL,
+	EmpID int NULL,
+	ProbationDate datetime NULL,
+	OfficiallyDate datetime NULL,
+	ContractExpDate datetime NULL,
+	ContractExpAppendDate datetime NULL,
+	IsGearShift bit NULL,
+	HireTypeID int NULL,
+	Archives nvarchar(100) NULL,
+	DimissionTime datetime NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpInCoID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'EmpInCoID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'EmpID'
+GO
+SET @v = N'试用日期'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'ProbationDate'
+GO
+SET @v = N'转正日期'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'OfficiallyDate'
+GO
+SET @v = N'合同有效期'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'ContractExpDate'
+GO
+SET @v = N'续签有效期'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'ContractExpAppendDate'
+GO
+SET @v = N'是否已调档'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'IsGearShift'
+GO
+SET @v = N'聘用形式'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'HireTypeID'
+GO
+SET @v = N'如果未调档，档案所在地'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'Archives'
+GO
+SET @v = N'离职时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'DimissionTime'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_InCompany', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_InCompany)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_InCompany (EmpInCoID, EmpID, ProbationDate, OfficiallyDate, ContractExpDate, ContractExpAppendDate, IsGearShift, HireTypeID, Archives, DimissionTime, Remark)
+		SELECT EmpInCoID, EmpID, ProbationDate, OfficiallyDate, ContractExpDate, ContractExpAppendDate, IsGearShift, HireTypeID, Archives, DimissionTime, Remark FROM dbo.Emp_InCompany (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_InCompany
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_InCompany', N'Emp_InCompany', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_InCompany ADD CONSTRAINT
+	PK_Emp_InCompany PRIMARY KEY CLUSTERED 
+	(
+	EmpInCoID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_InCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_InCompany_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_WorkType
+	DROP CONSTRAINT FK_Emp_WorkType_WorkType_Info1
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_WorkType
+	DROP CONSTRAINT FK_Emp_WorkType_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Emp_WorkType
+	(
+	EmpWorkTypeID int NOT NULL,
+	EmpID int NULL,
+	WorkTypeID int NOT NULL,
+	IsMostly bit NULL,
+	IsEnable bit NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EmpWorkTypeID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'EmpWorkTypeID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'EmpID'
+GO
+SET @v = N'WorkTypeID（工种信息）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'WorkTypeID'
+GO
+SET @v = N'是否主要工种'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'IsMostly'
+GO
+SET @v = N'是否启用'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'IsEnable'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Emp_WorkType', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Emp_WorkType)
+	 EXEC('INSERT INTO dbo.Tmp_Emp_WorkType (EmpWorkTypeID, EmpID, WorkTypeID, IsMostly, IsEnable, Remark)
+		SELECT EmpWorkTypeID, EmpID, WorkTypeID, IsMostly, IsEnable, Remark FROM dbo.Emp_WorkType (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Emp_WorkType
+GO
+EXECUTE sp_rename N'dbo.Tmp_Emp_WorkType', N'Emp_WorkType', 'OBJECT'
+GO
+ALTER TABLE dbo.Emp_WorkType ADD CONSTRAINT
+	PK_Emp_WorkType PRIMARY KEY CLUSTERED 
+	(
+	EmpWorkTypeID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Emp_WorkType WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_WorkType_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+ALTER TABLE dbo.Emp_WorkType WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_WorkType_WorkType_Info1 FOREIGN KEY
+	(
+	WorkTypeID
+	) REFERENCES dbo.WorkType_Info
+	(
+	WorkTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+--部门
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_Info
+	DROP CONSTRAINT AddDateDflt
+GO
+CREATE TABLE dbo.Tmp_Dept_Info
+	(
+	DeptID int NOT NULL,
+	ParentDeptID int NULL,
+	DeptLevelID int NULL,
+	DeptNO nvarchar(20) NULL,
+	DeptName nvarchar(20) NULL,
+	Remark nvarchar(200) NULL,
+	ClassID int NULL,
+	SerialNO int NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'DeptID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'DeptID'
+GO
+SET @v = N'ParentDeptID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'ParentDeptID'
+GO
+SET @v = N'DeptLevelID（部门级别）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'DeptLevelID'
+GO
+SET @v = N'部门代号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'DeptNO'
+GO
+SET @v = N'部门名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'DeptName'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'Remark'
+GO
+SET @v = N'班制流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Info', N'column', N'ClassID'
+GO
+ALTER TABLE dbo.Tmp_Dept_Info ADD CONSTRAINT
+	AddDateDflt DEFAULT (1) FOR SerialNO
+GO
+IF EXISTS(SELECT * FROM dbo.Dept_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Dept_Info (DeptID, ParentDeptID, DeptLevelID, DeptNO, DeptName, Remark, ClassID, SerialNO)
+		SELECT DeptID, ParentDeptID, DeptLevelID, DeptNO, DeptName, Remark, ClassID, SerialNO FROM dbo.Dept_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Dept_SysSet
+	DROP CONSTRAINT FK_Dept_SysSet_Dept_Info
+GO
+ALTER TABLE dbo.Dept_Lead
+	DROP CONSTRAINT FK_Dept_Lead_Dept_Info
+GO
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Dept_Info
+GO
+DROP TABLE dbo.Dept_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Dept_Info', N'Dept_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Dept_Info ADD CONSTRAINT
+	PK_Dept_Info PRIMARY KEY CLUSTERED 
+	(
+	DeptID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_Lead WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_Lead_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_SysSet WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_SysSet_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Dept_Detail
+	(
+	DeptDetailID int NOT NULL,
+	DeptID int NULL,
+	DeptTel1 nvarchar(20) NULL,
+	DeptTel2 nvarchar(20) NULL,
+	DeptFax nvarchar(20) NULL,
+	DeptPost nvarchar(6) NULL,
+	DeptAddress nvarchar(250) NULL,
+	DeptEmail nvarchar(100) NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.Dept_Detail)
+	 EXEC('INSERT INTO dbo.Tmp_Dept_Detail (DeptDetailID, DeptID, DeptTel1, DeptTel2, DeptFax, DeptPost, DeptAddress, DeptEmail, Remark)
+		SELECT DeptDetailID, DeptID, DeptTel1, DeptTel2, DeptFax, DeptPost, DeptAddress, DeptEmail, Remark FROM dbo.Dept_Detail (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Dept_Detail
+GO
+EXECUTE sp_rename N'dbo.Tmp_Dept_Detail', N'Dept_Detail', 'OBJECT'
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_Lead
+	DROP CONSTRAINT FK_Dept_Lead_Dept_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_Lead
+	DROP CONSTRAINT FK_Dept_Lead_Emp_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Dept_Lead
+	(
+	DeptLeadID int NOT NULL,
+	DeptID int NULL,
+	EmpID int NULL,
+	LeadDateTime datetime NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'DeptLeadID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Lead', N'column', N'DeptLeadID'
+GO
+SET @v = N'DeptID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Lead', N'column', N'DeptID'
+GO
+SET @v = N'EmpID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Lead', N'column', N'EmpID'
+GO
+SET @v = N'上任时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Lead', N'column', N'LeadDateTime'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_Lead', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Dept_Lead)
+	 EXEC('INSERT INTO dbo.Tmp_Dept_Lead (DeptLeadID, DeptID, EmpID, LeadDateTime, Remark)
+		SELECT DeptLeadID, DeptID, EmpID, LeadDateTime, Remark FROM dbo.Dept_Lead (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Dept_Lead
+GO
+EXECUTE sp_rename N'dbo.Tmp_Dept_Lead', N'Dept_Lead', 'OBJECT'
+GO
+ALTER TABLE dbo.Dept_Lead ADD CONSTRAINT
+	PK_Dept_Lead PRIMARY KEY CLUSTERED 
+	(
+	DeptLeadID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Dept_Lead WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_Lead_Emp_Info FOREIGN KEY
+	(
+	EmpID
+	) REFERENCES dbo.Emp_Info
+	(
+	EmpID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+ALTER TABLE dbo.Dept_Lead WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_Lead_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Dept_SysSet
+	DROP CONSTRAINT FK_Dept_SysSet_Dept_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Dept_SysSet
+	(
+	DeptSysSetID int NOT NULL,
+	DeptID int NULL,
+	MaxTimeSec nvarchar(20) NULL,
+	MinTimeSec nvarchar(20) NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'DeptSysSetID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_SysSet', N'column', N'DeptSysSetID'
+GO
+SET @v = N'DeptID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_SysSet', N'column', N'DeptID'
+GO
+SET @v = N'经过多少秒算超时'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_SysSet', N'column', N'MaxTimeSec'
+GO
+SET @v = N'不足多少秒算欠时'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_SysSet', N'column', N'MinTimeSec'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Dept_SysSet', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Dept_SysSet)
+	 EXEC('INSERT INTO dbo.Tmp_Dept_SysSet (DeptSysSetID, DeptID, MaxTimeSec, MinTimeSec, Remark)
+		SELECT DeptSysSetID, DeptID, MaxTimeSec, MinTimeSec, Remark FROM dbo.Dept_SysSet (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Dept_SysSet
+GO
+EXECUTE sp_rename N'dbo.Tmp_Dept_SysSet', N'Dept_SysSet', 'OBJECT'
+GO
+ALTER TABLE dbo.Dept_SysSet ADD CONSTRAINT
+	PK_Dept_SysSet PRIMARY KEY CLUSTERED 
+	(
+	DeptSysSetID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Dept_SysSet WITH NOCHECK ADD CONSTRAINT
+	FK_Dept_SysSet_Dept_Info FOREIGN KEY
+	(
+	DeptID
+	) REFERENCES dbo.Dept_Info
+	(
+	DeptID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_UnitPrice
+	(
+	ID int NOT NULL,
+	DeptID int NULL,
+	UnitPrice float(53) NULL,
+	Remark varchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'部门流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_UnitPrice', N'column', N'DeptID'
+GO
+SET @v = N'工时单价'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_UnitPrice', N'column', N'UnitPrice'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_UnitPrice', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.UnitPrice)
+	 EXEC('INSERT INTO dbo.Tmp_UnitPrice (ID, DeptID, UnitPrice, Remark)
+		SELECT ID, DeptID, UnitPrice, Remark FROM dbo.UnitPrice (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.UnitPrice
+GO
+EXECUTE sp_rename N'dbo.Tmp_UnitPrice', N'UnitPrice', 'OBJECT'
+GO
+ALTER TABLE dbo.UnitPrice ADD CONSTRAINT
+	PK_UnitPrice PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+--职务
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Duty_Info
+	(
+	DutyID int NOT NULL,
+	DutyName nvarchar(10) NULL,
+	DutyClassID int NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.Duty_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Duty_Info (DutyID, DutyName, DutyClassID, Remark)
+		SELECT DutyID, DutyName, DutyClassID, Remark FROM dbo.Duty_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Emp_NowCompany
+	DROP CONSTRAINT FK_Emp_NowCompany_Duty_Info
+GO
+DROP TABLE dbo.Duty_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Duty_Info', N'Duty_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Duty_Info ADD CONSTRAINT
+	PK_Duty_Info PRIMARY KEY CLUSTERED 
+	(
+	DutyID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_NowCompany WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_NowCompany_Duty_Info FOREIGN KEY
+	(
+	DutyID
+	) REFERENCES dbo.Duty_Info
+	(
+	DutyID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+--工种
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.WorkType_Info
+	DROP CONSTRAINT FK_WorkType_Info_Certificate_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_WorkType_Info
+	(
+	WorkTypeID int NOT NULL,
+	WtName nvarchar(50) NULL,
+	CerTypeID int NOT NULL,
+	Remark nvarchar(50) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'WorkTypeID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_Info', N'column', N'WorkTypeID'
+GO
+SET @v = N'工种名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_Info', N'column', N'WtName'
+GO
+SET @v = N'CerTypeID（证书类别)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_Info', N'column', N'CerTypeID'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_Info', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.WorkType_Info)
+	 EXEC('INSERT INTO dbo.Tmp_WorkType_Info (WorkTypeID, WtName, CerTypeID, Remark)
+		SELECT WorkTypeID, WtName, CerTypeID, Remark FROM dbo.WorkType_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Emp_WorkType
+	DROP CONSTRAINT FK_Emp_WorkType_WorkType_Info1
+GO
+ALTER TABLE dbo.WorkType_SysSet
+	DROP CONSTRAINT FK_WorkType_SysSet_WorkType_Info
+GO
+DROP TABLE dbo.WorkType_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_WorkType_Info', N'WorkType_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.WorkType_Info ADD CONSTRAINT
+	PK_WorkType_Info PRIMARY KEY CLUSTERED 
+	(
+	WorkTypeID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.WorkType_Info WITH NOCHECK ADD CONSTRAINT
+	FK_WorkType_Info_Certificate_Info FOREIGN KEY
+	(
+	CerTypeID
+	) REFERENCES dbo.Certificate_Info
+	(
+	CerTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.WorkType_SysSet WITH NOCHECK ADD CONSTRAINT
+	FK_WorkType_SysSet_WorkType_Info FOREIGN KEY
+	(
+	WorkTypeID
+	) REFERENCES dbo.WorkType_Info
+	(
+	WorkTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_WorkType WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_WorkType_WorkType_Info1 FOREIGN KEY
+	(
+	WorkTypeID
+	) REFERENCES dbo.WorkType_Info
+	(
+	WorkTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.WorkType_SysSet
+	DROP CONSTRAINT FK_WorkType_SysSet_WorkType_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_WorkType_SysSet
+	(
+	WorkTypeSysSetID int NOT NULL,
+	WorkTypeID int NULL,
+	MaxTimeSec int NULL,
+	MinTimeSec int NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'WorkTypeSysSetID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_SysSet', N'column', N'WorkTypeSysSetID'
+GO
+SET @v = N'WorkTypeID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_SysSet', N'column', N'WorkTypeID'
+GO
+SET @v = N'超过多少秒算超时'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_SysSet', N'column', N'MaxTimeSec'
+GO
+SET @v = N'不足多少秒算欠时'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_SysSet', N'column', N'MinTimeSec'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_WorkType_SysSet', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.WorkType_SysSet)
+	 EXEC('INSERT INTO dbo.Tmp_WorkType_SysSet (WorkTypeSysSetID, WorkTypeID, MaxTimeSec, MinTimeSec, Remark)
+		SELECT WorkTypeSysSetID, WorkTypeID, MaxTimeSec, MinTimeSec, Remark FROM dbo.WorkType_SysSet (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.WorkType_SysSet
+GO
+EXECUTE sp_rename N'dbo.Tmp_WorkType_SysSet', N'WorkType_SysSet', 'OBJECT'
+GO
+ALTER TABLE dbo.WorkType_SysSet ADD CONSTRAINT
+	PK_WorkType_SysSet PRIMARY KEY CLUSTERED 
+	(
+	WorkTypeSysSetID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.WorkType_SysSet WITH NOCHECK ADD CONSTRAINT
+	FK_WorkType_SysSet_WorkType_Info FOREIGN KEY
+	(
+	WorkTypeID
+	) REFERENCES dbo.WorkType_Info
+	(
+	WorkTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+--证书
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Certificate_Info
+	(
+	CerTypeID int NOT NULL,
+	CerName nvarchar(20) NULL,
+	CerVestIn nvarchar(20) NULL,
+	IsCheckExpDate bit NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'CerTypeID（证书类别)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Certificate_Info', N'column', N'CerTypeID'
+GO
+SET @v = N'证书名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Certificate_Info', N'column', N'CerName'
+GO
+SET @v = N'发证机关'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Certificate_Info', N'column', N'CerVestIn'
+GO
+SET @v = N'是否需要检查该类证书'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Certificate_Info', N'column', N'IsCheckExpDate'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Certificate_Info', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Certificate_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Certificate_Info (CerTypeID, CerName, CerVestIn, IsCheckExpDate, Remark)
+		SELECT CerTypeID, CerName, CerVestIn, IsCheckExpDate, Remark FROM dbo.Certificate_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.WorkType_Info
+	DROP CONSTRAINT FK_WorkType_Info_Certificate_Info
+GO
+ALTER TABLE dbo.Emp_Certificate
+	DROP CONSTRAINT FK_Emp_Certificate_Certificate_Info
+GO
+DROP TABLE dbo.Certificate_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Certificate_Info', N'Certificate_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Certificate_Info ADD CONSTRAINT
+	PK_Certificate_Info PRIMARY KEY CLUSTERED 
+	(
+	CerTypeID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Certificate WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Certificate_Certificate_Info FOREIGN KEY
+	(
+	CerTypeID
+	) REFERENCES dbo.Certificate_Info
+	(
+	CerTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.WorkType_Info WITH NOCHECK ADD CONSTRAINT
+	FK_WorkType_Info_Certificate_Info FOREIGN KEY
+	(
+	CerTypeID
+	) REFERENCES dbo.Certificate_Info
+	(
+	CerTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+--设备
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Equ_BaseInfo
+	DROP CONSTRAINT FK_Equ_BaseInfo_FactoryInfo
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Equ_BaseInfo
+	(
+	EquID int NOT NULL,
+	EquNO nvarchar(10) NOT NULL,
+	EquName nvarchar(20) NOT NULL,
+	DeptID int NOT NULL,
+	EquType int NOT NULL,
+	EquState int NOT NULL,
+	FactoryID int NOT NULL,
+	Remark nvarchar(100) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EquID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'EquID'
+GO
+SET @v = N'设备编号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'EquNO'
+GO
+SET @v = N'设备名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'EquName'
+GO
+SET @v = N'DepartmentID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'DeptID'
+GO
+SET @v = N'设备类型(机械 电子 从枚举表中获取)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'EquType'
+GO
+SET @v = N'设备状态(设备正常 设备损坏 枚举表)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'EquState'
+GO
+SET @v = N'生产厂家编号(FactoryInfo)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'FactoryID'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_BaseInfo', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Equ_BaseInfo)
+	 EXEC('INSERT INTO dbo.Tmp_Equ_BaseInfo (EquID, EquNO, EquName, DeptID, EquType, EquState, FactoryID, Remark)
+		SELECT EquID, EquNO, EquName, DeptID, EquType, EquState, FactoryID, Remark FROM dbo.Equ_BaseInfo (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Equ_HisCheck
+	DROP CONSTRAINT FK_Equ_HisCheck_Equ_BaseInfo
+GO
+ALTER TABLE dbo.Equ_DetailInfo
+	DROP CONSTRAINT FK_Equ_DetailInfo_Equ_BaseInfo
+GO
+DROP TABLE dbo.Equ_BaseInfo
+GO
+EXECUTE sp_rename N'dbo.Tmp_Equ_BaseInfo', N'Equ_BaseInfo', 'OBJECT'
+GO
+ALTER TABLE dbo.Equ_BaseInfo ADD CONSTRAINT
+	PK_Equ_BaseInfo PRIMARY KEY CLUSTERED 
+	(
+	EquID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Equ_BaseInfo WITH NOCHECK ADD CONSTRAINT
+	FK_Equ_BaseInfo_FactoryInfo FOREIGN KEY
+	(
+	FactoryID
+	) REFERENCES dbo.FactoryInfo
+	(
+	FactoryID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Equ_DetailInfo WITH NOCHECK ADD CONSTRAINT
+	FK_Equ_DetailInfo_Equ_BaseInfo FOREIGN KEY
+	(
+	EquID
+	) REFERENCES dbo.Equ_BaseInfo
+	(
+	EquID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Equ_HisCheck WITH NOCHECK ADD CONSTRAINT
+	FK_Equ_HisCheck_Equ_BaseInfo FOREIGN KEY
+	(
+	EquID
+	) REFERENCES dbo.Equ_BaseInfo
+	(
+	EquID
+	) ON UPDATE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Equ_DetailInfo
+	DROP CONSTRAINT FK_Equ_DetailInfo_Equ_BaseInfo
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Equ_DetailInfo
+	(
+	EquDetailID int NOT NULL,
+	EquID int NOT NULL,
+	ModelSpecial varchar(50) NULL,
+	DutyEmployee nvarchar(10) NULL,
+	UseRange varchar(50) NULL,
+	ProductionDate datetime NULL,
+	EquHeight int NULL,
+	EquPower int NULL,
+	UserDate datetime NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'EquDetailID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'EquDetailID'
+GO
+SET @v = N'EquID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'EquID'
+GO
+SET @v = N'规格'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'ModelSpecial'
+GO
+SET @v = N'责任人'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'DutyEmployee'
+GO
+SET @v = N'使用范围'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'UseRange'
+GO
+SET @v = N'生产日期'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'ProductionDate'
+GO
+SET @v = N'重量(Kg)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'EquHeight'
+GO
+SET @v = N'功耗(kw)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'EquPower'
+GO
+SET @v = N'使用期限'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Equ_DetailInfo', N'column', N'UserDate'
+GO
+IF EXISTS(SELECT * FROM dbo.Equ_DetailInfo)
+	 EXEC('INSERT INTO dbo.Tmp_Equ_DetailInfo (EquDetailID, EquID, ModelSpecial, DutyEmployee, UseRange, ProductionDate, EquHeight, EquPower, UserDate)
+		SELECT EquDetailID, EquID, ModelSpecial, DutyEmployee, UseRange, ProductionDate, EquHeight, EquPower, UserDate FROM dbo.Equ_DetailInfo (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Equ_DetailInfo
+GO
+EXECUTE sp_rename N'dbo.Tmp_Equ_DetailInfo', N'Equ_DetailInfo', 'OBJECT'
+GO
+ALTER TABLE dbo.Equ_DetailInfo ADD CONSTRAINT
+	PK_Equ_DetailInfo PRIMARY KEY CLUSTERED 
+	(
+	EquDetailID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Equ_DetailInfo WITH NOCHECK ADD CONSTRAINT
+	FK_Equ_DetailInfo_Equ_BaseInfo FOREIGN KEY
+	(
+	EquID
+	) REFERENCES dbo.Equ_BaseInfo
+	(
+	EquID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_FactoryInfo
+	(
+	FactoryID int NOT NULL,
+	FactoryNO nvarchar(10) NOT NULL,
+	FactoryName nvarchar(50) NOT NULL,
+	FactoryAddress nvarchar(80) NOT NULL,
+	FactoryFax nvarchar(20) NULL,
+	FactoryTel nvarchar(20) NULL,
+	FactoryEmployee nvarchar(50) NULL,
+	FactoryEmpoyeeTel nvarchar(50) NULL,
+	Remark nvarchar(100) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'FactoryID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryID'
+GO
+SET @v = N'厂家编号'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryNO'
+GO
+SET @v = N'厂家名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryName'
+GO
+SET @v = N'厂家地址'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryAddress'
+GO
+SET @v = N'厂家传真'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryFax'
+GO
+SET @v = N'厂家联系电话'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryTel'
+GO
+SET @v = N'厂家联系人'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryEmployee'
+GO
+SET @v = N'厂家联系人电话'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'FactoryEmpoyeeTel'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_FactoryInfo', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.FactoryInfo)
+	 EXEC('INSERT INTO dbo.Tmp_FactoryInfo (FactoryID, FactoryNO, FactoryName, FactoryAddress, FactoryFax, FactoryTel, FactoryEmployee, FactoryEmpoyeeTel, Remark)
+		SELECT FactoryID, FactoryNO, FactoryName, FactoryAddress, FactoryFax, FactoryTel, FactoryEmployee, FactoryEmpoyeeTel, Remark FROM dbo.FactoryInfo (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Equ_BaseInfo
+	DROP CONSTRAINT FK_Equ_BaseInfo_FactoryInfo
+GO
+DROP TABLE dbo.FactoryInfo
+GO
+EXECUTE sp_rename N'dbo.Tmp_FactoryInfo', N'FactoryInfo', 'OBJECT'
+GO
+ALTER TABLE dbo.FactoryInfo ADD CONSTRAINT
+	PK_FactoryInfo PRIMARY KEY CLUSTERED 
+	(
+	FactoryID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Equ_BaseInfo WITH NOCHECK ADD CONSTRAINT
+	FK_Equ_BaseInfo_FactoryInfo FOREIGN KEY
+	(
+	FactoryID
+	) REFERENCES dbo.FactoryInfo
+	(
+	FactoryID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+--标示卡
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_CodeSender_Info
+	(
+	CodeSenderID int NOT NULL,
+	CodeSenderAddress int NULL,
+	AlarmElectricity bit NULL,
+	CodeSenderStateID int NULL,
+	IsCodeSenderUser int NULL,
+	Remark nvarchar(200) NULL,
+	CodeSenderStateTime datetime NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'CodeSenderID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'CodeSenderID'
+GO
+SET @v = N'发码器地址'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'CodeSenderAddress'
+GO
+SET @v = N'低电量报警'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'AlarmElectricity'
+GO
+SET @v = N'CodeSenderStateID（发码器状态）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'CodeSenderStateID'
+GO
+SET @v = N'是否被使用'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'IsCodeSenderUser'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Info', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.CodeSender_Info)
+	 EXEC('INSERT INTO dbo.Tmp_CodeSender_Info (CodeSenderID, CodeSenderAddress, AlarmElectricity, CodeSenderStateID, IsCodeSenderUser, Remark, CodeSenderStateTime)
+		SELECT CodeSenderID, CodeSenderAddress, AlarmElectricity, CodeSenderStateID, IsCodeSenderUser, Remark, CodeSenderStateTime FROM dbo.CodeSender_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.CodeSender_Set
+	DROP CONSTRAINT FK_CodeSender_Set_CodeSender_Info
+GO
+DROP TABLE dbo.CodeSender_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_CodeSender_Info', N'CodeSender_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.CodeSender_Info ADD CONSTRAINT
+	PK_CodeSender_Info PRIMARY KEY CLUSTERED 
+	(
+	CodeSenderID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.CodeSender_Set WITH NOCHECK ADD CONSTRAINT
+	FK_CodeSender_Set_CodeSender_Info FOREIGN KEY
+	(
+	CodeSenderID
+	) REFERENCES dbo.CodeSender_Info
+	(
+	CodeSenderID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.CodeSender_Set
+	DROP CONSTRAINT FK_CodeSender_Set_CodeSender_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_CodeSender_Set
+	(
+	CsSetID int NOT NULL,
+	CodeSenderID int NULL,
+	CodeSenderAddress int NULL,
+	UserID int NULL,
+	CsTypeID int NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'CsSetID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'CsSetID'
+GO
+SET @v = N'CodeSenderID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'CodeSenderID'
+GO
+SET @v = N'CodeSenderAddress'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'CodeSenderAddress'
+GO
+SET @v = N'UserID（员工或设备的编号）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'UserID'
+GO
+SET @v = N'CsTypeID发码器类别（人、设备)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'CsTypeID'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_CodeSender_Set', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.CodeSender_Set)
+	 EXEC('INSERT INTO dbo.Tmp_CodeSender_Set (CsSetID, CodeSenderID, CodeSenderAddress, UserID, CsTypeID, Remark)
+		SELECT CsSetID, CodeSenderID, CodeSenderAddress, UserID, CsTypeID, Remark FROM dbo.CodeSender_Set (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.RT_InOutMine
+	DROP CONSTRAINT FK_Rt_InOutMine_CodeSender_Set
+GO
+ALTER TABLE dbo.RT_InStationHeadInfo
+	DROP CONSTRAINT FK_RT_InStationHeadInfo_CodeSender_Set
+GO
+ALTER TABLE dbo.RealTimeCodeSender
+	DROP CONSTRAINT FK_RealTimeCodeSender_CodeSender_Set
+GO
+ALTER TABLE dbo.RT_TerritorialInfo
+	DROP CONSTRAINT FK_RT_TerritorialInfo_CodeSender_Set
+GO
+DROP TABLE dbo.CodeSender_Set
+GO
+EXECUTE sp_rename N'dbo.Tmp_CodeSender_Set', N'CodeSender_Set', 'OBJECT'
+GO
+ALTER TABLE dbo.CodeSender_Set ADD CONSTRAINT
+	PK_CodeSender_Set PRIMARY KEY CLUSTERED 
+	(
+	CsSetID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.CodeSender_Set WITH NOCHECK ADD CONSTRAINT
+	FK_CodeSender_Set_CodeSender_Info FOREIGN KEY
+	(
+	CodeSenderID
+	) REFERENCES dbo.CodeSender_Info
+	(
+	CodeSenderID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_TerritorialInfo WITH NOCHECK ADD CONSTRAINT
+	FK_RT_TerritorialInfo_CodeSender_Set FOREIGN KEY
+	(
+	CsSetID
+	) REFERENCES dbo.CodeSender_Set
+	(
+	CsSetID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RealTimeCodeSender WITH NOCHECK ADD CONSTRAINT
+	FK_RealTimeCodeSender_CodeSender_Set FOREIGN KEY
+	(
+	CsSetID
+	) REFERENCES dbo.CodeSender_Set
+	(
+	CsSetID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_InStationHeadInfo WITH NOCHECK ADD CONSTRAINT
+	FK_RT_InStationHeadInfo_CodeSender_Set FOREIGN KEY
+	(
+	CsSetID
+	) REFERENCES dbo.CodeSender_Set
+	(
+	CsSetID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_InOutMine WITH NOCHECK ADD CONSTRAINT
+	FK_Rt_InOutMine_CodeSender_Set FOREIGN KEY
+	(
+	CsSetID
+	) REFERENCES dbo.CodeSender_Set
+	(
+	CsSetID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+--区域
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Info
+	DROP CONSTRAINT FK_Territorial_Info_Territorial_Type
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Territorial_Info
+	(
+	TerritorialID int NOT NULL,
+	TerritorialName nvarchar(20) NULL,
+	TerritorialTypeID int NULL,
+	IsEnable bit NULL,
+	Instruction nvarchar(500) NULL,
+	Remark nvarchar(200) NULL,
+	[TerritorialNO] nvarchar(10) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'TerritorialID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'TerritorialID'
+GO
+SET @v = N'区域名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'TerritorialName'
+GO
+SET @v = N'TerritorialTypeID（区域类型）'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'TerritorialTypeID'
+GO
+SET @v = N'是否启用'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'IsEnable'
+GO
+SET @v = N'区域介绍'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'Instruction'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Info', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Territorial_Info)
+	 EXEC('INSERT INTO dbo.Tmp_Territorial_Info (TerritorialID, TerritorialName, TerritorialTypeID, IsEnable, Instruction, Remark)
+		SELECT TerritorialID, TerritorialName, TerritorialTypeID, IsEnable, Instruction, Remark FROM dbo.Territorial_Info (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Emp_Post
+	DROP CONSTRAINT FK_Emp_Post_Territorial_Info
+GO
+ALTER TABLE dbo.Territorial_Set
+	DROP CONSTRAINT FK_Territorial_Set_Territorial_Info
+GO
+ALTER TABLE dbo.RT_TerritorialInfo
+	DROP CONSTRAINT FK_RT_TerritorialInfo_Territorial_Info
+GO
+DROP TABLE dbo.Territorial_Info
+GO
+EXECUTE sp_rename N'dbo.Tmp_Territorial_Info', N'Territorial_Info', 'OBJECT'
+GO
+ALTER TABLE dbo.Territorial_Info ADD CONSTRAINT
+	PK_Territorial_Info PRIMARY KEY CLUSTERED 
+	(
+	TerritorialID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Territorial_Info WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Info_Territorial_Type FOREIGN KEY
+	(
+	TerritorialTypeID
+	) REFERENCES dbo.Territorial_Type
+	(
+	TerritorialTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.RT_TerritorialInfo WITH NOCHECK ADD CONSTRAINT
+	FK_RT_TerritorialInfo_Territorial_Info FOREIGN KEY
+	(
+	TerritorialID
+	) REFERENCES dbo.Territorial_Info
+	(
+	TerritorialID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Set WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Set_Territorial_Info FOREIGN KEY
+	(
+	TerritorialID
+	) REFERENCES dbo.Territorial_Info
+	(
+	TerritorialID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Emp_Post WITH NOCHECK ADD CONSTRAINT
+	FK_Emp_Post_Territorial_Info FOREIGN KEY
+	(
+	TerritorialID
+	) REFERENCES dbo.Territorial_Info
+	(
+	TerritorialID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Config
+	DROP CONSTRAINT DF_Territorial_Config_TerWorkTime
+GO
+ALTER TABLE dbo.Territorial_Config
+	DROP CONSTRAINT DF_Territorial_Config_TerEmpCount
+GO
+CREATE TABLE dbo.Tmp_Territorial_Config
+	(
+	TerConfigID int NOT NULL,
+	TerritorialID int NULL,
+	TerWorkTime int NULL,
+	TerEmpCount int NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_Territorial_Config ADD CONSTRAINT
+	DF_Territorial_Config_TerWorkTime DEFAULT ((-1)) FOR TerWorkTime
+GO
+ALTER TABLE dbo.Tmp_Territorial_Config ADD CONSTRAINT
+	DF_Territorial_Config_TerEmpCount DEFAULT ((-1)) FOR TerEmpCount
+GO
+IF EXISTS(SELECT * FROM dbo.Territorial_Config)
+	 EXEC('INSERT INTO dbo.Tmp_Territorial_Config (TerConfigID, TerritorialID, TerWorkTime, TerEmpCount)
+		SELECT TerConfigID, TerritorialID, TerWorkTime, TerEmpCount FROM dbo.Territorial_Config (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Territorial_Config
+GO
+EXECUTE sp_rename N'dbo.Tmp_Territorial_Config', N'Territorial_Config', 'OBJECT'
+GO
+ALTER TABLE dbo.Territorial_Config ADD CONSTRAINT
+	PK_Territorial_Config PRIMARY KEY CLUSTERED 
+	(
+	TerConfigID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Territorial_Type
+	(
+	TerritorialTypeID int NOT NULL,
+	TypeName nvarchar(20) NULL,
+	IsAlarm bit NULL,
+	Remark nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'TerritorialTypeID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Type', N'column', N'TerritorialTypeID'
+GO
+SET @v = N'类别名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Type', N'column', N'TypeName'
+GO
+SET @v = N'是否报警'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Type', N'column', N'IsAlarm'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Type', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.Territorial_Type)
+	 EXEC('INSERT INTO dbo.Tmp_Territorial_Type (TerritorialTypeID, TypeName, IsAlarm, Remark)
+		SELECT TerritorialTypeID, TypeName, IsAlarm, Remark FROM dbo.Territorial_Type (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.Territorial_Info
+	DROP CONSTRAINT FK_Territorial_Info_Territorial_Type
+GO
+DROP TABLE dbo.Territorial_Type
+GO
+EXECUTE sp_rename N'dbo.Tmp_Territorial_Type', N'Territorial_Type', 'OBJECT'
+GO
+ALTER TABLE dbo.Territorial_Type ADD CONSTRAINT
+	PK_Territorial_Type PRIMARY KEY CLUSTERED 
+	(
+	TerritorialTypeID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Info WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Info_Territorial_Type FOREIGN KEY
+	(
+	TerritorialTypeID
+	) REFERENCES dbo.Territorial_Type
+	(
+	TerritorialTypeID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Set
+	DROP CONSTRAINT FK_Territorial_Set_Territorial_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Set
+	DROP CONSTRAINT FK_Territorial_Set_Station_Head_Info
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.Territorial_Set
+	DROP CONSTRAINT DF_Territorial_Set_IsTerriorialEnter
+GO
+CREATE TABLE dbo.Tmp_Territorial_Set
+	(
+	TerritorialSetID int NOT NULL,
+	TerritorialID int NULL,
+	StationID int NULL,
+	StationHeadID int NULL,
+	Remark nvarchar(200) NULL,
+	IsTerriorialEnter bit NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'TerritorialSetID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Set', N'column', N'TerritorialSetID'
+GO
+SET @v = N'TerritorialID(区域信息ID)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Set', N'column', N'TerritorialID'
+GO
+SET @v = N'StationID(基站ID)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Set', N'column', N'StationID'
+GO
+SET @v = N'StationHeadID(探头ID)'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Set', N'column', N'StationHeadID'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_Territorial_Set', N'column', N'Remark'
+GO
+ALTER TABLE dbo.Tmp_Territorial_Set ADD CONSTRAINT
+	DF_Territorial_Set_IsTerriorialEnter DEFAULT (0) FOR IsTerriorialEnter
+GO
+IF EXISTS(SELECT * FROM dbo.Territorial_Set)
+	 EXEC('INSERT INTO dbo.Tmp_Territorial_Set (TerritorialSetID, TerritorialID, StationID, StationHeadID, Remark, IsTerriorialEnter)
+		SELECT TerritorialSetID, TerritorialID, StationID, StationHeadID, Remark, IsTerriorialEnter FROM dbo.Territorial_Set (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Territorial_Set
+GO
+EXECUTE sp_rename N'dbo.Tmp_Territorial_Set', N'Territorial_Set', 'OBJECT'
+GO
+ALTER TABLE dbo.Territorial_Set ADD CONSTRAINT
+	PK_Territorial_Set PRIMARY KEY CLUSTERED 
+	(
+	TerritorialSetID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.Territorial_Set WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Set_Station_Head_Info FOREIGN KEY
+	(
+	StationHeadID
+	) REFERENCES dbo.Station_Head_Info
+	(
+	StationHeadID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+ALTER TABLE dbo.Territorial_Set WITH NOCHECK ADD CONSTRAINT
+	FK_Territorial_Set_Territorial_Info FOREIGN KEY
+	(
+	TerritorialID
+	) REFERENCES dbo.Territorial_Info
+	(
+	TerritorialID
+	) ON UPDATE CASCADE
+	 ON DELETE CASCADE
+	
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_SWorkTypeTerrialSet
+	(
+	TerriAlarmID int NOT NULL,
+	TerrialID int NULL,
+	WorkTypeID int NULL,
+	IsAlarm bit NULL,
+	Remark nvarchar(300) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.SWorkTypeTerrialSet)
+	 EXEC('INSERT INTO dbo.Tmp_SWorkTypeTerrialSet (TerriAlarmID, TerrialID, WorkTypeID, IsAlarm, Remark)
+		SELECT TerriAlarmID, TerrialID, WorkTypeID, IsAlarm, Remark FROM dbo.SWorkTypeTerrialSet (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.SWorkTypeTerrialSet
+GO
+EXECUTE sp_rename N'dbo.Tmp_SWorkTypeTerrialSet', N'SWorkTypeTerrialSet', 'OBJECT'
+GO
+COMMIT
+
+  GO
+--方向性
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_CodeSender_DirectionalAntenna
+	(
+	CodeSenderDirlID int NOT NULL,
+	DetectionInfo nvarchar(20) NULL,
+	Directional nvarchar(50) NULL,
+	Remark nvarchar(200) NULL,
+	BeginStationAddress int NULL,
+	BeginStationHeadAddress int NULL,
+	EndStationAddress int NULL,
+	EndStationHeadAddress int NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.CodeSender_DirectionalAntenna)
+	 EXEC('INSERT INTO dbo.Tmp_CodeSender_DirectionalAntenna (CodeSenderDirlID, DetectionInfo, Directional, Remark, BeginStationAddress, BeginStationHeadAddress, EndStationAddress, EndStationHeadAddress)
+		SELECT CodeSenderDirlID, DetectionInfo, Directional, Remark, BeginStationAddress, BeginStationHeadAddress, EndStationAddress, EndStationHeadAddress FROM dbo.CodeSender_DirectionalAntenna (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.CodeSender_DirectionalAntenna
+GO
+EXECUTE sp_rename N'dbo.Tmp_CodeSender_DirectionalAntenna', N'CodeSender_DirectionalAntenna', 'OBJECT'
+GO
+ALTER TABLE dbo.CodeSender_DirectionalAntenna ADD CONSTRAINT
+	PK_CodeSender_DirectionalAntenna PRIMARY KEY CLUSTERED 
+	(
+	CodeSenderDirlID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+--考勤
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_InfoClass
+	(
+	ID int NOT NULL,
+	ClassName varchar(20) NULL,
+	ShortName varchar(20) NULL,
+	Remark varchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_InfoClass', N'column', N'ID'
+GO
+SET @v = N'班制全称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_InfoClass', N'column', N'ClassName'
+GO
+SET @v = N'班制简称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_InfoClass', N'column', N'ShortName'
+GO
+SET @v = N'备注'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_InfoClass', N'column', N'Remark'
+GO
+IF EXISTS(SELECT * FROM dbo.InfoClass)
+	 EXEC('INSERT INTO dbo.Tmp_InfoClass (ID, ClassName, ShortName, Remark)
+		SELECT ID, ClassName, ShortName, Remark FROM dbo.InfoClass (HOLDLOCK TABLOCKX)')
+GO
+ALTER TABLE dbo.TimerInterval
+	DROP CONSTRAINT FK_timerInterval_InfoClass
+GO
+DROP TABLE dbo.InfoClass
+GO
+EXECUTE sp_rename N'dbo.Tmp_InfoClass', N'InfoClass', 'OBJECT'
+GO
+ALTER TABLE dbo.InfoClass ADD CONSTRAINT
+	PK_InfoClass PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.TimerInterval WITH NOCHECK ADD CONSTRAINT
+	FK_timerInterval_InfoClass FOREIGN KEY
+	(
+	ClassID
+	) REFERENCES dbo.InfoClass
+	(
+	ID
+	) NOT FOR REPLICATION
+
+GO
+ALTER TABLE dbo.TimerInterval
+	NOCHECK CONSTRAINT FK_timerInterval_InfoClass
+GO
+COMMIT
+
+  GO
+
+  BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.TimerInterval
+	DROP CONSTRAINT FK_timerInterval_InfoClass
+GO
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_TimerInterval
+	(
+	ID int NOT NULL,
+	IntervalName varchar(50) NULL,
+	NameShort varchar(8) NULL,
+	StartWorkTime datetime NULL,
+	EndWorkTime datetime NULL,
+	SWDateType int NULL,
+	EWDateType int NULL,
+	SWFrontTime int NULL,
+	SWAfterTime int NULL,
+	EWFrontTime int NULL,
+	EWAfterTime int NULL,
+	ClassID int NULL,
+	DataAttendanceType int NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'ID'
+GO
+SET @v = N'时段全称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'IntervalName'
+GO
+SET @v = N'时段简称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'NameShort'
+GO
+SET @v = N'开始考勤时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'StartWorkTime'
+GO
+SET @v = N'结束考勤时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'EndWorkTime'
+GO
+SET @v = N'开始考勤时间类型 -1前一日 0排班日 1后一日'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'SWDateType'
+GO
+SET @v = N'结束考勤时间类型 -1前一日 0排班日 1后一日'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'EWDateType'
+GO
+SET @v = N'提前多长时间开始考勤 以分种为单位'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'SWFrontTime'
+GO
+SET @v = N'考勤开始后多长时间算迟到 以分钟为单位'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'SWAfterTime'
+GO
+SET @v = N'下班前多长时间算早退 以分钟为单位'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'EWFrontTime'
+GO
+SET @v = N'下班后多长时间结束考勤 以分钟为单位'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'EWAfterTime'
+GO
+SET @v = N'班制流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_TimerInterval', N'column', N'ClassID'
+GO
+IF EXISTS(SELECT * FROM dbo.TimerInterval)
+	 EXEC('INSERT INTO dbo.Tmp_TimerInterval (ID, IntervalName, NameShort, StartWorkTime, EndWorkTime, SWDateType, EWDateType, SWFrontTime, SWAfterTime, EWFrontTime, EWAfterTime, ClassID, DataAttendanceType)
+		SELECT ID, IntervalName, NameShort, StartWorkTime, EndWorkTime, SWDateType, EWDateType, SWFrontTime, SWAfterTime, EWFrontTime, EWAfterTime, ClassID, DataAttendanceType FROM dbo.TimerInterval (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.TimerInterval
+GO
+EXECUTE sp_rename N'dbo.Tmp_TimerInterval', N'TimerInterval', 'OBJECT'
+GO
+ALTER TABLE dbo.TimerInterval ADD CONSTRAINT
+	PK_TABLE1 PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+ALTER TABLE dbo.TimerInterval WITH NOCHECK ADD CONSTRAINT
+	FK_timerInterval_InfoClass FOREIGN KEY
+	(
+	ClassID
+	) REFERENCES dbo.InfoClass
+	(
+	ID
+	) NOT FOR REPLICATION
+
+GO
+ALTER TABLE dbo.TimerInterval
+	NOCHECK CONSTRAINT FK_timerInterval_InfoClass
+GO
+COMMIT
+
+  GO
+--权限
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_UserGroups
+	(
+	ID int NOT NULL,
+	UGName varchar(20) NOT NULL,
+	IsEnable bit NOT NULL,
+	IsUseEndDate bit NOT NULL,
+	UseEndDate smalldatetime NULL,
+	UGPowerID int NULL,
+	Remark varchar(200) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.UserGroups)
+	 EXEC('INSERT INTO dbo.Tmp_UserGroups (ID, UGName, IsEnable, IsUseEndDate, UseEndDate, UGPowerID, Remark)
+		SELECT ID, UGName, IsEnable, IsUseEndDate, UseEndDate, UGPowerID, Remark FROM dbo.UserGroups (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.UserGroups
+GO
+EXECUTE sp_rename N'dbo.Tmp_UserGroups', N'UserGroups', 'OBJECT'
+GO
+COMMIT
+
+  GO
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Admins
+	(
+	ID int NOT NULL,
+	Account varchar(20) NOT NULL,
+	Password varchar(16) NOT NULL,
+	IsEnable bit NOT NULL,
+	IsUseEndDate bit NOT NULL,
+	UseEndDate smalldatetime NULL,
+	UserGroupID int NOT NULL,
+	LoginTotal int NOT NULL,
+	CreateID int NOT NULL,
+	CreateDate smalldatetime NOT NULL,
+	CreateIP bigint NOT NULL,
+	FlagTag bit NOT NULL,
+	Style varchar(20) NULL,
+	Remark varchar(200) NULL,
+	Passwordback varchar(20) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.Admins)
+	 EXEC('INSERT INTO dbo.Tmp_Admins (ID, Account, Password, IsEnable, IsUseEndDate, UseEndDate, UserGroupID, LoginTotal, CreateID, CreateDate, CreateIP, FlagTag, Style, Remark, Passwordback)
+		SELECT ID, Account, Password, IsEnable, IsUseEndDate, UseEndDate, UserGroupID, LoginTotal, CreateID, CreateDate, CreateIP, FlagTag, Style, Remark, Passwordback FROM dbo.Admins (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Admins
+GO
+EXECUTE sp_rename N'dbo.Tmp_Admins', N'Admins', 'OBJECT'
+GO
+ALTER TABLE dbo.Admins ADD CONSTRAINT
+	PK_Admins PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_UserGroupMenu1
+	(
+	ID int NOT NULL,
+	UserGroupID int NULL,
+	MenuID int NULL,
+	ISuse bit NULL,
+	Remark varchar(200) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.UserGroupMenu1)
+	 EXEC('INSERT INTO dbo.Tmp_UserGroupMenu1 (ID, UserGroupID, MenuID, ISuse, Remark)
+		SELECT ID, UserGroupID, MenuID, ISuse, Remark FROM dbo.UserGroupMenu1 (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.UserGroupMenu1
+GO
+EXECUTE sp_rename N'dbo.Tmp_UserGroupMenu1', N'UserGroupMenu1', 'OBJECT'
+GO
+ALTER TABLE dbo.UserGroupMenu1 ADD CONSTRAINT
+	PK_UserGroupMenu1 PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+go
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_menus1
+	(
+	ID int NOT NULL,
+	PMenuID int NOT NULL,
+	Title varchar(50) NULL,
+	name varchar(50) NOT NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.menus1)
+	 EXEC('INSERT INTO dbo.Tmp_menus1 (ID, PMenuID, Title, name)
+		SELECT ID, PMenuID, Title, name FROM dbo.menus1 (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.menus1
+GO
+EXECUTE sp_rename N'dbo.Tmp_menus1', N'menus1', 'OBJECT'
+GO
+COMMIT
+
+  GO
+--TCPIP配置
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_TcpIPConfig
+	(
+	IPId int NOT NULL,
+	IPAddress nvarchar(20) NULL,
+	IPPort int NULL,
+	PLACE nvarchar(200) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.TcpIPConfig)
+	 EXEC('INSERT INTO dbo.Tmp_TcpIPConfig (IPId, IPAddress, IPPort, PLACE)
+		SELECT IPId, IPAddress, IPPort, PLACE FROM dbo.TcpIPConfig (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.TcpIPConfig
+GO
+EXECUTE sp_rename N'dbo.Tmp_TcpIPConfig', N'TcpIPConfig', 'OBJECT'
+GO
+ALTER TABLE dbo.TcpIPConfig ADD CONSTRAINT
+	PK_TcpIPConfig PRIMARY KEY CLUSTERED 
+	(
+	IPId
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+--超速欠速
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.OverSpeed
+	DROP CONSTRAINT DF_OverSpeed_WalkTime
+GO
+ALTER TABLE dbo.OverSpeed
+	DROP CONSTRAINT DF_OverSpeed_LackWalkTime
+GO
+CREATE TABLE dbo.Tmp_OverSpeed
+	(
+	OverSpeedID int NOT NULL,
+	FirstStationAddress int NULL,
+	FirstStationHeadAddress int NULL,
+	LastStationAddress int NULL,
+	LastStationHeadAddress int NULL,
+	WalkTime int NULL,
+	Remark nvarchar(200) NULL,
+	LackWalkTime int NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_OverSpeed ADD CONSTRAINT
+	DF_OverSpeed_WalkTime DEFAULT ((-1)) FOR WalkTime
+GO
+ALTER TABLE dbo.Tmp_OverSpeed ADD CONSTRAINT
+	DF_OverSpeed_LackWalkTime DEFAULT ((-1)) FOR LackWalkTime
+GO
+IF EXISTS(SELECT * FROM dbo.OverSpeed)
+	 EXEC('INSERT INTO dbo.Tmp_OverSpeed (OverSpeedID, FirstStationAddress, FirstStationHeadAddress, LastStationAddress, LastStationHeadAddress, WalkTime, Remark, LackWalkTime)
+		SELECT OverSpeedID, FirstStationAddress, FirstStationHeadAddress, LastStationAddress, LastStationHeadAddress, WalkTime, Remark, LackWalkTime FROM dbo.OverSpeed (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.OverSpeed
+GO
+EXECUTE sp_rename N'dbo.Tmp_OverSpeed', N'OverSpeed', 'OBJECT'
+GO
+ALTER TABLE dbo.OverSpeed ADD CONSTRAINT
+	PK_OverSpeed PRIMARY KEY CLUSTERED 
+	(
+	OverSpeedID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+--异地交接班
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_Associate
+	(
+	id int NOT NULL,
+	stationAddress int NULL,
+	stationHeadAddress int NULL,
+	stationHeadPlace varchar(20) NULL,
+	beginTime datetime NULL,
+	endTime datetime NULL,
+	empID1 int NULL,
+	empID2 int NULL,
+	empName1 varchar(20) NULL,
+	empName2 varchar(20) NULL,
+	isFlagEmp1 int NULL,
+	isFlagEmp2 int NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.Associate)
+	 EXEC('INSERT INTO dbo.Tmp_Associate (id, stationAddress, stationHeadAddress, stationHeadPlace, beginTime, endTime, empID1, empID2, empName1, empName2, isFlagEmp1, isFlagEmp2)
+		SELECT id, stationAddress, stationHeadAddress, stationHeadPlace, beginTime, endTime, empID1, empID2, empName1, empName2, isFlagEmp1, isFlagEmp2 FROM dbo.Associate (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.Associate
+GO
+EXECUTE sp_rename N'dbo.Tmp_Associate', N'Associate', 'OBJECT'
+GO
+COMMIT
+
+  GO
+--报警设置
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_AlarmSet
+	(
+	AlarmSetID int NOT NULL,
+	AlarmSetType int NULL,
+	AlarmWaveType int NULL,
+	AlarmWavePath nvarchar(100) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'声音描述列表'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_AlarmSet', N'column', N'AlarmWaveType'
+GO
+SET @v = N'声音路径'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_AlarmSet', N'column', N'AlarmWavePath'
+GO
+IF EXISTS(SELECT * FROM dbo.AlarmSet)
+	 EXEC('INSERT INTO dbo.Tmp_AlarmSet (AlarmSetID, AlarmSetType, AlarmWaveType, AlarmWavePath)
+		SELECT AlarmSetID, AlarmSetType, AlarmWaveType, AlarmWavePath FROM dbo.AlarmSet (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.AlarmSet
+GO
+EXECUTE sp_rename N'dbo.Tmp_AlarmSet', N'AlarmSet', 'OBJECT'
+GO
+ALTER TABLE dbo.AlarmSet ADD CONSTRAINT
+	PK_AlarmSet PRIMARY KEY CLUSTERED 
+	(
+	AlarmSetID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+--枚举表
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_EnumTable
+	(
+	ID int NOT NULL,
+	FunID int NULL,
+	EnumID int NULL,
+	Title nvarchar(50) NULL,
+	IsBase bit NULL,
+	EnumValue nvarchar(20) NULL,
+	Remark nvarchar(50) NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.EnumTable)
+	 EXEC('INSERT INTO dbo.Tmp_EnumTable (ID, FunID, EnumID, Title, IsBase, EnumValue, Remark)
+		SELECT ID, FunID, EnumID, Title, IsBase, EnumValue, Remark FROM dbo.EnumTable (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.EnumTable
+GO
+EXECUTE sp_rename N'dbo.Tmp_EnumTable', N'EnumTable', 'OBJECT'
+GO
+ALTER TABLE dbo.EnumTable ADD CONSTRAINT
+	PK_EnumID_Table PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+
+--假别信息
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_HolidayType
+	(
+	ID int NOT NULL,
+	HolidayCode varchar(20) NULL,
+	HolidayName varchar(20) NULL,
+	HolidayAcronym varchar(10) NULL,
+	Remark varchar(200) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'流水'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_HolidayType', N'column', N'ID'
+GO
+SET @v = N'假别编码'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_HolidayType', N'column', N'HolidayCode'
+GO
+SET @v = N'假类全称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_HolidayType', N'column', N'HolidayName'
+GO
+SET @v = N'假别简称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_HolidayType', N'column', N'HolidayAcronym'
+GO
+IF EXISTS(SELECT * FROM dbo.HolidayType)
+	 EXEC('INSERT INTO dbo.Tmp_HolidayType (ID, HolidayCode, HolidayName, HolidayAcronym, Remark)
+		SELECT ID, HolidayCode, HolidayName, HolidayAcronym, Remark FROM dbo.HolidayType (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.HolidayType
+GO
+EXECUTE sp_rename N'dbo.Tmp_HolidayType', N'HolidayType', 'OBJECT'
+GO
+ALTER TABLE dbo.HolidayType ADD CONSTRAINT
+	PK_HolidayType PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+  GO
+
+--历史进出区域
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_His_InOutTerritorial
+	(
+	HisTerritorialID bigint NOT NULL,
+	TerritorialID int NOT NULL,
+	TerritorialName nvarchar(20) NULL,
+	TerritorialTypeName nvarchar(20) NULL,
+	InTerritorialTime datetime NULL,
+	CodeSenderAddress int NULL,
+	CsSetID int NULL,
+	CsTypeID int NULL,
+	UserID int NULL,
+	UserName nvarchar(20) NULL,
+	OutTerritorialTime datetime NULL,
+	IsAlarm bit NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'HisTerritorialID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'HisTerritorialID'
+GO
+SET @v = N'区域ID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'TerritorialID'
+GO
+SET @v = N'区域名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'TerritorialName'
+GO
+SET @v = N'进入区域时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'InTerritorialTime'
+GO
+SET @v = N'发码器地址'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'CodeSenderAddress'
+GO
+SET @v = N'发码器配置ID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'CsSetID'
+GO
+SET @v = N'发码器配置类型ID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'CsTypeID'
+GO
+SET @v = N'使用者ID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'UserID'
+GO
+SET @v = N'使用者名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'UserName'
+GO
+SET @v = N'出区域时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'OutTerritorialTime'
+GO
+SET @v = N'是否为区域报警信息'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_InOutTerritorial', N'column', N'IsAlarm'
+GO
+IF EXISTS(SELECT * FROM dbo.His_InOutTerritorial)
+	 EXEC('INSERT INTO dbo.Tmp_His_InOutTerritorial (HisTerritorialID, TerritorialID, TerritorialName, TerritorialTypeName, InTerritorialTime, CodeSenderAddress, CsSetID, CsTypeID, UserID, UserName, OutTerritorialTime, IsAlarm)
+		SELECT CONVERT(bigint, HisTerritorialID), TerritorialID, TerritorialName, TerritorialTypeName, InTerritorialTime, CodeSenderAddress, CsSetID, CsTypeID, UserID, UserName, OutTerritorialTime, IsAlarm FROM dbo.His_InOutTerritorial (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.His_InOutTerritorial
+GO
+EXECUTE sp_rename N'dbo.Tmp_His_InOutTerritorial', N'His_InOutTerritorial', 'OBJECT'
+GO
+ALTER TABLE dbo.His_InOutTerritorial ADD CONSTRAINT
+	PK_His_Territorial PRIMARY KEY CLUSTERED 
+	(
+	HisTerritorialID,
+	TerritorialID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+
+go
+
+
+--历史超时
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_His_OverTimeAlarm
+	(
+	HisOverTimeAlarmID bigint NOT NULL,
+	CodeSenderAddress int NULL,
+	CsSetID int NULL,
+	CsTypeID int NULL,
+	UserID int NULL,
+	UserName nvarchar(20) NULL,
+	InMineTime datetime NULL,
+	DelayedStartTime datetime NULL,
+	DelayedEndTime datetime NULL,
+	DelayedTime bigint NULL,
+	DeptName nvarchar(20) NULL
+	)  ON [PRIMARY]
+GO
+DECLARE @v sql_variant 
+SET @v = N'HisOverTimeAlarmID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'HisOverTimeAlarmID'
+GO
+SET @v = N'发码器地址'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'CodeSenderAddress'
+GO
+SET @v = N'发码器配置'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'CsSetID'
+GO
+SET @v = N'配置类型'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'CsTypeID'
+GO
+SET @v = N'使用者ID'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'UserID'
+GO
+SET @v = N'使用者名称'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'UserName'
+GO
+SET @v = N'下井时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'InMineTime'
+GO
+SET @v = N'超时开始时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'DelayedStartTime'
+GO
+SET @v = N'超时结束时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'DelayedEndTime'
+GO
+SET @v = N'持续时间'
+EXECUTE sp_addextendedproperty N'MS_Description', @v, N'user', N'dbo', N'table', N'Tmp_His_OverTimeAlarm', N'column', N'DelayedTime'
+GO
+IF EXISTS(SELECT * FROM dbo.His_OverTimeAlarm)
+	 EXEC('INSERT INTO dbo.Tmp_His_OverTimeAlarm (HisOverTimeAlarmID, CodeSenderAddress, CsSetID, CsTypeID, UserID, UserName, InMineTime, DelayedStartTime, DelayedEndTime, DelayedTime, DeptName)
+		SELECT CONVERT(bigint, HisOverTimeAlarmID), CodeSenderAddress, CsSetID, CsTypeID, UserID, UserName, InMineTime, DelayedStartTime, DelayedEndTime, DelayedTime, DeptName FROM dbo.His_OverTimeAlarm (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.His_OverTimeAlarm
+GO
+EXECUTE sp_rename N'dbo.Tmp_His_OverTimeAlarm', N'His_OverTimeAlarm', 'OBJECT'
+GO
+ALTER TABLE dbo.His_OverTimeAlarm ADD CONSTRAINT
+	PK_His_OverTimeAlarm PRIMARY KEY CLUSTERED 
+	(
+	HisOverTimeAlarmID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+go
+--历史考勤
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.HistoryAttendance
+	DROP CONSTRAINT DF_HistoryAttendance_IsHoliday
+GO
+CREATE TABLE dbo.Tmp_HistoryAttendance
+	(
+	ID bigint NOT NULL,
+	BlockID int NULL,
+	EmployeeID int NULL,
+	EmployeeName varchar(10) NULL,
+	DeptID int NULL,
+	ClassID int NULL,
+	ClassShortName varchar(10) NULL,
+	BeginWorkDate datetime NULL,
+	BeginWorkTime datetime NULL,
+	EndWorkTime datetime NULL,
+	WorkTime int NULL,
+	ManNumberUnit int NULL,
+	BookWorkTime int NULL,
+	AvailableWorkTime int NULL,
+	IsAddAttendance bit NULL,
+	IsHoliday bit NULL,
+	IsAvailable bit NULL,
+	OperatorID int NULL,
+	OperatorTime datetime NULL,
+	IsLate bit NULL,
+	IsLeaveEarly bit NULL,
+	IsEnoughAttendance bit NULL,
+	LateTimeLongth int NULL,
+	LeaveEarlyTimeLength int NULL,
+	Remark nvarchar(200) NULL,
+	TimerIntervalID int NULL,
+	DataAttendance datetime NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_HistoryAttendance ADD CONSTRAINT
+	DF_HistoryAttendance_IsHoliday DEFAULT (0) FOR IsHoliday
+GO
+IF EXISTS(SELECT * FROM dbo.HistoryAttendance)
+	 EXEC('INSERT INTO dbo.Tmp_HistoryAttendance (ID, BlockID, EmployeeID, EmployeeName, DeptID, ClassID, ClassShortName, BeginWorkDate, BeginWorkTime, EndWorkTime, WorkTime, ManNumberUnit, BookWorkTime, AvailableWorkTime, IsAddAttendance, IsHoliday, IsAvailable, OperatorID, OperatorTime, IsLate, IsLeaveEarly, IsEnoughAttendance, LateTimeLongth, LeaveEarlyTimeLength, Remark, TimerIntervalID, DataAttendance)
+		SELECT CONVERT(bigint, ID), BlockID, EmployeeID, EmployeeName, DeptID, ClassID, ClassShortName, BeginWorkDate, BeginWorkTime, EndWorkTime, WorkTime, ManNumberUnit, BookWorkTime, AvailableWorkTime, IsAddAttendance, IsHoliday, IsAvailable, OperatorID, OperatorTime, IsLate, IsLeaveEarly, IsEnoughAttendance, LateTimeLongth, LeaveEarlyTimeLength, Remark, TimerIntervalID, DataAttendance FROM dbo.HistoryAttendance (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.HistoryAttendance
+GO
+EXECUTE sp_rename N'dbo.Tmp_HistoryAttendance', N'HistoryAttendance', 'OBJECT'
+GO
+COMMIT
+go
+--历史分站故障
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Tmp_HistoryBadStations]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Tmp_HistoryBadStations]
+CREATE TABLE dbo.Tmp_HistoryBadStations
+	(
+	HistoryBadStationsID bigint NOT NULL,
+	StationAddress int NULL,
+	StationHeadAddress int NULL,
+	StationPlace nvarchar(50) NULL,
+	BadBeginTime datetime NULL,
+	BadEndTime datetime NULL,
+	BadTime bigint NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.HistoryBadStations)
+	 EXEC('INSERT INTO dbo.Tmp_HistoryBadStations (HistoryBadStationsID, StationAddress, StationHeadAddress, StationPlace, BadBeginTime, BadEndTime, BadTime)
+		SELECT CONVERT(bigint, HistoryBadStationsID), StationAddress, StationHeadAddress, StationPlace, BadBeginTime, BadEndTime, BadTime FROM dbo.HistoryBadStations (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.HistoryBadStations
+GO
+EXECUTE sp_rename N'dbo.Tmp_HistoryBadStations', N'HistoryBadStations', 'OBJECT'
+GO
+COMMIT
+
+go
+--历史超速欠速
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_WalkTimeLeast
+GO
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_IsOverSpeed
+GO
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_IsOutWell
+GO
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_IsEnd
+GO
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_LackWalkTime
+GO
+ALTER TABLE dbo.His_OverSpeed
+	DROP CONSTRAINT DF_His_OverSpeed_IsLackSpeed
+GO
+CREATE TABLE dbo.Tmp_His_OverSpeed
+	(
+	HisOverSpeedID bigint NOT NULL,
+	CodeSenderAddress int NULL,
+	CsTypeID int NULL,
+	UserID int NULL,
+	FirstStationAddress int NULL,
+	FirstStationHeadAddress char(10) NULL,
+	FirstMonitoringTime datetime NULL,
+	LastStationAddress int NULL,
+	LastStationHeadAddress int NULL,
+	LastMonitoringTime datetime NULL,
+	WalkTime int NULL,
+	IsOverSpeed bit NULL,
+	DeptName nvarchar(20) NULL,
+	DutyName nvarchar(10) NULL,
+	WtName nvarchar(50) NULL,
+	IsOutWell bit NULL,
+	IsEnd bit NULL,
+	EmpName nvarchar(20) NULL,
+	LackWalkTime int NULL,
+	IsLackSpeed bit NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_WalkTimeLeast DEFAULT ((-1)) FOR WalkTime
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_IsOverSpeed DEFAULT (0) FOR IsOverSpeed
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_IsOutWell DEFAULT (0) FOR IsOutWell
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_IsEnd DEFAULT (0) FOR IsEnd
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_LackWalkTime DEFAULT ((-1)) FOR LackWalkTime
+GO
+ALTER TABLE dbo.Tmp_His_OverSpeed ADD CONSTRAINT
+	DF_His_OverSpeed_IsLackSpeed DEFAULT (0) FOR IsLackSpeed
+GO
+IF EXISTS(SELECT * FROM dbo.His_OverSpeed)
+	 EXEC('INSERT INTO dbo.Tmp_His_OverSpeed (HisOverSpeedID, CodeSenderAddress, CsTypeID, UserID, FirstStationAddress, FirstStationHeadAddress, FirstMonitoringTime, LastStationAddress, LastStationHeadAddress, LastMonitoringTime, WalkTime, IsOverSpeed, DeptName, DutyName, WtName, IsOutWell, IsEnd, EmpName, LackWalkTime, IsLackSpeed)
+		SELECT CONVERT(bigint, HisOverSpeedID), CodeSenderAddress, CsTypeID, UserID, FirstStationAddress, FirstStationHeadAddress, FirstMonitoringTime, LastStationAddress, LastStationHeadAddress, LastMonitoringTime, WalkTime, IsOverSpeed, DeptName, DutyName, WtName, IsOutWell, IsEnd, EmpName, LackWalkTime, IsLackSpeed FROM dbo.His_OverSpeed (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.His_OverSpeed
+GO
+EXECUTE sp_rename N'dbo.Tmp_His_OverSpeed', N'His_OverSpeed', 'OBJECT'
+GO
+ALTER TABLE dbo.His_OverSpeed ADD CONSTRAINT
+	PK_RT_OverSpeed PRIMARY KEY CLUSTERED 
+	(
+	HisOverSpeedID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+go
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_G_DPicFile
+	(
+	FileID int NOT NULL,
+	Filename varchar(50) NOT NULL,
+	Fileimg image NOT NULL
+	)  ON [PRIMARY]
+	 TEXTIMAGE_ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.G_DPicFile)
+	 EXEC('INSERT INTO dbo.Tmp_G_DPicFile (FileID, Filename, Fileimg)
+		SELECT FileID, Filename, Fileimg FROM dbo.G_DPicFile (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.G_DPicFile
+GO
+EXECUTE sp_rename N'dbo.Tmp_G_DPicFile', N'G_DPicFile', 'OBJECT'
+GO
+COMMIT
+go
+
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_G_DPoint
+	(
+	ID int NOT NULL,
+	PointID varchar(50) NOT NULL,
+	x float(53) NOT NULL,
+	y float(53) NOT NULL,
+	FileID int NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.G_DPoint)
+	 EXEC('INSERT INTO dbo.Tmp_G_DPoint (ID, PointID, x, y, FileID)
+		SELECT ID, PointID, x, y, FileID FROM dbo.G_DPoint (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.G_DPoint
+GO
+EXECUTE sp_rename N'dbo.Tmp_G_DPoint', N'G_DPoint', 'OBJECT'
+GO
+ALTER TABLE dbo.G_DPoint ADD CONSTRAINT
+	PK_G_DPoint PRIMARY KEY CLUSTERED 
+	(
+	ID
+	) ON [PRIMARY]
+
+GO
+COMMIT
+
+go
+BEGIN TRANSACTION
+SET QUOTED_IDENTIFIER ON
+SET ARITHABORT ON
+SET NUMERIC_ROUNDABORT OFF
+SET CONCAT_NULL_YIELDS_NULL ON
+SET ANSI_NULLS ON
+SET ANSI_PADDING ON
+SET ANSI_WARNINGS ON
+COMMIT
+BEGIN TRANSACTION
+CREATE TABLE dbo.Tmp_G_DRoute
+	(
+	ID int NOT NULL,
+	routefrom varchar(50) NOT NULL,
+	routeto varchar(50) NOT NULL,
+	routelength int NOT NULL,
+	FileID int NULL
+	)  ON [PRIMARY]
+GO
+IF EXISTS(SELECT * FROM dbo.G_DRoute)
+	 EXEC('INSERT INTO dbo.Tmp_G_DRoute (ID, routefrom, routeto, routelength, FileID)
+		SELECT ID, routefrom, routeto, routelength, FileID FROM dbo.G_DRoute (HOLDLOCK TABLOCKX)')
+GO
+DROP TABLE dbo.G_DRoute
+GO
+EXECUTE sp_rename N'dbo.Tmp_G_DRoute', N'G_DRoute', 'OBJECT'
+GO
+COMMIT
+
+BEGIN TRANSACTION
+select stationHeadID,StationHeadNO=identity(int,1,1) into #temp1 from Station_Head_Info
+update Station_Head_Info
+set StationHeadNO=#temp1.StationHeadNO
+from #temp1
+where Station_Head_Info.stationHeadID=#temp1.stationHeadID
+drop table #temp1 
+
+
+
+select TerritorialID,TerritorialNO=identity(int,1,1) into #temp3 from Territorial_Info
+update Territorial_Info
+set TerritorialNO=#temp3.TerritorialNO
+from #temp3
+where Territorial_Info.TerritorialID=#temp3.TerritorialID
+drop table #temp3 
+COMMIT

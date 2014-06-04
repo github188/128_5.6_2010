@@ -1,0 +1,25 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[His_PathAlert]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[His_PathAlert]
+GO
+
+CREATE TABLE [dbo].[His_PathAlert] (
+	[Id] [int] IDENTITY (1, 1) NOT NULL ,
+	[EmpID] [int] NOT NULL ,
+	[EmpName] [nchar] (10) COLLATE Chinese_PRC_CI_AS NULL ,
+	[StationAddress] [int] NOT NULL ,
+	[StationHeadAddress] [int] NOT NULL ,
+	[AlertBeginTime] [datetime] NOT NULL ,
+	[AlertEndTime] [datetime] NOT NULL ,
+	[AlertTimeValue] [int] NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[His_PathAlert] ADD 
+	CONSTRAINT [PK__His_PathAlert__0E04DDC2] PRIMARY KEY  CLUSTERED 
+	(
+		[Id]
+	)  ON [PRIMARY] 
+GO
+
+
+

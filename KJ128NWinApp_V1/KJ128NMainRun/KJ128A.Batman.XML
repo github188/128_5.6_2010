@@ -1,0 +1,1327 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KJ128A.Batman</name>
+    </assembly>
+    <members>
+        <member name="T:KJ128A.Batman.Properties.Resources">
+            <summary>
+              强类型资源类，用于查找本地化字符串等。
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.Properties.Resources.ResourceManager">
+            <summary>
+              返回此类使用的缓存 ResourceManager 实例。
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.Properties.Resources.Culture">
+            <summary>
+              为使用此强类型资源类的所有资源查找
+              重写当前线程的 CurrentUICulture 属性。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmLogin">
+            <summary>
+            登录窗体
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmLogin.#ctor(KJ128A.BatmanAPI.IFrmMain,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="frm">主窗体</param>
+            <param name="strFilePath">文件保存路径</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmLogin.Proving(System.String,System.String)">
+            <summary>
+            验证用户名密码是否正确并获取权限
+            </summary>
+            <param name="strLoginName">用户名</param>
+            <param name="strPwd">密码</param>
+            <returns>用户权限</returns>
+        </member>
+        <member name="F:KJ128A.Batman.FrmLogin.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmLogin.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmLogin.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.FrmLogin.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmLogin.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="F:KJ128A.Batman.FrmCompact.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmCompact.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmCompact.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmChangePwd">
+            <summary>
+            密码修改窗体
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmChangePwd.#ctor(KJ128A.BatmanAPI.IFrmMain,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="frm">窗体对象</param>
+            <param name="strFilePath">文件保存路径</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmChangePwd.UpdatePwd(System.String,System.String,System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="strLoginName">用户名</param>
+            <param name="strPwd">密码</param>
+            <param name="strNewPwd">要修改的密码</param>
+            <returns>是否修改成功</returns>
+        </member>
+        <member name="F:KJ128A.Batman.FrmChangePwd.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmChangePwd.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmChangePwd.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.FrmChangePwd.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmChangePwd.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmParams">
+            <summary>
+            参数配置
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmParams.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmParams.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmParams.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmParams.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmParams.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="strFilePath">参数配置的存储路径</param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmStation">
+            <summary>
+            添加分站页面 
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmStation.#ctor">
+            <summary>
+            添加分站页面
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmStation.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmStation.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmStation.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmDBSet">
+            <summary>
+            数据库连接设置窗体
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmDBSet.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.#ctor(KJ128A.BatmanAPI.IFrmMain,System.Int32,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="frm"></param>
+            <param name="index"></param>
+            <param name="strFilePath"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.PanelState(System.Boolean)">
+            <summary>
+            “开始”面板和“下一步”面板切换
+            </summary>
+            <param name="bln">是否显示"开始"面板</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.WindowsCon(System.Boolean)">
+            <summary>
+            Windows验证单选按钮的状态
+            </summary>
+            <param name="bWin">是否是Windows验证</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.ConSussesStatu(System.Boolean)">
+            <summary>
+            验证按钮的状态
+            </summary>
+            <param name="bStatu">是否验证成功</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.ReadXmlToTable(System.String)">
+            <summary>
+            读取XML文件
+            </summary>
+            <param name="strPath">路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.UpdateServerName(System.String,System.Boolean)">
+            <summary>
+            返回服务器名称
+            </summary>
+            <param name="strSerName">服务器名称</param>
+            <param name="bEnble">查找服务器按钮的Enable状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.OpenWaiteMessage(System.String)">
+            <summary>
+            显示等待条
+            </summary>
+            <param name="strMessage">等待是显示的提示</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.CloseWaiteMessage">
+            <summary>
+            关闭等待条
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.FrmDBSet_Load(System.Object,System.EventArgs)">
+            <summary>
+            窗体加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.btnSelectSQLName_Click(System.Object,System.EventArgs)">
+            <summary>
+            查找服务器名称
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.win_rb_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            采用Windows验证方式
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.sql_rb_CheckedChanged(System.Object,System.EventArgs)">
+            <summary>
+            采用SQL验证方式
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.cbbServername_SelectedValueChanged(System.Object,System.EventArgs)">
+            <summary>
+            服务器名称改变
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.loginBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            重新输入用户名
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.mimaBox_TextChanged(System.Object,System.EventArgs)">
+            <summary>
+            重新输入密码
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.btnCommit_Click(System.Object,System.EventArgs)">
+            <summary>
+            验证数据库连接是否正确
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.btnNext_Click(System.Object,System.EventArgs)">
+            <summary>
+            下一步按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.LoadDataBaseName(System.Data.OleDb.OleDbConnection)">
+            <summary>
+            加载服务器中的所有数据库名
+            </summary>
+            <param name="odbconn"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.btnprv_Click(System.Object,System.EventArgs)">
+            <summary>
+            上一步按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>    
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.ltbDataBaseName_Click(System.Object,System.EventArgs)">
+            <summary>
+            单击选中数据库名
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>       
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            点击保存按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.SaveParam">
+            <summary>
+            保存配置文件
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmDBSet.ISDBSame">
+            <summary>
+            判断主备机的配置是否相同
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:KJ128A.Batman.FrmDBSet.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmDBSet.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.Batman.Program.Main">
+            <summary>
+            应用程序的主入口点。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmMain">
+            <summary>
+            通讯程序主窗体
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.commType">
+            <summary>
+            通讯方式  false 串口  true 网络
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.LoadCommType">
+            <summary>
+            加载通讯方式文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.FrmMain_Load(System.Object,System.EventArgs)">
+            <summary>
+            窗体加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.SysMessage(System.String)">
+            <summary>
+            系统消息
+            </summary>
+            <param name="strMsg">需要显示的消息</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.ErrorMessage(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            发生错误时退出应用程序
+            </summary>
+            <param name="strErrMsg">错误消息</param>
+            <param name="isShowMsgBox">是否在 MessageBox 中显示</param>
+            <param name="isExit">是否退出</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.ErrorMessage(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            发生错误时退出应用程序
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="isShowMsgBox">是否在 MessageBox 中显示</param>
+            <param name="isExit">是否退出</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.startPort_DataReceived(System.Byte[],System.Int32)">
+            <summary>
+            数据抵达
+            </summary>
+            <param name="cmdReceived"></param>
+            <param name="iHost"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.DataSaver_StateChange(System.String)">
+            <summary>
+            DataSaver 程序的运行状态消息
+            </summary>
+            <param name="strMsg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Station_ChangeState(System.Int32,System.Int32,KJ128A.BatmanAPI.EnumStationState)">
+            <summary>
+            改变基站状态
+            </summary>
+            <param name="index">索引</param>
+            <param name="iAddress">基站地址</param>
+            <param name="enumState">基站状态</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Station_ChangeState(System.Int32,KJ128A.BatmanAPI.EnumStationState)">
+            <summary>
+            改变基站状态
+            </summary>
+            <param name="iAddress">基站地址</param>
+            <param name="enumState">基站状态</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Station_Change(System.Int32,System.Int32,KJ128A.BatmanAPI.EnumOP)">
+            <summary>
+            改变基站信息
+            </summary>
+            <param name="index"></param>
+            <param name="iAddress"></param>
+            <param name="enumOP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.MenuPowerChange(KJ128A.BatmanAPI.EnumPowers)">
+            <summary>
+            用户权限变更
+            </summary>
+            <param name="enumPower"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.ReadHostSet">
+            <summary>
+            读取热备配置信息
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.GetLoginInfo">
+            <summary>
+            获取登录信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.SetLoginInfo(System.String)">
+            <summary>
+            设置登录信息
+            </summary>
+            <param name="strLoginName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.IsMainHost">
+            <summary>
+            返回是否主机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.ReadXmlToTable(System.String,System.Data.DataSet)">
+            <summary>
+            读取XML文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.SetText(System.Windows.Forms.ToolStripStatusLabel,System.String,System.Drawing.Color)">
+            <summary>
+            
+            </summary>
+            <param name="tsl"></param>
+            <param name="strText"></param>
+            <param name="col"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.StateText(KJ128A.Batman.FrmMain.StateType,System.Windows.Forms.ToolStripStatusLabel)">
+            <summary>
+            状态枚举转换成显示的文字
+            </summary>
+            <param name="st"></param>
+            <param name="tsl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.StateIco(KJ128A.Batman.FrmMain.StateType,System.Windows.Forms.ToolStripStatusLabel)">
+            <summary>
+            状态枚举转换成显示的文字
+            </summary>
+            <param name="st"></param>
+            <param name="tsl"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.EditState(KJ128A.Batman.FrmMain.ParameterType,KJ128A.Batman.FrmMain.StateType)">
+            <summary>
+            状态处理
+            </summary>
+            <param name="pt"></param>
+            <param name="st"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.StateManage(System.Int32)">
+            <summary>
+            处理
+            </summary>
+            <param name="iErrCode"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Exit">
+            <summary>
+            退出应用程序
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.FrmMain_FormClosing(System.Object,System.Windows.Forms.FormClosingEventArgs)">
+            <summary>
+            窗体关闭事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Reset">
+            <summary>
+            重启程序
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmMain.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.FrmMain.LoginName">
+            <summary>
+            登录名
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmMain.SetInvoke">
+            <summary>
+            
+            </summary>
+            <param name="tsl"></param>
+            <param name="strText"></param>
+            <param name="col"></param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmMain.ParameterType">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.ParameterType.All">
+            <summary>
+            所有状态
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.ParameterType.Host">
+            <summary>
+            主备机状态
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.ParameterType.DataBase">
+            <summary>
+            数据库连接状态
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmMain.StateType">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.StateType.Connect">
+            <summary>
+            连接
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.StateType.Cut">
+            <summary>
+            未连接
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmMain.StateType.Init">
+            <summary>
+            未初始化
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmHostIpSet">
+            <summary>
+            热备配置窗体
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmHostIpSet.strPath">
+            <summary>
+            配置文件保存路径
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmHostIpSet.dtSave">
+            <summary>
+            临时存放热备配置的表
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            处理错误信息
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="strXMLPath">XML配置文件保存路径</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.FrmHostIpSet_Load(System.Object,System.EventArgs)">
+            <summary>
+            窗体加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            取消按钮事件
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.btnSave_Click(System.Object,System.EventArgs)">
+            <summary>
+            点击“保存”按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.ReturnHostSet(System.Boolean@,System.Boolean@,System.String@,System.String@)">
+            <summary>
+            提取热备的配置信息
+            </summary>
+            <param name="bIsStartHost">是否启用热备</param>
+            <param name="bIsHost">是否为主机</param>
+            <param name="strIpAddress">对方IP</param>
+            <param name="strPort">对方监听端口号</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.BuildTable">
+            <summary>
+            构造配置表
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.SaveBuildXml">
+            <summary>
+            保存配置信息到XML文件
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.CheckEmpty">
+            <summary>
+            检查文本框是否为空
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.CheckIP(System.Windows.Forms.TextBox)">
+            <summary>
+            正则表达式初步验证IP地址
+            </summary>
+            <param name="txtIP">IP配置文本框</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.ShowError(System.String,System.Windows.Forms.TextBox)">
+            <summary>
+            提示用户有文本框未填写
+            </summary>
+            <param name="strMessage">提示信息</param>
+            <param name="txt">文本框</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.LoadOldIpSet">
+            <summary>
+            加载XML配置文件
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.ckbStartHost_change">
+            <summary>
+            是否启用热备
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.ReadXmlToTable">
+            <summary>
+            读取XML文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:KJ128A.Batman.FrmHostIpSet.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmHostIpSet.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.FrmHostIpSet.ListenHostSet">
+            <summary>
+            监听用户更改热备配置事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.FrmHostIpSet.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmHostIpSet.ListenHostSetEventHandler">
+            <summary>
+            监听用户更改热备配置
+            </summary>
+            <param name="bIsStartHost">是否启用热备</param>
+            <param name="IsHost">是否主机</param>
+            <param name="strIpAddress">Ip地址</param>
+            <param name="strPort">监听端口号</param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmHostIpSet.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmSqlList">
+            <summary>
+            选择服务器窗体
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.#ctor(KJ128A.Batman.FrmDBSet,KJ128A.BatmanAPI.IFrmMain)">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.FrmSqlList_Load(System.Object,System.EventArgs)">
+            <summary>
+            窗体加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.btnCancel_Click(System.Object,System.EventArgs)">
+            <summary>
+            取消
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.btnOK_Click(System.Object,System.EventArgs)">
+            <summary>
+            点击确定按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.ltbServer_DoubleClick(System.Object,System.EventArgs)">
+            <summary>
+            选中服务器名称
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.ReturnServerName">
+            <summary>
+            把服务器名称返回给调用界面
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmSqlList.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmSqlList.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.FrmSqlList.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.FrmSqlList.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.Batman.StationUpdateTimer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.#ctor(KJ128A.HostBack.HostBacker,System.String,System.String,KJ128A.BatmanAPI.MemStation[])">
+            <summary>
+            
+            </summary>
+            <param name="hostBacker"></param>
+            <param name="strpath"></param>
+            <param name="configpath"></param>
+            <param name="memStation"></param>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.StartTimer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.ReplaceStationXml(System.Data.DataTable,System.String)">
+            <summary>
+            重写Station.xml文件
+            </summary>
+            <returns>true重写成功false重写失败</returns>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.CompareStations(System.Data.DataTable)">
+            <summary>
+            比较基站信息
+            </summary>
+            <param name="dt">从数据库中取出的基站数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.BuildStationTable">
+            <summary>
+            构建 Station 表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.StationUpdateTimer.StationLoad(System.String)">
+            <summary>
+            加载基站信息
+            </summary>
+            <param name="strPath">基站文件保存的路径</param>
+            <returns></returns>
+        </member>
+        <member name="P:KJ128A.Batman.StationUpdateTimer.StationXmlFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.StationUpdateTimer.StationConfigFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.StationUpdateTimer.StationInfoChange">
+            <summary>
+            定义分站数据改变事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.StationUpdateTimer.StationInfoChangeEventHandler">
+            <summary>
+            声明分站数据改变事件
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmTwo.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmTwo.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmTwo.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.MenuHelper">
+            <summary>
+            主窗体菜单
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.MenuHelper.WM_SETTEXT">
+            <summary>
+            记事本需要的常量
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.SendMessage(System.IntPtr,System.UInt32,System.Int32,System.String)">
+            <summary>
+            传递消息给记事本
+            </summary>
+            <param name="hWnd"></param>
+            <param name="Msg"></param>
+            <param name="wParam"></param>
+            <param name="lParam"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.FindWindowEx(System.IntPtr,System.IntPtr,System.String,System.String)">
+            <summary>
+            查找句柄
+            </summary>
+            <param name="hwndParent"></param>
+            <param name="hwndChildAfter"></param>
+            <param name="lpszClass"></param>
+            <param name="lpszWindow"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.#ctor(KJ128A.Batman.FrmMain,System.Windows.Forms.Control)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="frm"></param>
+            <param name="ctl"></param>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildMainMenu(System.Windows.Forms.Control)">
+            <summary>
+            创建主菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildManageMenuA">
+            <summary>
+            创建管理菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildManageMenuB">
+            <summary>
+            创建管理菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildConfigMenu">
+            <summary>
+            创建配置菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildFunctionMenu">
+            <summary>
+            创建功能菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.MenuSyncFunction(KJ128A.Controls.Batman.KJRichTextBox)">
+            <summary>
+            同步功能菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.BuildHelpMenu">
+            <summary>
+            创建配置菜单
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MenuHelper.MenuPowerChange(KJ128A.BatmanAPI.EnumPowers)">
+            <summary>
+            菜单权限
+            </summary>
+            <param name="enumPower"></param>
+        </member>
+        <member name="T:KJ128A.Batman.FrmABout">
+            <summary>
+            关于窗体
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmABout.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.FrmABout.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.FrmABout.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Batman.FrmABout.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.ErrorWriter">
+            <summary>
+            错误日志写入类
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.ErrorWriter.ApplictionErrorWrite(System.String)">
+             <summary>
+            程序集错误写入方法
+             </summary>
+             <param name="message">错误信息</param>
+             <returns>成功返回true失败返回false</returns>
+        </member>
+        <member name="M:KJ128A.Batman.ErrorWriter.MonthErrorWriter(System.String)">
+            <summary>
+            月错误写入方法
+            </summary>
+            <param name="message">错误信息</param>
+            <returns>成功返回true失败返回false</returns>
+        </member>
+        <member name="M:KJ128A.Batman.ErrorWriter.ErrorWriterToFile(System.String,System.String)">
+            <summary>
+            将信息写入文件
+            </summary>
+            <param name="message">错误信息</param>
+            <param name="path">文件路径</param>
+        </member>
+        <member name="T:KJ128A.Batman.TcpClientUpdateTimer">
+            <summary>
+            改变Tcp网络连接设置
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.#ctor(KJ128A.HostBack.HostBacker,System.String,System.String,KJ128A.Controls.Batman.SocketPacket[])">
+            <summary>
+            
+            </summary>
+            <param name="hostBacker"></param>
+            <param name="strpath"></param>
+            <param name="configpath"></param>
+            <param name="memStation"></param>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.StartTimer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.ReplaceNetXml(System.Data.DataTable,System.String)">
+            <summary>
+            重写TcpIp.xml文件
+            </summary>
+            <returns>true重写成功false重写失败</returns>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.CompareStations(System.Data.DataTable)">
+            <summary>
+            比较网络信息
+            </summary>
+            <param name="dt">从数据库中取出的网络数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.BuildTcpClientTable">
+            <summary>
+            构建 TcpConfig 表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.TcpClientUpdateTimer.TcpClientLoad(System.String)">
+            <summary>
+            加载网络信息
+            </summary>
+            <param name="strPath">网络文件保存的路径</param>
+            <returns></returns>
+        </member>
+        <member name="P:KJ128A.Batman.TcpClientUpdateTimer.TcpClientXmlFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.TcpClientUpdateTimer.StationConfigFilePath">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:KJ128A.Batman.TcpClientUpdateTimer.NetInfoChange">
+            <summary>
+            定义分站数据改变事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.TcpClientUpdateTimer.NetInfoChangeEventHandler">
+            <summary>
+            声明分站数据改变事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Batman.MainHelper">
+            <summary>
+            帮助类
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.MainHelper.strStationSavePath">
+            <summary>
+            分站信息保存路径
+            </summary>
+        </member>
+        <member name="F:KJ128A.Batman.MainHelper.strTcpIpSavePath">
+            <summary>
+            网络配置信息保存路径
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.StationLoad(System.String)">
+            <summary>
+            加载基站信息
+            </summary>
+            <param name="strPath">基站文件保存的路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.StartStationUpdateTimer(KJ128A.HostBack.HostBacker,System.String,System.String)">
+            <summary>
+            开始定时更新基站
+            </summary>
+            <param name="hostBacker">从数据库中取出的基站数据</param>
+            <param name="strPath">station.xml文件路径</param>
+            <param name="configPath">所设置的间隔时间</param>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.stationUpdateTime_StationInfoChange">
+            <summary>
+            分站信息改变
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.BuildStationTable">
+            <summary>
+            构建 Station 表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.StartTcpUpdateTime(KJ128A.HostBack.HostBacker,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hostBacker"></param>
+            <param name="strPath"></param>
+            <param name="configPath"></param>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.tcpClinetUpdateTime_NetInfoChange">
+            <summary>
+            网络信息改变了
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.TcpServersLoad(System.String)">
+            <summary>
+            加载网络配置信息
+            </summary>
+            <param name="strPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.SerialPortLoad(System.String)">
+            <summary>
+            加载串口信息
+            </summary>
+            <param name="strPath">串口文件保存的路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.BuildSerialPortTable">
+            <summary>
+            构建 SerialPort 表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:KJ128A.Batman.MainHelper.dgStation">
+            <summary>
+            基站面板对象
+            </summary>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.LoadFaceLayout(KJ128A.Batman.FrmMain,KJ128A.Controls.Batman.KJRichTextBox)">
+            <summary>
+            加载界面布局
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.LoadFaceStationPanel(KJ128A.BatmanAPI.IFrmMain,System.Boolean)">
+            <summary>
+            加载基站面板
+            </summary>
+            <param name="frm">窗体对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.LoadFaceDataPanel(System.Boolean)">
+            <summary>
+            加载数据面板
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.InitMsgPanel(System.Boolean)">
+            <summary>
+            加载消息面板
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.LoadMenuPanel(KJ128A.Batman.FrmMain)">
+            <summary>
+            加载主窗体菜单
+            </summary>
+            <param name="frmMain"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.LoadNotifyMenu(KJ128A.Batman.FrmMain,System.Windows.Forms.NotifyIcon)">
+            <summary>
+            加载主窗体菜单
+            </summary>
+            <param name="frmMain"></param>
+            <param name="notifyIcon"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.InitNetPort(KJ128A.Ports.StartTcp,System.Int32,System.Boolean)">
+            <summary>
+            环网初始化
+            </summary>
+            <param name="port"></param>
+            <param name="iMark"></param>
+            <param name="commType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.InitSerialPort(KJ128A.Ports.StartPort,System.Boolean)">
+            <summary>
+            初始化串口
+            </summary>
+            <param name="port"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.MenuPowerChange(KJ128A.BatmanAPI.EnumPowers)">
+            <summary>
+            权限变更
+            </summary>
+            <param name="enumPower"></param>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.BuildLoginTable">
+            <summary>
+            构建 Login 表格
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Batman.MainHelper.BuildDBConfigTable(System.String)">
+            <summary>
+            创建一个配置信息表格
+            </summary>
+            <param name="strTableName">表名</param>
+            <returns></returns>
+        </member>
+        <member name="P:KJ128A.Batman.MainHelper.memSerialPort">
+            <summary>
+            串口信息
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.MainHelper.SocketPackets">
+            <summary>
+            网络数据配置
+            </summary>
+        </member>
+        <member name="P:KJ128A.Batman.MainHelper.memStation">
+            <summary>
+            基站信息
+            </summary>
+        </member>
+    </members>
+</doc>

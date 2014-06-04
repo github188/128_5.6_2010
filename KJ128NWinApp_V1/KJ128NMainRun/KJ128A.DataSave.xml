@@ -1,0 +1,1359 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KJ128A.DataSave</name>
+    </assembly>
+    <members>
+        <member name="T:KJ128A.DataSave.DataBaseSync">
+            <summary>
+            主备数据库同步
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="oldDbName">原数据库名</param>
+            <param name="backUpName">备数据库名</param>
+            <param name="backUpPath">备数据库文件路径</param>
+            <param name="oldDbPath">原数据库文件路径</param>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.InitCheckDB">
+            <summary>
+            检测数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.CheckBackUpDBState">
+            <summary>
+            检测数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.DBDeleteBackUP">
+            <summary>
+            删除备数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.DBSync">
+            <summary>
+            主备数据库同步
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.ErrorMessageFun(System.Int32)">
+            <summary>
+            处理错误
+            </summary>
+            <param name="iErrNO">错误编号</param>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseSync.Dispose">
+            <summary>
+            释放对象
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseSync.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseSync.GuageEvent">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseSync.SyncComplete">
+            <summary>
+            完成同步
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseSync.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseSync.GuageEventHandler">
+            <summary>
+            委托
+            </summary>
+            <param name="percent">拷贝进度百分比</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseSync.SyncCompleteEventHandler">
+            <summary>
+            完成同步
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessBase">
+            <summary>
+            Access数据基础操作类
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.AccessBase.iAccessMaxSum">
+            <summary>
+            定义最多保留多少个数据库
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.AccessBase.accessbaseconn">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.AccessBase.connAcc">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.AccessBase.strAccessPath">
+            <summary>
+            保存Access的目录
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.BuildOleDbCommand(System.String,System.Data.OleDb.OleDbParameter[])">
+            <summary>
+            构造Command对象
+            </summary>
+            <param name="strCommand">Command字符串</param>
+            <param name="dbParams">Command参数</param>
+            <returns>返回Comand对象</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.SetConnect(System.String)">
+            <summary>
+            创建数据库连接
+            </summary>
+            <param name="strMDBName">数据库名称，例如“2008-1-23.mdb”</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CreateOrgTable(System.String,System.String)">
+            <summary>
+            创建原始表
+            </summary>
+            <param name="filename"></param>
+            <param name="strTableName">要创建的表</param>
+            <returns>返回操作是否成功</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CreateNewTable(System.String,System.String)">
+            <summary>
+            创建发送表
+            </summary>
+            <param name="filename"></param>
+            <param name="strTableName">要创建的表</param>
+            <returns>返回操作是否成功</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CreteTableBase(System.String,System.String)">
+            <summary>
+            向数据库中插入表
+            </summary>
+            <param name="filename"></param>
+            <param name="strCommand">创建命令字符串</param>
+            <returns>创建成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CancelFileReadOnly(System.String)">
+            <summary>
+            取消文件的只读属性
+            </summary>
+            <param name="strPath">文件路径</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.DeleteMDBFile(System.String)">
+            <summary>
+            删除数据库
+            </summary>
+            <param name="strPath">文件夹名称</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.FindAllMDBOfFile">
+            <summary>
+            查找知道文件夹下所有数据库的名称集合
+            </summary>
+            <returns>返回数据库名称</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.FindAllMDBOfFile(System.String)">
+            <summary>
+            查找知道文件夹下所有数据库的名称集合
+            </summary>
+            <param name="strFileName">文件夹名</param>
+            <returns>返回数据库名称</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CreateMDBFile(System.DateTime)">
+            <summary>
+            判断是否生成新的数据库
+            </summary>
+            <param name="dt">时间</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.CopyMDB(System.String)">
+            <summary>
+            复制数据库的方式创建数据库
+            </summary>
+            <param name="destFileName">生成的数据库名“2008-02-12.mdb”</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.GetInforFromString(System.Boolean,System.String)">
+            <summary>
+            输入表示时间的字符串，返回数据库名和表名
+            </summary>
+            <param name="flag">True，表示OrgData表;False，表示NewData表</param>
+            <param name="strTime">"20080201001711000"</param>
+            <returns>strName[0]为数据库名称，strName[1]为表名</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.GetTableNameBase(System.String)">
+            <summary>
+            已知一个数据库名称，返回一个表名数组
+            </summary>
+            <param name="strDBPath">数据库名称，例如："F:\\AccessMDB\\AccessMDB\\bin\\Debug\\AccessDB\\2008-1-25.mdb"</param>
+            <returns>返回所有表名</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.GetTableName(System.String)">
+            <summary>
+            到数据库中查找表名
+            </summary>
+            <param name="strPath">数据库名称，例如："F:\\AccessMDB\\AccessMDB\\bin\\Debug\\AccessDB\\2008-1-25.mdb"</param>
+            <returns>返回所有表的名称</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessBase.fillData(System.Data.DataTable)">
+            <summary>
+            将查到的数据填充到表名数组
+            </summary>
+            <param name="dtName">数据库名称，例如："F:\\AccessMDB\\AccessMDB\\bin\\Debug\\AccessDB\\2008-1-25.mdb"</param>
+            <returns>返回所有表名</returns>
+        </member>
+        <member name="E:KJ128A.DataSave.AccessBase.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessBase.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseManage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            初始化参数
+            </summary>
+            <param name="oldDbName">原数据库名</param>
+            <param name="backUpName">备数据库名</param>
+            <param name="backUpPath">备数据库文件路径</param>
+            <param name="oldDbPath">原数据库文件路径</param>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.LinkSql">
+            <summary>
+            开启数据库并连接
+            </summary>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.InitCheckDB">
+            <summary>
+            检测数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.CheckDBState">
+            <summary>
+            检测数据库
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.CheckBackUpDBState">
+            <summary>
+            检测 KJ128NBcakUp数据库是否存在
+            </summary>
+            <returns>True:存在;False:不存在</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.DBDelete">
+            <summary>
+            删除备份数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.DBSync">
+            <summary>
+            数据库主备同步
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.Close">
+            <summary>
+            停止数据库同步
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.fc_CopyComplete">
+            <summary>
+            拷贝完成
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DataBaseManage.Dispose">
+            <summary>
+            释放
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseManage.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseManage.SyncComplete">
+            <summary>
+            完成同步
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DataBaseManage.GuageEvent">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseManage.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseManage.SyncCompleteEventHandler">
+            <summary>
+            完成同步
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.DataBaseManage.GuageEventHandler">
+            <summary>
+            委托
+            </summary>
+            <param name="percent">拷贝进度百分比</param>
+        </member>
+        <member name="T:KJ128A.DataSave.FileOperate">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="formerFile"></param>
+            <param name="freshFile"></param>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.Finalize">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.Open">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.Read(System.Byte[],System.Int32)">
+            <summary>
+            读取文件
+            </summary>
+            <param name="byteCache">指定读取当前位置到Size</param>
+            <param name="size"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.WriteAppend(System.Byte[],System.Int32)">
+            <summary>
+            追加数据
+            </summary>
+            <param name="byteData">追加的数据</param>
+            <param name="size">追加数据大小</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.WriteAppend(System.Byte[],System.Int32,System.IO.FileStream)">
+            <summary>
+            追加数据
+            </summary>
+            <param name="byteData">追加的数据</param>
+            <param name="size">追加数据大小</param>
+            <param name="stream">要写入的FileStream流</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.ReadFileClose">
+            <summary>
+            关闭读取连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.WriteAppendFileClose">
+            <summary>
+            关闭写入连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileOperate.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:KJ128A.DataSave.FileOperate.FormerFile">
+            <summary>
+            原文件
+            </summary>
+        </member>
+        <member name="P:KJ128A.DataSave.FileOperate.FreshFile">
+            <summary>
+            copy后的文件
+            </summary>
+        </member>
+        <member name="P:KJ128A.DataSave.FileOperate.Position">
+            <summary>
+            获取或设置读取的当前位置
+            </summary>
+        </member>
+        <member name="P:KJ128A.DataSave.FileOperate.FormerFileSize">
+            <summary>
+            原文件大小
+            </summary>
+        </member>
+        <member name="P:KJ128A.DataSave.FileOperate.FreshFileSize">
+            <summary>
+            新文件大小
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.Base.AccessInterface">
+            <summary>
+            Access操作接口
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            注册错误消息处理
+            </summary>
+            <param name="iErrNO">错误消息编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.InsertData_OrgData(System.DateTime,System.Byte[],System.Boolean,System.Int32)">
+            <summary>
+            向原始表(OrgData)中插入数据
+            </summary>
+            <param name="dt">时间</param>
+            <param name="dataStream">数据流</param>
+            <param name="bIsSync">是否同步</param>
+            <param name="intIsSyncing">是否同步中</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.InsertData_NewData(System.String,System.Byte[],System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            向发送表(NewData)中插入数据
+            </summary>
+            <param name="strCreateInfo">时间字符串</param>
+            <param name="dataStream">数据流</param>
+            <param name="bIsSend">是否同步</param>
+            <param name="bIsSending">是否同步中</param>
+            <param name="iSaveState">存储状态</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.IFExistData_IsSyncing(System.String@,System.Byte[]@,System.Int32@)">
+            <summary>
+            是否存在“同步中（IsSyncing > 0）”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <param name="iIsSyncing">同步中状态</param>
+            <returns>存在返回true</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.IFExistDataInAllMDB_IsSync">
+            <summary>
+            是否存在“已同步（IsSync = False）”的记录
+            </summary>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.IFExistDataInAllMDB_IsSync(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“已同步（IsSync = False）”的记录
+            </summary>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.DataSelectInAllMDB_CreateInfo(System.String)">
+            <summary>
+            按时间字符串信息查询OrgData表中记录
+            </summary>
+            <param name="strTime">时间字符串</param>
+            <returns>返回记录集，查询不成功返回空表</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.IFExistDataInAllMDB_IsSend_SaveState(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“IsSend = false且SaveState = 0”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.IFExistDataInAllMDB_IsSend(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“IsSend = false”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_NewData(System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="IsSend">已发送</param>
+            <param name="bIsSending">发送中</param>
+            <param name="iSaveState">存储标志位</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_NewData(System.String,System.Int32)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="iSaveState">存储标志位</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_NewData(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="IsSend">已发送</param>
+            <param name="bIsSending">发送中</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_NewData(System.String,System.String)">
+            <summary>
+            更改NewData表中的数据
+            </summary>
+            <param name="strSql"></param>
+            <param name="strDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_NewData_IsSending">
+            <summary>
+            NewData表中存在IsSending = True的记录时，置为false
+            </summary>
+            <returns>更改成功返回true，没有记录也返回true，更改失败返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpDataTable_OrgData(System.String,System.Boolean,System.Int32)">
+            <summary>
+            更改OrgData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="bIsSync">已同步</param>
+            <param name="iIsSyncing">同步中的状态</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.UpData_NewData_SaveState">
+            <summary>
+            NewData表中所有未发送的数据的存储标识置为0
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.CloeseConnect">
+            <summary>
+             关闭数据库的连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.GetTableName(System.String)">
+            <summary>
+            已知一个数据库名称，返回一个表名数组
+            </summary>
+            <param name="strMDBName">数据库名称，例如："2008-1-25.mdb"</param>
+            <returns>表名数组,查找失败返回空</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.Base.AccessInterface.DataSelectAll(System.String,System.String)">
+            <summary>
+            已知数据库名称和表名，返回表中的数据
+            </summary>
+            <param name="strMDBName">数据库名称,如"2008-1-30.mdb"</param>
+            <param name="strTableName">表名，如"NewData09"</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="E:KJ128A.DataSave.Base.AccessInterface.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.Base.AccessInterface.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceDataView">
+            <summary>
+            支持DataView的接口
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.InterfaceDataView.accInteface">
+            <summary>
+            Access操作接口
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceDataView.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceDataView.accInteface_ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            注册错误消息处理
+            </summary>
+            <param name="iErrNO">错误消息编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceDataView.GetTableName(System.String)">
+            <summary>
+            已知一个数据库名称，返回一个表名数组
+            </summary>
+            <param name="strMDBName">数据库名称，例如："2008-1-25.mdb"</param>
+            <returns>表名数组,查找失败返回空</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceDataView.DataSelectAll(System.String,System.String)">
+            <summary>
+            已知数据库名称和表名，返回表中的数据
+            </summary>
+            <param name="strMDBName">数据库名称,如"2008-1-30.mdb"</param>
+            <param name="strTableName">表名，如"NewData09"</param>
+            <returns>数据表</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceDataView.CloeseConnect">
+            <summary>
+             关闭数据库的连接
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.InterfaceDataView.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceDataView.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceHostBack">
+            <summary>
+            支持热备的接口
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.InterfaceHostBack.accInteface">
+            <summary>
+            Access操作接口
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.InterfaceHostBack.sqlSave">
+            <summary>
+            存SQL Server数据库
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            注册错误消息处理
+            </summary>
+            <param name="iErrNO">错误消息编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.InsertData_OrgData(System.DateTime,System.Byte[],System.Boolean,System.Int32)">
+            <summary>
+            向原始表(OrgData)中插入数据
+            </summary>
+            <param name="dt">时间</param>
+            <param name="dataStream">数据流</param>
+            <param name="bIsSync">是否同步</param>
+            <param name="intIsSyncing">是否同步中</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.InsertData_NewData(System.String,System.Byte[],System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            向发送表(NewData)中插入数据
+            </summary>
+            <param name="strCreateInfo">时间字符串</param>
+            <param name="dataStream">数据流</param>
+            <param name="bIsSend">是否同步</param>
+            <param name="bIsSending">是否同步中</param>
+            <param name="iSaveState">存储状态</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.IFExistData_IsSyncing(System.String@,System.Byte[]@,System.Int32@)">
+            <summary>
+            是否存在“同步中（IsSyncing >= 0）”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <param name="iIsSyncing">同步中状态</param>
+            <returns>存在返回true</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.IFExistDataInAllMDB_IsSync">
+            <summary>
+            是否存在“已同步（IsSync = False）”的记录
+            </summary>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.IFExistDataInAllMDB_IsSync(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“已同步（IsSync = False）”的记录
+            </summary>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.DataSelectInAllMDB_CreateInfo(System.String)">
+            <summary>
+            按时间字符串信息查询OrgData表中记录
+            </summary>
+            <param name="strTime">时间字符串</param>
+            <returns>返回记录集，查询不成功返回空表</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.IFExistDataInAllMDB_IsSend_SaveState(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“IsSend = false且SaveState = 0”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.IFExistDataInAllMDB_IsSend(System.String@,System.Byte[]@)">
+            <summary>
+            是否存在“IsSend = false”的记录
+            </summary>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <returns>存在返回True，不存在返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpDataTable_NewData(System.String,System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="IsSend">已发送</param>
+            <param name="bIsSending">发送中</param>
+            <param name="iSaveState">存储标志位</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpDataTable_NewData(System.String,System.Int32)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="iSaveState">存储标志位</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpDataTable_NewData(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            更改NewData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="IsSend">已发送</param>
+            <param name="bIsSending">发送中</param>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpDataTable_NewData_IsSending">
+            <summary>
+            NewData表中存在IsSending = True的记录时，置为false
+            </summary>
+            <returns>更改成功返回true，没有记录也返回true，更改失败返回False</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpDataTable_OrgData(System.String,System.Boolean,System.Int32)">
+            <summary>
+            更改OrgData表中的数据（提供时间信息字符串）
+            </summary>
+            <param name="strDateTime">表示时间的字符串，如：20080215161656718</param>
+            <param name="bIsSync">已同步</param>
+            <param name="iIsSyncing">同步中的状态</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.UpData_NewData_SaveState">
+            <summary>
+            NewData表中所有未发送的数据的存储标识置为0
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.ExecuteSql(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            调用主/备机中存储过程
+            </summary>
+            <param name="flag">true，表示主机；false，表示备机</param>
+            <param name="procName">存储过程名</param>
+            <param name="sqlParameters">存储过程参数</param>
+            <returns>false执行失败</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.GetDataTabel(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行存储过程，返回DataTable
+            </summary>
+            <param name="flag">true，表示主机；false，表示备机</param>
+            <param name="procName">存储过程名</param>
+            <param name="sqlParameters">存储过程参数</param>
+            <returns>成功则返回DataTable，失败则返回Null</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceHostBack.CloeseConnect">
+            <summary>
+             关闭数据库的连接
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.InterfaceHostBack.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceHostBack.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessSelect">
+            <summary>
+            查询Access数据库的相关操作
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息事件声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.DataSelete(System.String,System.String)">
+            <summary>
+            查询Access数据库
+            </summary>
+            <param name="strCommand">命令</param>
+            <param name="name0">连接字符串</param>
+            <returns>数据集</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.DataSelectInAllMDB(System.Int32,System.String)">
+            <summary>
+            提在所有数据库中查找符合相应条件的记录
+            </summary>
+            <param name="flag">1，NewData表中是否存在“发送中”数据；2，OrgData表中是否存在“同步中”数据；3，OrgData表中是否存在“已同步”为False的数据。</param>
+            <param name="strWhere">查询条件</param>
+            <returns>返回数据集</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.GetData(System.Data.DataTable,System.String@,System.Byte[]@,System.Int32@)">
+            <summary>
+            提取表中相应字段
+            </summary>
+            <param name="dt">数据表</param>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <param name="iIsSyncing">同步中状态</param>
+            <returns>存在返回true</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.GetData(System.Data.DataTable,System.String@,System.Byte[]@)">
+            <summary>
+            提取表中相应字段
+            </summary>
+            <param name="dt">数据表</param>
+            <param name="strTimeInfo">创建信息</param>
+            <param name="byteCommands">命令</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessSelect.SelectFirstData(System.String[],System.String,System.String,System.String)">
+            <summary>
+            在所有数据库中查找符合条件的第一条记录
+            </summary>
+            <param name="strMDBNames">数据库名称数组</param>
+            <param name="strTable">查询Org表传入“OrgData”，查询New表传入“NewData”</param>
+            <param name="strSelect">查询的信息列表，如“Select top 1 *”</param>
+            <param name="strWhere">查询条件，如“where 字段名 = 值”</param>
+            <returns>返回查找到的第一条数据</returns>
+        </member>
+        <member name="E:KJ128A.DataSave.AccessSelect.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessSelect.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DAO">
+            <summary>
+            Access数据连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DAO.GetConn(System.String)">
+            <summary>
+            Access数据库连接
+            </summary>
+            <param name="strMDBName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DAO.GetConnByPath(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceSerialPort">
+            <summary>
+            数据库存储
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceSerialPort.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceSerialPort.accInter_ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息处理
+            </summary>
+            <param name="iErrNO"></param>
+            <param name="strStackTrace"></param>
+            <param name="strSource"></param>
+            <param name="strMessage"></param>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceSerialPort.DataReceived(System.Byte[],System.Boolean)">
+            <summary>
+            数据抵达
+            </summary>
+            <param name="cmdBytes"></param>
+            <param name="blnHost">True:主机;False:备机</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.DataSave.InterfaceSerialPort.Exit">
+            <summary>
+            退出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:KJ128A.DataSave.InterfaceSerialPort.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.InterfaceSerialPort.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.FileCopy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.#ctor(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="formerFile"></param>
+            <param name="freshFile"></param>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.DeleteFreshFile">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.Close">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.Copy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.StartCopy">
+            <summary>
+            拷贝数据
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.FileCopy.Dispose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.FileCopy.CopyComplete">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.FileCopy.GuageEvent">
+            <summary>
+            事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.FileCopy.CopyCompleteEventHandler">
+            <summary>
+            委托
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.FileCopy.GuageEventHandler">
+            <summary>
+            委托
+            </summary>
+            <param name="percent">拷贝进度百分比</param>
+        </member>
+        <member name="T:KJ128A.DataSave.DiskCheck">
+            <summary>
+            磁盘检测
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.DiskCheck.l_SpaceMin">
+            <summary>
+            当磁盘空闲容量小于多少时提示用户清理磁盘
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.DiskCheck.l_Spaceless">
+            <summary>
+            当磁盘空闲容量小于多少时直接清理磁盘
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.DiskCheck.GetDriverFreeSpace(System.String)">
+            <summary>
+            获取程序运行的磁盘的空闲容量
+            </summary>
+            <returns>空间空闲容量</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.DiskCheck.hardCheckMessure">
+            <summary>
+            检查磁盘剩余容量，并进行处理
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.DiskCheck.InitListenFreeSpace">
+            <summary>
+            监听磁盘容量事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.DiskCheck.InitListenFreeSpaceEventHandler">
+            <summary>
+            监听磁盘容量
+            </summary>
+            <param name="flag">1，表示需要用户清理磁盘空间；2，表示程序直接清理磁盘空间</param>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessUpdate">
+            <summary>
+            更改Access数据库
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessUpdate.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessUpdate._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息事件声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessUpdate.ExcuteCommand(System.String,System.String)">
+            <summary>
+            执行command命令(删除/插入/修改)
+            </summary>
+            <param name="strCommand">command命令字符</param>
+            <param name="filename">数据库连接</param>
+            <returns>成功返回true</returns>
+        </member>
+        <member name="E:KJ128A.DataSave.AccessUpdate.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessUpdate.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.SQLSave">
+            <summary>
+            数据库存储
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.m_ConnectionString_KJ128">
+            <summary>
+            主数据库连接字符串
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.m_ConnectionString_KJ128back">
+            <summary>
+            备数据库连接字符串
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.sqlConn">
+            <summary>
+            主数据库连接
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.sqlConnBack">
+            <summary>
+            备数据库连接
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.bConStateFlag">
+            <summary>
+            主数据库连接的状态
+            </summary>
+        </member>
+        <member name="F:KJ128A.DataSave.SQLSave.bConBackStateFlag">
+            <summary>
+            备数据库连接的状态
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.CloseSQLConnect">
+            <summary>
+            关闭连接
+            </summary>
+            <returns>成功返回True</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.ExecuteSql(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            调用主/备机中存储过程
+            </summary>
+            <param name="flag">true，表示主机；false，表示备机</param>
+            <param name="procName">存储过程名</param>
+            <param name="sqlParameters">存储过程参数</param>
+            <returns>false执行失败</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.GetDataTabel(System.Boolean,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+             执行SQL语句或存储过程，成功则返回DataTabel，失败则返回NULL
+            </summary>
+            <param name="flag">True:KJ128N数据库;False:KJ128NBackUp数据库</param>
+            <param name="procName">存储过程名</param>
+            <param name="sqlParameters">存储过程参数</param>
+            <returns>成功则返回查询结果(DataTable),失败则返回NULL</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.ExecuteSql(System.Boolean,System.String,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+             执行SQL语句或存储过程，成功返回True
+            </summary>
+            <param name="flag">主/备服务器标识</param>
+            <param name="procName">存储过程名</param>
+            <param name="conn">连接</param>
+            <param name="sqlParameters">存储过程参数</param>
+            <returns>false执行失败</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.GetDataSet(System.Boolean,System.String,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            执行一个存储过程，返回一个DataSet记录集
+            </summary>
+            <param name="flag">True:KJ128N数据库;False:KJ128NBackUp数据库</param>
+            <param name="procName">存储过程的名字</param>
+            <param name="conn">SQLConnection的连接</param>
+            <param name="sqlParmeters">存储过程的参数</param>
+            <returns>DataSet表的记录集</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.BuildSqlCommand(System.Data.SqlClient.SqlConnection,System.String,System.Data.SqlClient.SqlParameter[])">
+            <summary>
+            构造一个SqlCommand对象
+            </summary>
+            <param name="sqlConn">SQLConnection的连接</param>
+            <param name="procName">过程名称</param>
+            <param name="sqlParmeters">参数内容</param>
+            <returns>SqlCommand</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.SetConFlag(System.Boolean)">
+            <summary>
+            创建数据库连接并设置连接状态标识
+            </summary>
+            <param name="flag">true，表示主机；false，表示备机</param>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.GetCon(System.String,System.Boolean@)">
+            <summary>
+            创建数据库连接
+            </summary>
+            <param name="strCon">连接字符串</param>
+            <param name="bSuccess">是否成功</param>
+            <returns>返回连接实例</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.SQLSave.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="E:KJ128A.DataSave.SQLSave.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.SQLSave.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessInsert">
+            <summary>
+            Access数据插入类
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert._ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息事件声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.c_FreeSpace(System.Int32)">
+            <summary>
+            磁盘清理方案
+            </summary>
+            <param name="flag">1，表示需要用户清理磁盘空间；2，表示程序直接清理磁盘空间</param>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.CloeseInsertConnect">
+            <summary>
+             关闭数据库插入数据的连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.SaveData_OrgData(System.DateTime,System.Byte[],System.Boolean,System.Int32)">
+            <summary>
+            保存原始表(OrgData)数据
+            </summary>
+            <param name="dt">传入时间</param>
+            <param name="dataStream">命令数组(Byte[])</param>
+            <param name="bIsSync">已同步标志位</param>
+            <param name="intIsSyncing">同步中的状态</param>
+            <returns>True:成功; False:失败</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.SaveData_NewData(System.String,System.Byte[],System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            保存发送表(NewData)数据
+            </summary>
+            <param name="dbConn">数据库连接</param>
+            <param name="strCreateInfo">传入时间字符串</param>
+            <param name="dataStream">命令数组(Byte[])</param>
+            <param name="bIsSend">已发送标志位</param>
+            <param name="bIsSending">发送中的状态</param>
+            <param name="iSaveState">存储状态</param>
+            <returns>True:成功; False:失败</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.GetConnectionByTime(System.DateTime)">
+            <summary>
+            获取当前有效连接
+            </summary>
+            <param name="dt">传入时间参数</param>
+            <returns>数据库连接</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.SetOleDbPar_OrgData(System.DateTime,System.Byte[],System.Boolean,System.Int32)">
+            <summary>
+            设置原始表(OrgData)Command命令
+            </summary>
+            <param name="dbConn">数据库连接</param>
+            <param name="dt">传入时间</param>
+            <param name="dataStream">命令数组(Byte[])</param>
+            <param name="bIsSync">已同步标志位</param>
+            <param name="intIsSyncing">同步中的状态</param>
+            <returns>返回Command对象</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.SetOleDbPar_NewData(System.String,System.Byte[],System.Boolean,System.Boolean,System.Int32)">
+            <summary>
+            设置发送表(NewData)Command命令
+            </summary>
+            <param name="strCreateInfo">传入时间字符串</param>
+            <param name="dataStream">命令数组(Byte[])</param>
+            <param name="bIsSend">已发送标志位</param>
+            <param name="bIsSending">发送中的状态</param>
+            <param name="iSaveState">存储状态</param>
+            <returns>返回Command对象</returns>
+        </member>
+        <member name="M:KJ128A.DataSave.AccessInsert.InsertData(System.Data.OleDb.OleDbCommand,System.String,System.Byte[])">
+            <summary>
+            向表中插入数据（公共方法）
+            </summary>
+            <param name="dbConn">数据库连接</param>
+            <param name="dbCommand">Command对象</param>
+            <returns>操作成功返回True</returns>
+        </member>
+        <member name="E:KJ128A.DataSave.AccessInsert.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.DataSave.AccessInsert.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+    </members>
+</doc>

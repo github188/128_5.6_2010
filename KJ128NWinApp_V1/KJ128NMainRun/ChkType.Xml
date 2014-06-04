@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <TypeHost>
+    <TypeName>KJ128主功能程序</TypeName>
+    <CloseTime>2012-02-21 11:30:20</CloseTime>
+    <IsType>True</IsType>
+    <SumNum>6</SumNum>
+  </TypeHost>
+  <TypeSignal>
+    <TypeName>KJ128主通讯程序</TypeName>
+    <CloseTime>2012-02-21 11:30:20</CloseTime>
+    <IsType>True</IsType>
+    <SumNum>6</SumNum>
+  </TypeSignal>
+</DocumentElement>

@@ -1,0 +1,171 @@
+﻿
+1.底图丢失问题处理
+
+//图形新增时
+1）修改类：\KJ128NWinApp_V1\KJ128NMainRun\Graphics\A_DPic_Expert\A_FrmAddPic.cs
+ 修改方法：tsmiAdd_Click
+ 
+ //将图形拷贝到Map文件夹下面
+    //Czlt-2012-11-21 128备份图形放在底图丢失
+                if (File.Exists(Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName))
+                {
+                    File.Delete(Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName);
+                }
+                File.Copy(ofd.FileName, Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName);
+                
+ //向数据库中插入图形文件时要拷贝到备份表中
+  修改存储过程:Proc_DbackPic_AddFile
+
+ 
+//图形修改时
+
+路径：KJ128NWinApp_V1\KJ128NMainRun\Graphics\A_DPic_Expert\A_FrmAddPic.cs
+方法：
+private void tsmiUpdate_Click(object sender, EventArgs e)
+{
+	
+                    ///修改底图时备份
+                    if (File.Exists(Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName))
+                    {
+                        File.Delete(Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName);
+                    }
+                    File.Copy(ofd.FileName, Application.StartupPath + "\\MapGis\\Map\\" + SafeFileName);
+
+}
+
+路径：KJ128NWinApp_V1\KJ128NDataBase\Graphics_Dpic.cs
+方法：
+     public int UpdateBackPicFile(string filename, byte[] filebytes)
+        {
+            try
+            {
+                int i = 0;
+                string sqlstr = "update G_DPicFile set Fileimg=@Fileimg where Filename=@Filename";
+                SqlCommand comm = new SqlCommand();
+                comm.CommandText = sqlstr;
+                comm.Parameters.AddWithValue("@Fileimg", filebytes);
+                comm.Parameters.AddWithValue("@Filename", filename);
+                //Czlt-2012-12-14 假如图形修改成功以后 要更新备份表中的图形信息
+                i = dba.ExecCommand(comm);
+                if (i >= 1)
+                {
+                    UpdateFileback();
+
+                }
+                return i;
+                //return dba.ExecCommand(comm);
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+        
+        
+               #region【Czlt-2012-12-14 修改底图时拷贝到备份图形表中】
+        /// <summary>
+        /// czlt-2012-11-21 修改备份界面的图层
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="filebytes"></param>
+        public void UpdateFileback()
+        {
+            string sqlstr = "Proc_Dback_UpdateFile";
+            SqlParameter[] Parameters = {
+                                       
+                                        };
+
+            dba.ExecuteSql(sqlstr, Parameters);
+
+        }
+        #endregion
+
+//图形加载时
+
+路径：KJ128NDataBase\Graphics_Dpic.cs
+方法1：
+        public DataTable GetAllBackPicFile()
+        {
+            string sqlstr = "select * from G_DPicFile";
+            DataSet ds = dba.GetDataSet(sqlstr);
+
+            //Czlt-2012-12-14 假如图形丢失就从备份图层中还原一条记录回来
+            if (ds == null || ds.Tables.Count == 0)
+            {
+                CzltGetBackFile();
+            }
+            ds = dba.GetDataSet(sqlstr);
+
+
+            if (ds != null)
+                return ds.Tables[0];
+            else
+                return new DataTable();
+        }
+        
+        
+方法2：
+        public DataTable GetBackPicByFileID(string fileid)
+        {
+            string sqlstr = string.Format("select Fileimg,Filename from G_DPicFile where FileID={0}", fileid);
+            DataSet ds = dba.GetDataSet(sqlstr);
+
+
+            //Czlt-2012-12-14 假如图形丢失就从备份图层中还原一条记录回来
+            if (ds.Tables[0].Rows.Count==0 )
+            {
+                CzltGetBackFile();
+            }
+            ds = dba.GetDataSet(sqlstr);
+
+            if (ds != null)
+            {
+                return ds.Tables[0];
+            }
+            else
+            {
+                return new DataTable();
+            }
+        }
+        
+        
+        
+
+--2013-05-14 ---修改可以配置的IP链接
+修改问题记录
+
+1.可配置数据库连接字符串
+  (1)类名:KJ128NWinApp_V1\KJ128NDataBase\New_DbHelperSQL.cs
+      ChangeDataBase() 方法
+  (2)类名:KJ128AHostBack\RBSqlConn.cs
+     方法名:
+      ExecCreadLineServer()，新增方法 GetConfigValue()
+  (3)KJ128NWinApp_V1\KJ128NMainRun\app.config
+   添加新的key值
+        <add key="Server" value ="."/>
+		<add key="database" value ="wifi"/>
+		<add key="uid" value ="sa"/>
+		<add key="pwd" value ="128"/>
+  (4)类名:KJ128NWinApp_V1\KJ128NDataBase\New_DBAcess.cs
+	 ChangeDataBase() 方法
+  (5)类名:KJ128NWinApp_V1\KJ128NDataBase\SerialAndReserialOperate.cs
+    DeserialOperate()
+  (6)类名:KJ128A\KJ128A.DataSave\Base\DataBaseManage.cs
+     方法名:Open(),LinkSql(),
+  (7)KJ128A.DataSave\Base\SQLSave.cs
+	  方法:ExecuteSql(),GetDataSet(),连接字符串
+  (8)\KJ128A\KJ128A.Controls\GetCardInfo.cs
+	修改配置文件 GetConfigValue()
+
+
+
+
+
+
+
+
+
+
+
+
+

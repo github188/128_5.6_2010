@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <SerialPort>
+    <ID>1</ID>
+    <PortName>
+    </PortName>
+    <Group>1</Group>
+    <Mark>1</Mark>
+    <IsEnable>true</IsEnable>
+  </SerialPort>
+</DocumentElement>

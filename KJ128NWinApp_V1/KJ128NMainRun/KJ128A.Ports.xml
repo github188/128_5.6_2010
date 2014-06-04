@@ -1,0 +1,648 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KJ128A.Ports</name>
+    </assembly>
+    <members>
+        <member name="T:KJ128A.Ports.CommParameter">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.ChangeState(System.Windows.Forms.Label,System.Int32)">
+            <summary>
+            更改串口状态
+            </summary>
+            <param name="lblState">显示控件</param>
+            <param name="iState">状态（1，打开 2，关闭 3，打开失败 4，填写）</param>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.Open">
+            <summary>
+             打开串口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.Close">
+            <summary>
+            关闭串口
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.IsOpen">
+            <summary>
+            判断串口是否打开
+            </summary>
+            <returns>true 打开</returns>
+        </member>
+        <member name="F:KJ128A.Ports.CommParameter.components">
+            <summary> 
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.Dispose(System.Boolean)">
+            <summary> 
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Ports.CommParameter.InitializeComponent">
+            <summary> 
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.PortTitle">
+            <summary>
+            串口标题
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.PortName">
+            <summary>
+            串口号
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.BaudRate">
+            <summary>
+             波特率
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.Mark">
+            <summary>
+            标志位
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.Group">
+            <summary>
+            基站组
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.IsCheck">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.Same_ProtName">
+            <summary>
+            相同的串口名
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.CommParameter.Same_MarkGroup">
+            <summary>
+            相同的标志位，基站组
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.StartPort">
+            <summary>
+            串口启动程序
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.StartPort.s_serialPort">
+            <summary>
+            串口实例数组
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.StartPort.InitSerialPort(KJ128A.BatmanAPI.MemSerialPort[])">
+            <summary>
+            实例化串口对象
+            </summary>
+            <param name="memSerialPort"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartPort.InitStation(System.Windows.Forms.DataGridView[],KJ128A.BatmanAPI.MemStation[])">
+            <summary>
+            初始化基站信息
+            </summary>
+            <param name="dgStation"></param>
+            <param name="memStation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartPort.StationChange(System.Windows.Forms.DataGridView[],KJ128A.BatmanAPI.MemStation[])">
+            <summary>
+            分站信息改变
+            </summary>
+            <param name="dgStation"></param>
+            <param name="memStation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartPort.ShowCommSetDialog(System.String,KJ128A.BatmanAPI.IFrmMain)">
+            <summary>
+            配置串口窗体
+            </summary>
+            <param name="strFilePath">串口文件存放路径</param>
+            <param name="frm">主窗体</param>
+        </member>
+        <member name="M:KJ128A.Ports.StartPort.Run">
+            <summary>
+            运行
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:KJ128A.Ports.StartPort.StationStateChanged">
+            <summary>
+            基站状态改变事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartPort.DataReceived">
+            <summary>
+            数据抵达
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartPort.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartPort.MarkStateChanged">
+            <summary>
+            主备工作状态切换
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.StartPort.IsStartHostBacker">
+            <summary>
+            是否是启动热备
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.StartPort.IsHost">
+            <summary>
+            是否是主/备机  true为主机  false为备机
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.StartPort.StationStateChangedEventHandler">
+            <summary>
+            基站状态改变声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.StartPort.DataReceivedEventHandler">
+            <summary>
+            数据抵达委托声明
+            </summary>
+            <param name="cmdReceived"></param>
+            <param name="iHost"></param>
+        </member>
+        <member name="T:KJ128A.Ports.StartPort.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="index"></param>
+            <param name="iErrNO"></param>
+            <param name="strStackTrace"></param>
+            <param name="Source"></param>
+            <param name="strMessage"></param>
+        </member>
+        <member name="T:KJ128A.Ports.StartPort.MarkStateChangedEventHandler">
+            <summary>
+            主备工作状态切换委托声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.FrmCommSet">
+            <summary>
+            串口配置页面
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.#ctor(System.String,KJ128A.BatmanAPI.IFrmMain)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="strFilePath">XML文件路径</param>
+            <param name="frm">主窗体</param>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.FrmCommSet_Load(System.Object,System.EventArgs)">
+            <summary>
+            窗体加载
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.LoadCommType">
+            <summary>
+            加载通讯方式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.BuildTable">
+            <summary>
+            初始化SerialPort表 
+            </summary>
+            <returns>表</returns>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.ReadData">
+            <summary>
+            加载串口信息
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.CheckSame">
+            <summary>
+            判断是否有相同的串口号（仅启动的）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.MarkGroupSame">
+            <summary>
+            [ 方法: 判断面板中的标志位和基站组是否相同（已启用的）]
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.FillCommPanel(System.Data.DataRow[])">
+            <summary>
+            根据 DataTable 创建 CommPanel
+            </summary>
+            <param name="drs"></param>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.BuildCommPanel(System.Int32)">
+            <summary>
+            根据 面板数 创建 CommPanel
+            </summary>
+            <param name="iCount">面板数</param>
+        </member>
+        <member name="F:KJ128A.Ports.FrmCommSet.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Ports.FrmCommSet.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJTcpClientPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.KJTcpClientPort.intHostTime">
+            <summary>
+            主机故障时备机巡检周期时间（毫秒）
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.KJTcpClientPort.intBackerTime">
+            <summary>
+            主机正常时备机巡检周期时间（毫秒）
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.KJTcpClientPort._isNetWork">
+            <summary>
+            网络是否连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.#ctor(System.Collections.ArrayList,System.Int32,System.Int32)">
+            <summary>
+            构造TCP客户端接发对象
+            </summary>
+            <param name="socketArrayList">要连接的对象列表</param>
+            <param name="iGroup">组</param>
+            <param name="iMark">热备标志</param>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.SendCmd">
+            <summary>
+            发送指令
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.CmdError(System.String)">
+            <summary>
+            命令错误
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.baseSocketClient_DataReceivedByAddress(System.Byte[],System.String)">
+            <summary>
+            数据抵达
+            </summary>
+            <param name="bytes"></param>
+            <param name="strAddress"></param>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.DataAnalyzing(System.Byte[])">
+            <summary>
+            分析回送的数据
+            </summary>
+            <param name="cmdNewBytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.AnalysisPolling_20071210_1(System.Byte[])">
+            <summary>
+            使用 2007-12-10 第 1 版协议解析数据
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.BuildDateTime(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            构造时间
+            </summary>
+            <param name="Day"></param>
+            <param name="Hour"></param>
+            <param name="Minute"></param>
+            <param name="Second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.KJTcpClientPort.timer_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            定时发送命令
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:KJ128A.Ports.KJTcpClientPort.IsSaveData">
+            <summary>
+            是否数据保存
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJTcpClientPort.IsMark">
+            <summary>
+            是否数据保存
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJTcpClientPort.IsStartHostBacker">
+            <summary>
+            是否是启动热备
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJTcpClientPort.IsHost">
+            <summary>
+            是否是主/备机  true为主机  false为备机
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJTcpClientPort.IsNetWork">
+            <summary>
+            网络是否连接
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJTcpClientPort.StationStateChanged">
+            <summary>
+            基站状态改变
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJTcpClientPort.MarkStateChanged">
+            <summary>
+            主备工作状态切换
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJTcpClientPort.DataReceived">
+            <summary>
+            数据抵达
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJTcpClientPort.StationStateChangedEventHandler">
+            <summary>
+            基站状态改变委托声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJTcpClientPort.MarkStateChangedEventHandler">
+            <summary>
+            主备工作状态切换委托声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJTcpClientPort.DataReceivedEventHandler">
+            <summary>
+            数据抵达委托声明
+            </summary>
+            <param name="cmdReceived"></param>
+            <param name="iMark"></param>
+        </member>
+        <member name="T:KJ128A.Ports.KJSerialPort">
+            <summary>
+            串口类的最终封装
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.KJSerialPort.intHostTime">
+            <summary>
+            主机故障时备机巡检周期时间（毫秒）
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.KJSerialPort.intBackerTime">
+            <summary>
+            主机正常时备机巡检周期时间（毫秒）
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.#ctor(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="index">索引号</param>
+            <param name="strPortName">串口名称</param>
+            <param name="iGroup">基站组编号</param>
+            <param name="iMark">主备标志</param>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.SendCmd">
+            <summary>
+            发送指令
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.CmdError(System.String)">
+            <summary>
+            命令错误
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.serialPort_DataReceived(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)">
+            <summary>
+            数据抵达
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.DataAnalyzing(System.Byte[])">
+            <summary>
+            分析回送的数据
+            </summary>
+            <param name="cmdNewBytes">字节数组</param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.AnalysisPolling_20071210_1(System.Byte[])">
+            <summary>
+            使用 2007-12-10 第 1 版协议解析数据
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.BuildDateTime(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            构造时间
+            </summary>
+            <param name="Day"></param>
+            <param name="Hour"></param>
+            <param name="Minute"></param>
+            <param name="Second"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.KJSerialPort.timer_Elapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            定时发送命令
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:KJ128A.Ports.KJSerialPort.IsSaveData">
+            <summary>
+            是否数据保存
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJSerialPort.IsMark">
+            <summary>
+            是否数据保存
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJSerialPort.IsStartHostBacker">
+            <summary>
+            是否是启动热备
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.KJSerialPort.IsHost">
+            <summary>
+            是否是主/备机  true为主机  false为备机
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJSerialPort.StationStateChanged">
+            <summary>
+            基站状态改变
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJSerialPort.MarkStateChanged">
+            <summary>
+            主备工作状态切换
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.KJSerialPort.DataReceived">
+            <summary>
+            数据抵达
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJSerialPort.StationStateChangedEventHandler">
+            <summary>
+            基站状态改变委托声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJSerialPort.MarkStateChangedEventHandler">
+            <summary>
+            主备工作状态切换委托声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.KJSerialPort.DataReceivedEventHandler">
+            <summary>
+            数据抵达委托声明
+            </summary>
+            <param name="cmdReceived"></param>
+            <param name="iMark"></param>
+        </member>
+        <member name="T:KJ128A.Ports.StartTcp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.Ports.StartTcp.m_TcpClientPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.InitTcpClientPort(KJ128A.Controls.Batman.SocketPacket[],System.Int32)">
+            <summary>
+            初始化网络客户端连接
+            </summary>
+            <param name="socketPackets"></param>
+            <param name="iMark"></param>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.InitSocket(KJ128A.Controls.Batman.SocketPacket[])">
+            <summary>
+            初始化连接端口
+            </summary>
+            <param name="socketPackets"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.InitStation(System.Windows.Forms.DataGridView[],KJ128A.BatmanAPI.MemStation[])">
+            <summary>
+            初始化基站信息
+            </summary>
+            <param name="dgStation"></param>
+            <param name="memStation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.StationChange(System.Windows.Forms.DataGridView[],KJ128A.BatmanAPI.MemStation[])">
+            <summary>
+            分站信息改变
+            </summary>
+            <param name="dgStation"></param>
+            <param name="memStation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.ShowCommSetDialog(System.String,KJ128A.BatmanAPI.IFrmMain)">
+            <summary>
+            配置串口窗体
+            </summary>
+            <param name="strFilePath">串口文件存放路径</param>
+            <param name="frm">主窗体</param>
+        </member>
+        <member name="M:KJ128A.Ports.StartTcp.Run">
+            <summary>
+            运行
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:KJ128A.Ports.StartTcp.StationStateChanged">
+            <summary>
+            基站状态改变事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartTcp.DataReceived">
+            <summary>
+            数据抵达
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartTcp.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Ports.StartTcp.MarkStateChanged">
+            <summary>
+            主备工作状态切换
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.StartTcp.IsStartHostBacker">
+            <summary>
+            是否是启动热备
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.StartTcp.IsHost">
+            <summary>
+            是否是主/备机  true为主机  false为备机
+            </summary>
+        </member>
+        <member name="P:KJ128A.Ports.StartTcp.IsNetWork">
+            <summary>
+            设置网络是否连接，true为未连接，false为已连接
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.StartTcp.StationStateChangedEventHandler">
+            <summary>
+            基站状态改变声明
+            </summary>
+        </member>
+        <member name="T:KJ128A.Ports.StartTcp.DataReceivedEventHandler">
+            <summary>
+            数据抵达委托声明
+            </summary>
+            <param name="cmdReceived"></param>
+            <param name="iHost"></param>
+        </member>
+        <member name="T:KJ128A.Ports.StartTcp.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="index"></param>
+            <param name="iErrNO"></param>
+            <param name="strStackTrace"></param>
+            <param name="Source"></param>
+            <param name="strMessage"></param>
+        </member>
+        <member name="T:KJ128A.Ports.StartTcp.MarkStateChangedEventHandler">
+            <summary>
+            主备工作状态切换委托声明
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,3615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2E15429A-A1C5-41A4-BA00-685635D5B13E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KJ128NMainRun</RootNamespace>
+    <AssemblyName>KJ128NMainRun</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/KJ128NMainRun/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="KJ128A.BatmanAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KJ128A\KJ128A.BatmanAPI\bin\Debug\KJ128A.BatmanAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="KJ128A.Protocol, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KJ128A\KJ128A.Protocol\bin\Debug\KJ128A.Protocol.dll</HintPath>
+    </Reference>
+    <Reference Include="KJ128N.Command, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.Vsa" />
+    <Reference Include="ShineTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="SoftDog, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\SoftDog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Wilson.BaseClassLibrary, Version=1.0.2583.21370, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Wilson.BaseClassLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Wilson.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Wilson.Controls.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="admin\adminInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\adminInfo.designer.cs">
+      <DependentUpon>adminInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\A_frmAddUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\A_frmAddUser.Designer.cs">
+      <DependentUpon>A_frmAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\A_frmUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\A_frmUser.Designer.cs">
+      <DependentUpon>A_frmUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\usergroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\usergroup.designer.cs">
+      <DependentUpon>usergroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="admin\usergroupInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="admin\usergroupInfo.designer.cs">
+      <DependentUpon>usergroupInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlarmSet\FrmAlarmSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AlarmSet\FrmAlarmSet.Designer.cs">
+      <DependentUpon>FrmAlarmSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage.designer.cs">
+      <DependentUpon>A_FrmAreaManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerInfo.Designer.cs">
+      <DependentUpon>A_FrmAreaManage_AddTerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerSet.Designer.cs">
+      <DependentUpon>A_FrmAreaManage_AddTerSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\A_FrmAreaManage_AddTerType.Designer.cs">
+      <DependentUpon>A_FrmAreaManage_AddTerType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\A_frmSWrokSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\A_frmSWrokSet.Designer.cs">
+      <DependentUpon>A_frmSWrokSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\FrmAreaManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\FrmAreaManage.Designer.cs">
+      <DependentUpon>FrmAreaManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AreaManage\SpecialWorkTypeTerrialSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AreaManage\SpecialWorkTypeTerrialSet.Designer.cs">
+      <DependentUpon>SpecialWorkTypeTerrialSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmAssociateAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmAssociateAdd.Designer.cs">
+      <DependentUpon>FrmAssociateAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmAssociateManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmAssociateManage.Designer.cs">
+      <DependentUpon>FrmAssociateManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmHisAssociateInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmHisAssociateInfo.Designer.cs">
+      <DependentUpon>FrmHisAssociateInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmRealTimeAssociateAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssociateWithEmp\FrmRealTimeAssociateAlarm.Designer.cs">
+      <DependentUpon>FrmRealTimeAssociateAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\ClassInfoManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\ClassInfoManage.Designer.cs">
+      <DependentUpon>ClassInfoManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmArrendanceAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmArrendanceAdd.Designer.cs">
+      <DependentUpon>FrmArrendanceAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmAttendanceManger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmAttendanceManger.Designer.cs">
+      <DependentUpon>FrmAttendanceManger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmHoilidayAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmHoilidayAdd.Designer.cs">
+      <DependentUpon>FrmHoilidayAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmTimerInterval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\FrmTimerInterval.Designer.cs">
+      <DependentUpon>FrmTimerInterval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\HolidayMange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\HolidayMange.Designer.cs">
+      <DependentUpon>HolidayMange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\HolidayTypeSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\HolidayTypeSet.Designer.cs">
+      <DependentUpon>HolidayTypeSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\NewHolidayTypeSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\NewHolidayTypeSet.Designer.cs">
+      <DependentUpon>NewHolidayTypeSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\A_NewHolidayMange.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\A_NewHolidayMange.Designer.cs">
+      <DependentUpon>A_NewHolidayMange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\NewHolidayTypeSetAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceInfoSet\NewHolidayTypeSetAdd.Designer.cs">
+      <DependentUpon>NewHolidayTypeSetAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\AddHistoryAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\AddHistoryAttendance.Designer.cs">
+      <DependentUpon>AddHistoryAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceDayByDayStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceDayByDayStatistic.Designer.cs">
+      <DependentUpon>A_AttendanceDayByDayStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceInitialData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceInitialData.Designer.cs">
+      <DependentUpon>A_AttendanceInitialData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceParticulars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceParticulars.Designer.cs">
+      <DependentUpon>A_AttendanceParticulars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceQuerySalary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceQuerySalary.Designer.cs">
+      <DependentUpon>A_AttendanceQuerySalary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceRateStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceRateStatistic.Designer.cs">
+      <DependentUpon>A_AttendanceRateStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\AttendanceRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\AttendanceRealTime.Designer.cs">
+      <DependentUpon>AttendanceRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceStatisticByDuty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AttendanceQuery\A_AttendanceStatisticByDuty.Designer.cs">
+      <DependentUpon>A_AttendanceStatisticByDuty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmHisAntenna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmHisAntenna.Designer.cs">
+      <DependentUpon>A_frmHisAntenna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmRealAntanne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmRealAntanne.Designer.cs">
+      <DependentUpon>A_frmRealAntanne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmRTAntennaConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Antenna\A_frmRTAntennaConfig.Designer.cs">
+      <DependentUpon>A_frmRTAntennaConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Antenna\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Antenna\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AddHistoryAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AddHistoryAttendance.Designer.cs">
+      <DependentUpon>A_AddHistoryAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AddHistoryAttendance_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AddHistoryAttendance_Add.Designer.cs">
+      <DependentUpon>A_AddHistoryAttendance_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceDayByDayStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceDayByDayStatistic.Designer.cs">
+      <DependentUpon>A_AttendanceDayByDayStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceRealTime.Designer.cs">
+      <DependentUpon>A_AttendanceRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceRealTime_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendanceRealTime_Add.Designer.cs">
+      <DependentUpon>A_AttendanceRealTime_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FrmExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FrmExit.Designer.cs">
+      <DependentUpon>A_FrmExit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FrmLogin.Designer.cs">
+      <DependentUpon>A_FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FrmMain.Designer.cs">
+      <DependentUpon>A_FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_FrmValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FrmValidate.Designer.cs">
+      <DependentUpon>A_FrmValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Designer.cs">
+      <DependentUpon>A_FrmHisAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.EmpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.EmpOverTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.LackSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.OverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.OverSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.OverTimeArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Path.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Station.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.StationHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Territorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_His_InWellCounts\A_FrmHisInWellCounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_His_InWellCounts\A_FrmHisInWellCounts.Designer.cs">
+      <DependentUpon>A_FrmHisInWellCounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_His_StationHead\A_FrmHisStationHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_His_StationHead\A_FrmHisStationHead.Designer.cs">
+      <DependentUpon>A_FrmHisStationHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_His_Station_Data\A_His_Station_data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_His_Station_Data\A_His_Station_data.Designer.cs">
+      <DependentUpon>A_His_Station_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_His_Territorial\A_FrmHisTerritorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_His_Territorial\A_FrmHisTerritorial.Designer.cs">
+      <DependentUpon>A_FrmHisTerritorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmHisInWell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmHisInWell.Designer.cs">
+      <DependentUpon>FrmHisInWell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmInWellShowConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmInWellShowConfig.Designer.cs">
+      <DependentUpon>FrmInWellShowConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmRealInWell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RealInWell\FrmRealInWell.Designer.cs">
+      <DependentUpon>FrmRealInWell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Day_Walk_ReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Day_Walk_ReportForm.Designer.cs">
+      <DependentUpon>A_Day_Walk_ReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Day_Walk_ReportForm_Set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Day_Walk_ReportForm_Set.Designer.cs">
+      <DependentUpon>A_Day_Walk_ReportForm_Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Month_Down_Mine_Count.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Month_Down_Mine_Count.Designer.cs">
+      <DependentUpon>A_Month_Down_Mine_Count.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Month_Down_Mine_Count_Set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Report_Forms\A_Month_Down_Mine_Count_Set.Designer.cs">
+      <DependentUpon>A_Month_Down_Mine_Count_Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.AreaOverTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.Designer.cs">
+      <DependentUpon>A_FrmRTAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.Electricity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.EmpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.EmpOverTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.LackSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.OverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.Path.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.Station.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.StationHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.TerEmpOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.Territorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.OverSpeed.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm_EmpHelpMeasure.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm_EmpHelpMeasure.Designer.cs">
+      <DependentUpon>A_FrmRTAlarm_EmpHelpMeasure.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_OverSee\A_RT_Station_Head.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_OverSee\A_RT_Station_Head.Designer.cs">
+      <DependentUpon>A_RT_Station_Head.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_OverSee\A_RT_Time_Set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_OverSee\A_RT_Time_Set.Designer.cs">
+      <DependentUpon>A_RT_Time_Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_StationHead\A_FrmRTStationHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_StationHead\A_FrmRTStationHead.Designer.cs">
+      <DependentUpon>A_FrmRTStationHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_StationHead\A_FrmRTStationHead_Set.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_StationHead\A_FrmRTStationHead_Set.Designer.cs">
+      <DependentUpon>A_FrmRTStationHead_Set.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_Territorial\A_FrmRTTerritorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_Territorial\A_FrmRTTerritorial.Designer.cs">
+      <DependentUpon>A_FrmRTTerritorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Speed\A_FrmWalkConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Speed\A_FrmWalkConfig.Designer.cs">
+      <DependentUpon>A_FrmWalkConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Speed\A_FrmWalkConfig_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Speed\A_FrmWalkConfig_Add.Designer.cs">
+      <DependentUpon>A_FrmWalkConfig_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Tool\A_FrmToolOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Tool\A_FrmToolOptions.Designer.cs">
+      <DependentUpon>A_FrmToolOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConAreaManage\FrmConAreaManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConAreaManage\FrmConAreaManage.Designer.cs">
+      <DependentUpon>FrmConAreaManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConCodeSenderInfo\FrmConCodeSenderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConCodeSenderInfo\FrmConCodeSenderInfo.Designer.cs">
+      <DependentUpon>FrmConCodeSenderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDeptEmpCounts\FrmConDeptEmpCounts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDeptEmpCounts\FrmConDeptEmpCounts.Designer.cs">
+      <DependentUpon>FrmConDeptEmpCounts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDeptManage\FrmConDeptManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDeptManage\FrmConDeptManage.Designer.cs">
+      <DependentUpon>FrmConDeptManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDirectionalManage\FrmConDirectionalManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConDirectionalManage\FrmConDirectionalManage.Designer.cs">
+      <DependentUpon>FrmConDirectionalManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConEmployeeInfo\FrmConEmployeeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConEmployeeInfo\FrmConEmployeeInfo.Designer.cs">
+      <DependentUpon>FrmConEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConEquManage\FrmConEquManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConEquManage\FrmConEquManage.Designer.cs">
+      <DependentUpon>FrmConEquManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConStaHeadInfo\FrmConStaHeadInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConStaHeadInfo\FrmConStaHeadInfo.Designer.cs">
+      <DependentUpon>FrmConStaHeadInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigInfo\ConWalkInfo\FrmWalkConfigInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigInfo\ConWalkInfo\FrmWalkConfigInfo.Designer.cs">
+      <DependentUpon>FrmWalkConfigInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataOperate\FrmDataManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DataOperate\FrmDataManage.Designer.cs">
+      <DependentUpon>FrmDataManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentManage\DepartmnetSalarySet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentManage\DepartmnetSalarySet.Designer.cs">
+      <DependentUpon>DepartmnetSalarySet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentManage\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentManage\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentManage\FrmDepartmentManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DepartmentManage\FrmDepartmentManage.Designer.cs">
+      <DependentUpon>FrmDepartmentManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.CerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.DeptInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.DutyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.EmpInfop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo.WorkTypeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddCerInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddCerInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo_AddCerInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddDeptInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddDeptInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo_AddDeptInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddDutyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddDutyInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo_AddDutyInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddEmpInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddEmpInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo_AddEmpInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddWorkTypeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\A_FrmEmpInfo_AddWorkTypeInfo.Designer.cs">
+      <DependentUpon>A_FrmEmpInfo_AddWorkTypeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeManage\FrmEmpPost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeManage\FrmEmpPost.Designer.cs">
+      <DependentUpon>FrmEmpPost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\A_frmAddEqu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\A_frmAddEqu.Designer.cs">
+      <DependentUpon>A_frmAddEqu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\A_frmAddFactory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\A_frmAddFactory.Designer.cs">
+      <DependentUpon>A_frmAddFactory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\A_frmEquManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\A_frmEquManager.Designer.cs">
+      <DependentUpon>A_frmEquManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\FrmEquEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\FrmEquEdit.Designer.cs">
+      <DependentUpon>FrmEquEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\FrmEquManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\FrmEquManage.Designer.cs">
+      <DependentUpon>FrmEquManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EquManage\FrmFactoryEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EquManage\FrmFactoryEdit.Designer.cs">
+      <DependentUpon>FrmFactoryEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FromModel\FrmModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FromModel\FrmModel.Designer.cs">
+      <DependentUpon>FrmModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmRouteConfig.Designer.cs">
+      <DependentUpon>A_FrmRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmCreateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmCreateConfig.Designer.cs">
+      <DependentUpon>A_FrmCreateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_frmDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_frmDivConfig.Designer.cs">
+      <DependentUpon>A_frmDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_Graphics\A_FrmCfgRealTime.Designer.cs">
+      <DependentUpon>A_FrmCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmAddPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmAddPic.Designer.cs">
+      <DependentUpon>FrmAddPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDCfgRealTime.Designer.cs">
+      <DependentUpon>FrmDCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDCreateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDCreateConfig.Designer.cs">
+      <DependentUpon>FrmDCreateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDDivConfig.Designer.cs">
+      <DependentUpon>frmDDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDpicDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDpicDialog.Designer.cs">
+      <DependentUpon>frmDpicDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\FrmDRouteConfig.Designer.cs">
+      <DependentUpon>FrmDRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\DPic\frmDFileDialog.Designer.cs">
+      <DependentUpon>frmDFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\DPic\MapXml.cs" />
+    <Compile Include="Graphics\frmRealTimeRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\frmRealTimeRoute.Designer.cs">
+      <DependentUpon>frmRealTimeRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisDirectionalAntenna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisDirectionalAntenna.Designer.cs">
+      <DependentUpon>FrmHisDirectionalAntenna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisInfo.Designer.cs">
+      <DependentUpon>FrmHisInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryClime\FrmHistoryClime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryClime\FrmHistoryClime.Designer.cs">
+      <DependentUpon>FrmHistoryClime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutConfineArea\FrmHistoryInOutConfineArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutConfineArea\FrmHistoryInOutConfineArea.Designer.cs">
+      <DependentUpon>FrmHistoryInOutConfineArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutKeyArea\FrmHistoryInOutKeyArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutKeyArea\FrmHistoryInOutKeyArea.Designer.cs">
+      <DependentUpon>FrmHistoryInOutKeyArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInspection\Form_HistoryInspection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInspection\Form_HistoryInspection.Designer.cs">
+      <DependentUpon>Form_HistoryInspection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InOutMineAll\FrmInOutMineAll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InOutMineAll\FrmInOutMineAll.Designer.cs">
+      <DependentUpon>FrmInOutMineAll.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_Add_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_Add_new.Designer.cs">
+      <DependentUpon>Frm_Ip_Add_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_add_new1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_add_new1.Designer.cs">
+      <DependentUpon>Frm_Ip_add_new1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_Config_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Ip_Config_new.Designer.cs">
+      <DependentUpon>Frm_Ip_Config_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Station_Add_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Station_Add_new.Designer.cs">
+      <DependentUpon>Frm_Station_Add_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Station_Config_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\Frm_Station_Config_new.Designer.cs">
+      <DependentUpon>Frm_Station_Config_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmAllEmpState.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmAllEmpState.Designer.cs">
+      <DependentUpon>FrmAllEmpState.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmHisArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmHisArea.Designer.cs">
+      <DependentUpon>FrmHisArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmHisInOutReceiver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmHisInOutReceiver.Designer.cs">
+      <DependentUpon>FrmHisInOutReceiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmHistorynOutMineOverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmHistorynOutMineOverEmp.Designer.cs">
+      <DependentUpon>FrmHistorynOutMineOverEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmQueryTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmQueryTime.Designer.cs">
+      <DependentUpon>FrmQueryTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmRealTimeInOutMineOverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmRealTimeInOutMineOverEmp.Designer.cs">
+      <DependentUpon>FrmRealTimeInOutMineOverEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="New\FrmRTArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="New\FrmRTArea.Designer.cs">
+      <DependentUpon>FrmRTArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathManage\FrmEmpPathAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmEmpPathAdd.Designer.cs">
+      <DependentUpon>FrmEmpPathAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathManage\FrmPathDetailAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmPathDetailAdd.Designer.cs">
+      <DependentUpon>FrmPathDetailAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathManage\FrmPathManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmPathManage.Designer.cs">
+      <DependentUpon>FrmPathManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeZone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeZone.Designer.cs">
+      <DependentUpon>FrmRealTimeZone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeClime\FrmRealTimeClime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeClime\FrmRealTimeClime.Designer.cs">
+      <DependentUpon>FrmRealTimeClime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutConfineArea\FrmRealTimeInOutConfineArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutConfineArea\FrmRealTimeInOutConfineArea.Designer.cs">
+      <DependentUpon>FrmRealTimeInOutConfineArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutKeyArea\FrmRealTimeInOutKeyArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutKeyArea\FrmRealTimeInOutKeyArea.Designer.cs">
+      <DependentUpon>FrmRealTimeInOutKeyArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\FrmRTDirectionalAntenna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmRTDirectionalAntenna.Designer.cs">
+      <DependentUpon>FrmRTDirectionalAntenna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\FrmRTInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmRTInfo.Designer.cs">
+      <DependentUpon>FrmRTInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck_new.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck_new.Designer.cs">
+      <DependentUpon>FrmRealTimePathCheck_new.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Searcher.cs" />
+    <Compile Include="Form2Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2Test.Designer.cs">
+      <DependentUpon>Form2Test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmAboutUs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAboutUs.Designer.cs">
+      <DependentUpon>FrmAboutUs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEmpInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEmpInfo.Designer.cs">
+      <DependentUpon>FrmEmpInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFlash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFlash.Designer.cs">
+      <DependentUpon>FrmFlash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNav.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNav.Designer.cs">
+      <DependentUpon>FrmNav.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStationHeadStat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStationHeadStat.Designer.cs">
+      <DependentUpon>FrmStationHeadStat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWelcome.Designer.cs">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\FileChanger.cs" />
+    <Compile Include="Graphics\Config\FrmCreateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\FrmCreateConfig.Designer.cs">
+      <DependentUpon>FrmCreateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\frmDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\frmDivConfig.Designer.cs">
+      <DependentUpon>frmDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\FrmCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\FrmCfgRealTime.Designer.cs">
+      <DependentUpon>FrmCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\frmStaticConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\frmStaticConfig.Designer.cs">
+      <DependentUpon>frmStaticConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\frmWordConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\frmWordConfig.Designer.cs">
+      <DependentUpon>frmWordConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\Config\MapXml.cs" />
+    <Compile Include="Graphics\Config\frmFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\Config\frmFileDialog.Designer.cs">
+      <DependentUpon>frmFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\Form_Station_Head_time.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\Form_Station_Head_time.Designer.cs">
+      <DependentUpon>Form_Station_Head_time.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisInMineEmpTotal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisInMineEmpTotal.Designer.cs">
+      <DependentUpon>FrmHisInMineEmpTotal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTimePrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTimePrint.Designer.cs">
+      <DependentUpon>FrmTimePrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmUpDatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmUpDatePassword.Designer.cs">
+      <DependentUpon>FrmUpDatePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmValidate.Designer.cs">
+      <DependentUpon>FrmValidate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\FrmHistroyRoute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\FrmHistroyRoute.designer.cs">
+      <DependentUpon>FrmHistroyRoute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\FrmPicConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\FrmPicConfig.Designer.cs">
+      <DependentUpon>FrmPicConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\FrmRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\FrmRealTime.Designer.cs">
+      <DependentUpon>FrmRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\FrmRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\FrmRouteConfig.Designer.cs">
+      <DependentUpon>FrmRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\frmWait.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\frmWait.Designer.cs">
+      <DependentUpon>frmWait.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisOverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisOverEmp.Designer.cs">
+      <DependentUpon>FrmHisOverEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisSpecialEmpAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmHisSpecialEmpAlarm.Designer.cs">
+      <DependentUpon>FrmHisSpecialEmpAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmStatMonthEmpInMine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\FrmStatMonthEmpInMine.Designer.cs">
+      <DependentUpon>FrmStatMonthEmpInMine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisBadstation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisBadstation.Designer.cs">
+      <DependentUpon>HisBadstation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisEmpHelp\FrmHisEmpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisEmpHelp\FrmHisEmpHelp.Designer.cs">
+      <DependentUpon>FrmHisEmpHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisInMineRecordSet\FrmHisInMineRecordSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisInMineRecordSet\FrmHisInMineRecordSet.Designer.cs">
+      <DependentUpon>FrmHisInMineRecordSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisInOutStationHeadRecodset\FrmHisInOutStationHeadRecodset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisInOutStationHeadRecodset\FrmHisInOutStationHeadRecodset.Designer.cs">
+      <DependentUpon>FrmHisInOutStationHeadRecodset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisPathCheck\FrmHisPathCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisPathCheck\FrmHisPathCheck.Designer.cs">
+      <DependentUpon>FrmHisPathCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HisPathCheck\HisPassInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HisPathCheck\HisPassInfo.Designer.cs">
+      <DependentUpon>HisPassInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutAntenna\FrmHistoryInOutAntenna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutAntenna\FrmHistoryInOutAntenna.Designer.cs">
+      <DependentUpon>FrmHistoryInOutAntenna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutMine\FrmHisInOutMine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInOutMine\FrmHisInOutMine.Designer.cs">
+      <DependentUpon>FrmHisInOutMine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInTerritorial\FrmHisInTerritorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryInTerritorial\FrmHisInTerritorial.Designer.cs">
+      <DependentUpon>FrmHisInTerritorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryMoniterInfo\FrmHistroyCodeSenderInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryMoniterInfo\FrmHistroyCodeSenderInfo.Designer.cs">
+      <DependentUpon>FrmHistroyCodeSenderInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryOverTimeInfo\FrmHisOverTimeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryOverTimeInfo\FrmHisOverTimeInfo.Designer.cs">
+      <DependentUpon>FrmHisOverTimeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryPathAlert\FrmHisPathAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryPathAlert\FrmHisPathAlert.Designer.cs">
+      <DependentUpon>FrmHisPathAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryPostInfo\FrmHistoryPostInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryPostInfo\FrmHistoryPostInfo.Designer.cs">
+      <DependentUpon>FrmHistoryPostInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryQueryByClass\AttendanceParticulars.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryQueryByClass\AttendanceParticulars.Designer.cs">
+      <DependentUpon>AttendanceParticulars.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistorySpecialWorkTypeTerrialAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistorySpecialWorkTypeTerrialAlarm.Designer.cs">
+      <DependentUpon>HistorySpecialWorkTypeTerrialAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryStationBreak\FrmHisStationBreak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryStationBreak\FrmHisStationBreak.Designer.cs">
+      <DependentUpon>FrmHisStationBreak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryTimeOut\HistoryTimeOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryTimeOut\HistoryTimeOut.Designer.cs">
+      <DependentUpon>HistoryTimeOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryTotalInfo\FrmHistoryTotalInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryTotalInfo\FrmHistoryTotalInfo.Designer.cs">
+      <DependentUpon>FrmHistoryTotalInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryWalkInfo\FrmHistoryWalkInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryInfo\HistoryWalkInfo\FrmHistoryWalkInfo.Designer.cs">
+      <DependentUpon>FrmHistoryWalkInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig.Designer.cs">
+      <DependentUpon>FrmIpConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig_Add.Designer.cs">
+      <DependentUpon>FrmIpConfig_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig_Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\FrmIpConfig_Main.Designer.cs">
+      <DependentUpon>FrmIpConfig_Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IpConfig\FrmStationIpConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IpConfig\FrmStationIpConfig.Designer.cs">
+      <DependentUpon>FrmStationIpConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\FrmBottomAlert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\FrmBottomAlert.designer.cs">
+      <DependentUpon>FrmBottomAlert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainForm\FrmLeftTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm\FrmLeftTree.designer.cs">
+      <DependentUpon>FrmLeftTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperateLog.cs" />
+    <Compile Include="PathManage\FrmPathDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmPathDetail.Designer.cs">
+      <DependentUpon>FrmPathDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathManage\FrmPathEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmPathEmp.Designer.cs">
+      <DependentUpon>FrmPathEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PathManage\FrmPathInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PathManage\FrmPathInfo.Designer.cs">
+      <DependentUpon>FrmPathInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="ChkType.Xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="close.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CommType.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="configOperator.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CopyAndAttachDataBase.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DbConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HistoryDataDelete.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Interop.MSAdodcLib.Modle.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IsClient.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.Batman.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.Batman.XML">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.CommunicationConfig.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.Controls.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.DataSave.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.Ports.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128A.Transfer.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128AClientConfig.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128AConfig.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="KJ128ALogView.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SerialPort.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="skin.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SoftDog.dll" />
+    <Content Include="SoftDogInstdrv.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SoftDogSetup.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Station.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StationUpdateConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Wilson.BaseClassLibrary.dll" />
+    <Content Include="Wilson.Controls.dll" />
+    <Content Include="win32dll.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\000000.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\back.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\beifen.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\Interop.IWshRuntimeLibrary.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="备份\Interop.SQLDMO.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="导入导出\InfomationIO.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="数据库备份还原.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="admin\adminInfo.resx">
+      <DependentUpon>adminInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\A_frmAddUser.resx">
+      <DependentUpon>A_frmAddUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\A_frmUser.resx">
+      <DependentUpon>A_frmUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\usergroup.resx">
+      <DependentUpon>usergroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="admin\usergroupInfo.resx">
+      <DependentUpon>usergroupInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AlarmSet\FrmAlarmSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmAlarmSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\A_FrmAreaManage.resx">
+      <DependentUpon>A_FrmAreaManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\A_FrmAreaManage_AddTerInfo.resx">
+      <DependentUpon>A_FrmAreaManage_AddTerInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\A_FrmAreaManage_AddTerSet.resx">
+      <DependentUpon>A_FrmAreaManage_AddTerSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\A_FrmAreaManage_AddTerType.resx">
+      <DependentUpon>A_FrmAreaManage_AddTerType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\A_frmSWrokSet.resx">
+      <DependentUpon>A_frmSWrokSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\FrmAreaManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmAreaManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AreaManage\SpecialWorkTypeTerrialSet.resx">
+      <DependentUpon>SpecialWorkTypeTerrialSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssociateWithEmp\FrmAssociateAdd.resx">
+      <DependentUpon>FrmAssociateAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssociateWithEmp\FrmAssociateManage.resx">
+      <DependentUpon>FrmAssociateManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssociateWithEmp\FrmHisAssociateInfo.resx">
+      <DependentUpon>FrmHisAssociateInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\ClassInfoManage.resx">
+      <DependentUpon>ClassInfoManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\FrmArrendanceAdd.resx">
+      <DependentUpon>FrmArrendanceAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\FrmAttendanceManger.resx">
+      <DependentUpon>FrmAttendanceManger.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\FrmHoilidayAdd.resx">
+      <DependentUpon>FrmHoilidayAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\FrmTimerInterval.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmTimerInterval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\HolidayMange.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HolidayMange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\HolidayTypeSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>HolidayTypeSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\NewHolidayTypeSet.resx">
+      <DependentUpon>NewHolidayTypeSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\A_NewHolidayMange.resx">
+      <DependentUpon>A_NewHolidayMange.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceInfoSet\NewHolidayTypeSetAdd.resx">
+      <DependentUpon>NewHolidayTypeSetAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\AddHistoryAttendance.resx">
+      <DependentUpon>AddHistoryAttendance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceDayByDayStatistic.resx">
+      <DependentUpon>A_AttendanceDayByDayStatistic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceInitialData.resx">
+      <DependentUpon>A_AttendanceInitialData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceParticulars.resx">
+      <DependentUpon>A_AttendanceParticulars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceQuerySalary.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>A_AttendanceQuerySalary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceRateStatistic.resx">
+      <DependentUpon>A_AttendanceRateStatistic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\AttendanceRealTime.resx">
+      <DependentUpon>AttendanceRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AttendanceQuery\A_AttendanceStatisticByDuty.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>A_AttendanceStatisticByDuty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Antenna\A_frmHisAntenna.resx">
+      <DependentUpon>A_frmHisAntenna.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Antenna\A_frmRealAntanne.resx">
+      <DependentUpon>A_frmRealAntanne.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Antenna\A_frmRTAntennaConfig.resx">
+      <DependentUpon>A_frmRTAntennaConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Antenna\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AddHistoryAttendance.resx">
+      <DependentUpon>A_AddHistoryAttendance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AddHistoryAttendance_Add.resx">
+      <DependentUpon>A_AddHistoryAttendance_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AttendaceDeptStatistic.resx">
+      <DependentUpon>A_AttendaceDeptStatistic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AttendacePersonelStatistic.resx">
+      <DependentUpon>A_AttendacePersonelStatistic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AttendanceDayByDayStatistic.resx">
+      <DependentUpon>A_AttendanceDayByDayStatistic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AttendanceRealTime.resx">
+      <DependentUpon>A_AttendanceRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Attendance\A_AttendanceRealTime_Add.resx">
+      <DependentUpon>A_AttendanceRealTime_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FrmExit.resx">
+      <DependentUpon>A_FrmExit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FrmLogin.resx">
+      <DependentUpon>A_FrmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FrmMain.resx">
+      <DependentUpon>A_FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_FrmValidate.resx">
+      <DependentUpon>A_FrmValidate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_HisAlarm\A_FrmHisAlarm.resx">
+      <DependentUpon>A_FrmHisAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_His_InWellCounts\A_FrmHisInWellCounts.resx">
+      <DependentUpon>A_FrmHisInWellCounts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_His_StationHead\A_FrmHisStationHead.resx">
+      <DependentUpon>A_FrmHisStationHead.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_His_Station_Data\A_His_Station_data.resx">
+      <DependentUpon>A_His_Station_data.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_His_Territorial\A_FrmHisTerritorial.resx">
+      <DependentUpon>A_FrmHisTerritorial.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_InMineDayReport\FrmInMineDayReport.resx">
+      <DependentUpon>FrmInMineDayReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Option\A_FrmOption.resx">
+      <DependentUpon>A_FrmOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Print\A_FrmPrint.resx">
+      <DependentUpon>A_FrmPrint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RealInWell\FrmHisInWell.resx">
+      <DependentUpon>FrmHisInWell.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RealInWell\FrmInWellShowConfig.resx">
+      <DependentUpon>FrmInWellShowConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RealInWell\FrmRealInWell.resx">
+      <DependentUpon>FrmRealInWell.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Report_Forms\A_Day_Walk_ReportForm.resx">
+      <DependentUpon>A_Day_Walk_ReportForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Report_Forms\A_Day_Walk_ReportForm_Set.resx">
+      <DependentUpon>A_Day_Walk_ReportForm_Set.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Report_Forms\A_Month_Down_Mine_Count.resx">
+      <DependentUpon>A_Month_Down_Mine_Count.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Report_Forms\A_Month_Down_Mine_Count_Set.resx">
+      <DependentUpon>A_Month_Down_Mine_Count_Set.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RTAlarm\A_FrmRTAlarm.resx">
+      <DependentUpon>A_FrmRTAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RTAlarm\A_FrmRTAlarm_EmpHelpMeasure.resx">
+      <DependentUpon>A_FrmRTAlarm_EmpHelpMeasure.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RTAlarm\A_FrmRTAlarm_unchainCheckCards.resx">
+      <DependentUpon>A_FrmRTAlarm_unchainCheckCards.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_OverSee\A_RT_Station_Head.resx">
+      <DependentUpon>A_RT_Station_Head.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_OverSee\A_RT_Time_Set.resx">
+      <DependentUpon>A_RT_Time_Set.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_PathCheck\A_RT_PathCheck.resx">
+      <DependentUpon>A_RT_PathCheck.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_StationHead\A_FrmRTStationHead.resx">
+      <DependentUpon>A_FrmRTStationHead.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_StationHead\A_FrmRTStationHead_Set.resx">
+      <DependentUpon>A_FrmRTStationHead_Set.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_RT_Territorial\A_FrmRTTerritorial.resx">
+      <DependentUpon>A_FrmRTTerritorial.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Speed\A_FrmWalkConfig.resx">
+      <DependentUpon>A_FrmWalkConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Speed\A_FrmWalkConfig_Add.resx">
+      <DependentUpon>A_FrmWalkConfig_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmConfineAreaStatement.resx">
+      <DependentUpon>A_FrmConfineAreaStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmEmpInWellStatement.resx">
+      <DependentUpon>A_FrmEmpInWellStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmKeyAreaEmpStatement.resx">
+      <DependentUpon>A_FrmKeyAreaEmpStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmLeadDayStatement.resx">
+      <DependentUpon>A_FrmLeadDayStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmLeadMonthStatement.resx">
+      <DependentUpon>A_FrmLeadMonthStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmOverTimeEmpStatement.resx">
+      <DependentUpon>A_FrmOverTimeEmpStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Statement\A_FrmWorkExceptionStatement.resx">
+      <DependentUpon>A_FrmWorkExceptionStatement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_StationConfigInfo\A_FrmStationConfigInfo.resx">
+      <DependentUpon>A_FrmStationConfigInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="A_Tool\A_FrmToolOptions.resx">
+      <DependentUpon>A_FrmToolOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConAreaManage\FrmConAreaManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConAreaManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConCodeSenderInfo\FrmConCodeSenderInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConCodeSenderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConDeptEmpCounts\FrmConDeptEmpCounts.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConDeptEmpCounts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConDeptManage\FrmConDeptManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConDeptManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConDirectionalManage\FrmConDirectionalManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConDirectionalManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConEmployeeInfo\FrmConEmployeeInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConEquManage\FrmConEquManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConEquManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConStaHeadInfo\FrmConStaHeadInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmConStaHeadInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigInfo\ConWalkInfo\FrmWalkConfigInfo.resx">
+      <DependentUpon>FrmWalkConfigInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DataOperate\FrmDataManage.resx">
+      <DependentUpon>FrmDataManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentManage\DepartmnetSalarySet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>DepartmnetSalarySet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentManage\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DepartmentManage\FrmDepartmentManage.resx">
+      <DependentUpon>FrmDepartmentManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo.resx">
+      <DependentUpon>A_FrmEmpInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo_AddCerInfo.resx">
+      <DependentUpon>A_FrmEmpInfo_AddCerInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo_AddDeptInfo.resx">
+      <DependentUpon>A_FrmEmpInfo_AddDeptInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo_AddDutyInfo.resx">
+      <DependentUpon>A_FrmEmpInfo_AddDutyInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo_AddEmpInfo.resx">
+      <DependentUpon>A_FrmEmpInfo_AddEmpInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\A_FrmEmpInfo_AddWorkTypeInfo.resx">
+      <DependentUpon>A_FrmEmpInfo_AddWorkTypeInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeManage\FrmEmpPost.resx">
+      <DependentUpon>FrmEmpPost.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\A_frmAddEqu.resx">
+      <DependentUpon>A_frmAddEqu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\A_frmAddFactory.resx">
+      <DependentUpon>A_frmAddFactory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\A_frmEquManager.resx">
+      <DependentUpon>A_frmEquManager.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\FrmEquEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmEquEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\FrmEquManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmEquManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EquManage\FrmFactoryEdit.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmFactoryEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2Test.resx">
+      <DependentUpon>Form2Test.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSoftReg.resx">
+      <DependentUpon>FormSoftReg.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAboutUs.resx">
+      <DependentUpon>FrmAboutUs.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEmpInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmEmpInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEmployeeInfo_Select.resx">
+      <DependentUpon>FrmEmployeeInfo_Select.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFlash.resx">
+      <DependentUpon>FrmFlash.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNav.resx">
+      <DependentUpon>FrmNav.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOuterProject.resx">
+      <DependentUpon>FrmOuterProject.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRealTimeOutMineEmp.resx">
+      <DependentUpon>FrmRealTimeOutMineEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStationHeadStat.resx">
+      <DependentUpon>FrmStationHeadStat.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWelcome.resx">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FromModel\FrmModel.resx">
+      <DependentUpon>FrmModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_FrmAddPic.resx">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_FrmDCfgRealTime.resx">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_FrmDCreateConfig.resx">
+      <DependentUpon>A_FrmDCreateConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_frmDDivConfig.resx">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_frmDFileDialog.resx">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_frmDpicDialog.resx">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic\A_FrmDRouteConfig.resx">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_FrmAddPic.resx">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_FrmDCfgRealTime.resx">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_FrmDCreateConfig.resx">
+      <DependentUpon>A_FrmDCreateConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_frmDDivConfig.resx">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_frmDFileDialog.resx">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_frmDpicDialog.resx">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Expert\A_FrmDRouteConfig.resx">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_FrmAddPic.resx">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_FrmDCfgRealTime.resx">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_FrmDCreateConfig_Simplify.resx">
+      <DependentUpon>A_FrmDCreateConfig_Simplify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_frmDDivConfig.resx">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_frmDFileDialog.resx">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_frmDpicDialog.resx">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Simplify\A_FrmDRouteConfig.resx">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_AddPicLayer.resx">
+      <DependentUpon>A_DPic_AddPicLayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_ChooseStation.resx">
+      <DependentUpon>A_DPic_ChooseStation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_DivConfig.resx">
+      <DependentUpon>A_DPic_DivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_ImportPic.resx">
+      <DependentUpon>A_DPic_ImportPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_RouteConfig.resx">
+      <DependentUpon>A_DPic_RouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_DPic_Wizard\A_DPic_Welcom.resx">
+      <DependentUpon>A_DPic_Welcom.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_Graphics\A_FrmRouteConfig.resx">
+      <DependentUpon>A_FrmRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_Graphics\A_FrmCreateConfig.resx">
+      <DependentUpon>A_FrmCreateConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_Graphics\A_frmDivConfig.resx">
+      <DependentUpon>A_frmDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\A_Graphics\A_FrmCfgRealTime.resx">
+      <DependentUpon>A_FrmCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\FrmCreateConfig.resx">
+      <DependentUpon>FrmCreateConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\frmDivConfig.resx">
+      <DependentUpon>frmDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\frmFileDialog.resx">
+      <DependentUpon>frmFileDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\FrmCfgRealTime.resx">
+      <DependentUpon>FrmCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\frmStaticConfig.resx">
+      <DependentUpon>frmStaticConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\Config\frmWordConfig.resx">
+      <DependentUpon>frmWordConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\FrmAddPic.resx">
+      <DependentUpon>FrmAddPic.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\FrmDCfgRealTime.resx">
+      <DependentUpon>FrmDCfgRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\FrmDCreateConfig.resx">
+      <DependentUpon>FrmDCreateConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\frmDDivConfig.resx">
+      <DependentUpon>frmDDivConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\frmDpicDialog.resx">
+      <DependentUpon>frmDpicDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\FrmDRouteConfig.resx">
+      <DependentUpon>FrmDRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\DPic\frmDFileDialog.resx">
+      <DependentUpon>frmDFileDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\frmRealTimeRoute.resx">
+      <DependentUpon>frmRealTimeRoute.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\Form_Station_Head_time.resx">
+      <DependentUpon>Form_Station_Head_time.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmHisInMineEmpTotal.resx">
+      <DependentUpon>FrmHisInMineEmpTotal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTimePrint.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmTimePrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmUpDatePassword.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmUpDatePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmValidate.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmValidate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\FrmHistroyRoute.resx">
+      <DependentUpon>FrmHistroyRoute.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\FrmPicConfig.resx">
+      <DependentUpon>FrmPicConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\FrmRealTime.resx">
+      <DependentUpon>FrmRealTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\FrmRouteConfig.resx">
+      <DependentUpon>FrmRouteConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graphics\frmWait.resx">
+      <DependentUpon>frmWait.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmHisOverEmp.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHisOverEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmHisSpecialEmpAlarm.resx">
+      <DependentUpon>FrmHisSpecialEmpAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmHisDirectionalAntenna.resx">
+      <DependentUpon>FrmHisDirectionalAntenna.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmHisInfo.resx">
+      <DependentUpon>FrmHisInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\FrmStatMonthEmpInMine.resx">
+      <DependentUpon>FrmStatMonthEmpInMine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisBadstation.resx">
+      <DependentUpon>HisBadstation.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisEmpHelp\FrmHisEmpHelp.resx">
+      <DependentUpon>FrmHisEmpHelp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisInMineRecordSet\FrmHisInMineRecordSet.resx">
+      <DependentUpon>FrmHisInMineRecordSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisInOutStationHeadRecodset\FrmHisInOutStationHeadRecodset.resx">
+      <DependentUpon>FrmHisInOutStationHeadRecodset.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisPathCheck\FrmHisPathCheck.resx">
+      <DependentUpon>FrmHisPathCheck.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HisPathCheck\HisPassInfo.resx">
+      <DependentUpon>HisPassInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryClime\FrmHistoryClime.resx">
+      <DependentUpon>FrmHistoryClime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInOutAntenna\FrmHistoryInOutAntenna.resx">
+      <DependentUpon>FrmHistoryInOutAntenna.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInOutConfineArea\FrmHistoryInOutConfineArea.resx">
+      <DependentUpon>FrmHistoryInOutConfineArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInOutKeyArea\FrmHistoryInOutKeyArea.resx">
+      <DependentUpon>FrmHistoryInOutKeyArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInOutMine\FrmHisInOutMine.resx">
+      <DependentUpon>FrmHisInOutMine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInspection\Form_HistoryInspection.resx">
+      <DependentUpon>Form_HistoryInspection.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryInTerritorial\FrmHisInTerritorial.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHisInTerritorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryMoniterInfo\FrmHistroyCodeSenderInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHistroyCodeSenderInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryOverTimeInfo\FrmHisOverTimeInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHisOverTimeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryPathAlert\FrmHisPathAlert.resx">
+      <DependentUpon>FrmHisPathAlert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryPostInfo\FrmHistoryPostInfo.resx">
+      <DependentUpon>FrmHistoryPostInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryQueryByClass\AttendanceParticulars.resx">
+      <DependentUpon>AttendanceParticulars.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistorySpecialWorkTypeTerrialAlarm.resx">
+      <DependentUpon>HistorySpecialWorkTypeTerrialAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryStationBreak\FrmHisStationBreak.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHisStationBreak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryTimeOut\HistoryTimeOut.resx">
+      <DependentUpon>HistoryTimeOut.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryTotalInfo\FrmHistoryTotalInfo.resx">
+      <DependentUpon>FrmHistoryTotalInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryInfo\HistoryWalkInfo\FrmHistoryWalkInfo.resx">
+      <DependentUpon>FrmHistoryWalkInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InOutMineAll\FrmInOutMineAll.resx">
+      <DependentUpon>FrmInOutMineAll.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\FrmIpConfig.resx">
+      <DependentUpon>FrmIpConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\FrmIpConfig_Add.resx">
+      <DependentUpon>FrmIpConfig_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\FrmIpConfig_Main.resx">
+      <DependentUpon>FrmIpConfig_Main.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\FrmStationIpConfig.resx">
+      <DependentUpon>FrmStationIpConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\Frm_Ip_Add_new.resx">
+      <DependentUpon>Frm_Ip_Add_new.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\Frm_Ip_add_new1.resx">
+      <DependentUpon>Frm_Ip_add_new1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\Frm_Ip_Config_new.resx">
+      <DependentUpon>Frm_Ip_Config_new.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IpConfig\Frm_Station_Add_new.resx">
+      <DependentUpon>Frm_Station_Add_new.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\FrmBottomAlert.resx">
+      <DependentUpon>FrmBottomAlert.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm\FrmLeftTree.resx">
+      <DependentUpon>FrmLeftTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmAllEmpState.resx">
+      <DependentUpon>FrmAllEmpState.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmHisArea.resx">
+      <DependentUpon>FrmHisArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmHisInOutReceiver.resx">
+      <DependentUpon>FrmHisInOutReceiver.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmHistorynOutMineOverEmp.resx">
+      <DependentUpon>FrmHistorynOutMineOverEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmQueryTime.resx">
+      <DependentUpon>FrmQueryTime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmRealTimeInOutMineOverEmp.resx">
+      <DependentUpon>FrmRealTimeInOutMineOverEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="New\FrmRTArea.resx">
+      <DependentUpon>FrmRTArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmEmpPathAdd.resx">
+      <DependentUpon>FrmEmpPathAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmPathDetail.resx">
+      <DependentUpon>FrmPathDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmPathDetailAdd.resx">
+      <DependentUpon>FrmPathDetailAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmPathEmp.resx">
+      <DependentUpon>FrmPathEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmPathInfo.resx">
+      <DependentUpon>FrmPathInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PathManage\FrmPathManage.resx">
+      <DependentUpon>FrmPathManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmRealTimeInMineEmp.resx">
+      <DependentUpon>FrmRealTimeInMineEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmRealTimeZone.resx">
+      <DependentUpon>FrmRealTimeZone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeClime\FrmRealTimeClime.resx">
+      <DependentUpon>FrmRealTimeClime.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeEmpHelp\FrmRealTimeEmpHelp.resx">
+      <DependentUpon>FrmRealTimeEmpHelp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeInOutConfineArea\FrmRealTimeInOutConfineArea.resx">
+      <DependentUpon>FrmRealTimeInOutConfineArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeInOutKeyArea\FrmRealTimeInOutKeyArea.resx">
+      <DependentUpon>FrmRealTimeInOutKeyArea.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck_new.resx">
+      <DependentUpon>FrmRealTimePathCheck_new.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimePostAlarmInfo\FrmRealTimePostAlarmInfo.resx">
+      <DependentUpon>FrmRealTimePostAlarmInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimePostInfo\FrmRealTimePostInfo.resx">
+      <DependentUpon>FrmRealTimePostInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeWalkAlarmInfo\FrmRealTimeWalkAlarmInfo.resx">
+      <DependentUpon>FrmRealTimeWalkAlarmInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeWorkTypeTerrialAlarm.resx">
+      <DependentUpon>RealTimeWorkTypeTerrialAlarm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmRealTimeOverEmp.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealTimeOverEmp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmWorkPlace.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmWorkPlace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeAlarmElectricity\FrmRealtimeAlarmElectricity.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealtimeAlarmElectricity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeAlarmPath\FrmRealTimeAlarmPath.resx">
+      <DependentUpon>FrmRealTimeAlarmPath.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeAlarmPath\FrmRealTimePath.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealTimePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeAttendanceQuery\RealTimeAttendanceQuery.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RealTimeAttendanceQuery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeClassify\EmployeeClassify.resx">
+      <DependentUpon>EmployeeClassify.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeDirectional\FrmRealTimeDirectional.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealTimeDirectional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeEmployeeInfo\RealTimeEmployeeInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RealTimeEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeEquClassify\FrmRealtimeEquClassify.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealtimeEquClassify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeInOutAntennaInfo\RealTimeInOutAntennaInfo.resx">
+      <DependentUpon>RealTimeInOutAntennaInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeInOutStationHeadInfo\RealTimeInOutStationHeadInfo.resx">
+      <DependentUpon>RealTimeInOutStationHeadInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeInTerritorial\FrmRealTimeInTerritorial.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealTimeInTerritorial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeInWellInfo\FrmRealTimeInWellInfo.resx">
+      <DependentUpon>FrmRealTimeInWellInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeOverTimeInfo\FrmRealtimeOverTimeInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealtimeOverTimeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck.resx">
+      <DependentUpon>FrmRealTimePathCheck.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeStaHeadBreak\FrmRealTimeStaHeadBreak.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealTimeStaHeadBreak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealtimeStationBreak\FrmRealtimeStationBreak.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmRealtimeStationBreak.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\RealTimeStationInfo\RealTimeInOutStation\RealTimeInOutStation.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RealTimeInOutStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\ReelTimeMonitorInfo\RealTimeMonitorInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>RealTimeMonitorInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmRTDirectionalAntenna.resx">
+      <DependentUpon>FrmRTDirectionalAntenna.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RealTime\FrmRTInfo.resx">
+      <DependentUpon>FrmRTInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\A_frmAddCode.resx">
+      <DependentUpon>A_frmAddCode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\A_frmCodeSender.resx">
+      <DependentUpon>A_frmCodeSender.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\A_frmCodeSenderSet.resx">
+      <DependentUpon>A_frmCodeSenderSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\A_frmRtCodeSender.resx">
+      <DependentUpon>A_frmRtCodeSender.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\A_FrmSetCodeSender.resx">
+      <DependentUpon>A_FrmSetCodeSender.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\Form1.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SetCoder\FrmSetCodeSender.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmSetCodeSender.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SingleEmployeeInfo.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SingleEmployeeInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_FrmDirectionalManage.resx">
+      <DependentUpon>A_FrmDirectionalManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_FrmDirectionalManage_Add.resx">
+      <DependentUpon>A_FrmDirectionalManage_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_FrmStationInfo.resx">
+      <DependentUpon>A_FrmStationInfo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_Station_Add.resx">
+      <DependentUpon>A_Station_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_Station_Head_Add.resx">
+      <DependentUpon>A_Station_Head_Add.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_Station_Head_Law.resx">
+      <DependentUpon>A_Station_Head_Law.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\A_Station_Law.resx">
+      <DependentUpon>A_Station_Law.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\FrmDirectionalManage.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmDirectionalManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\FrmDirectionalManageAntenna.resx">
+      <DependentUpon>FrmDirectionalManageAntenna.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StationManage\FrmStationManage.resx">
+      <DependentUpon>FrmStationManage.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="Template\Template.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="testfrm.resx">
+      <DependentUpon>testfrm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Content Include="help\KJ128帮助系统.CHM">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\MapConfigFiles\Buffer.shz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\Map\三恒办公楼图.wmf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\Map\人员定位界面图.wmf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\Map\跟踪.wmf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HistoryDataDelete.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeInMineEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeInMineEmp.Designer.cs">
+      <DependentUpon>FrmRealTimeInMineEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeEmpHelp\FrmRealTimeEmpHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeEmpHelp\FrmRealTimeEmpHelp.Designer.cs">
+      <DependentUpon>FrmRealTimeEmpHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimePostAlarmInfo\FrmRealTimePostAlarmInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimePostAlarmInfo\FrmRealTimePostAlarmInfo.Designer.cs">
+      <DependentUpon>FrmRealTimePostAlarmInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimePostInfo\FrmRealTimePostInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimePostInfo\FrmRealTimePostInfo.Designer.cs">
+      <DependentUpon>FrmRealTimePostInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeWalkAlarmInfo\FrmRealTimeWalkAlarmInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeWalkAlarmInfo\FrmRealTimeWalkAlarmInfo.Designer.cs">
+      <DependentUpon>FrmRealTimeWalkAlarmInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeWorkTypeTerrialAlarm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeWorkTypeTerrialAlarm.Designer.cs">
+      <DependentUpon>RealTimeWorkTypeTerrialAlarm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeOverEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmRealTimeOverEmp.Designer.cs">
+      <DependentUpon>FrmRealTimeOverEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\FrmWorkPlace.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\FrmWorkPlace.Designer.cs">
+      <DependentUpon>FrmWorkPlace.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeAlarmElectricity\FrmRealtimeAlarmElectricity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeAlarmElectricity\FrmRealtimeAlarmElectricity.Designer.cs">
+      <DependentUpon>FrmRealtimeAlarmElectricity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAlarmPath\FrmRealTimeAlarmPath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAlarmPath\FrmRealTimeAlarmPath.Designer.cs">
+      <DependentUpon>FrmRealTimeAlarmPath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAlarmPath\FrmRealTimePath.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAlarmPath\FrmRealTimePath.Designer.cs">
+      <DependentUpon>FrmRealTimePath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAttendanceQuery\RealTimeAttendanceQuery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeAttendanceQuery\RealTimeAttendanceQuery.Designer.cs">
+      <DependentUpon>RealTimeAttendanceQuery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeClassify\EmployeeClassify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeClassify\EmployeeClassify.Designer.cs">
+      <DependentUpon>EmployeeClassify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeDirectional\FrmRealTimeDirectional.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeDirectional\FrmRealTimeDirectional.Designer.cs">
+      <DependentUpon>FrmRealTimeDirectional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeEmployeeInfo\RealTimeEmployeeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeEmployeeInfo\RealTimeEmployeeInfo.Designer.cs">
+      <DependentUpon>RealTimeEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeEquClassify\FrmRealtimeEquClassify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeEquClassify\FrmRealtimeEquClassify.Designer.cs">
+      <DependentUpon>FrmRealtimeEquClassify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutAntennaInfo\RealTimeInOutAntennaInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutAntennaInfo\RealTimeInOutAntennaInfo.Designer.cs">
+      <DependentUpon>RealTimeInOutAntennaInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutStationHeadInfo\RealTimeInOutStationHeadInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInOutStationHeadInfo\RealTimeInOutStationHeadInfo.Designer.cs">
+      <DependentUpon>RealTimeInOutStationHeadInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeInTerritorial\FrmRealTimeInTerritorial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeInTerritorial\FrmRealTimeInTerritorial.Designer.cs">
+      <DependentUpon>FrmRealTimeInTerritorial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInWellInfo\FrmRealTimeInWellInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeInWellInfo\FrmRealTimeInWellInfo.Designer.cs">
+      <DependentUpon>FrmRealTimeInWellInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeOverTimeInfo\FrmRealtimeOverTimeInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeOverTimeInfo\FrmRealtimeOverTimeInfo.Designer.cs">
+      <DependentUpon>FrmRealtimeOverTimeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimePathCheck\FrmRealTimePathCheck.Designer.cs">
+      <DependentUpon>FrmRealTimePathCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeStaHeadBreak\FrmRealTimeStaHeadBreak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeStaHeadBreak\FrmRealTimeStaHeadBreak.Designer.cs">
+      <DependentUpon>FrmRealTimeStaHeadBreak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealtimeStationBreak\FrmRealtimeStationBreak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealtimeStationBreak\FrmRealtimeStationBreak.Designer.cs">
+      <DependentUpon>FrmRealtimeStationBreak.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\RealTimeStationInfo\RealTimeInOutStation\RealTimeInOutStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\RealTimeStationInfo\RealTimeInOutStation\RealTimeInOutStation.Designer.cs">
+      <DependentUpon>RealTimeInOutStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RealTime\ReelTimeMonitorInfo\RealTimeMonitorInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RealTime\ReelTimeMonitorInfo\RealTimeMonitorInfo.Designer.cs">
+      <DependentUpon>RealTimeMonitorInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\A_frmCodeSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\A_frmCodeSender.Designer.cs">
+      <DependentUpon>A_frmCodeSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\A_frmRtCodeSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\A_frmRtCodeSender.Designer.cs">
+      <DependentUpon>A_frmRtCodeSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\A_FrmSetCodeSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\A_FrmSetCodeSender.Designer.cs">
+      <DependentUpon>A_FrmSetCodeSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\A_frmAddCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\A_frmAddCode.Designer.cs">
+      <DependentUpon>A_frmAddCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\A_frmCodeSenderSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\A_frmCodeSenderSet.Designer.cs">
+      <DependentUpon>A_frmCodeSenderSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SetCoder\FrmSetCodeSender.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SetCoder\FrmSetCodeSender.Designer.cs">
+      <DependentUpon>FrmSetCodeSender.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SingleEmployeeInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SingleEmployeeInfo.Designer.cs">
+      <DependentUpon>SingleEmployeeInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlParameterInsertDefine.cs" />
+    <Compile Include="StationManage\A_FrmDirectionalManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_FrmDirectionalManage.Designer.cs">
+      <DependentUpon>A_FrmDirectionalManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_FrmDirectionalManage_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_FrmDirectionalManage_Add.Designer.cs">
+      <DependentUpon>A_FrmDirectionalManage_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_FrmStationInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_FrmStationInfo.Designer.cs">
+      <DependentUpon>A_FrmStationInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Add.Designer.cs">
+      <DependentUpon>A_Station_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Head_Add.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Head_Add.Designer.cs">
+      <DependentUpon>A_Station_Head_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Head_Law.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Head_Law.Designer.cs">
+      <DependentUpon>A_Station_Head_Law.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Law.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\A_Station_Law.Designer.cs">
+      <DependentUpon>A_Station_Law.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\FrmDirectionalManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\FrmDirectionalManage.Designer.cs">
+      <DependentUpon>FrmDirectionalManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\FrmDirectionalManageAntenna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\FrmDirectionalManageAntenna.Designer.cs">
+      <DependentUpon>FrmDirectionalManageAntenna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StationManage\FrmStationManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StationManage\FrmStationManage.designer.cs">
+      <DependentUpon>FrmStationManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="testfrm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="testfrm.Designer.cs">
+      <DependentUpon>testfrm.cs</DependentUpon>
+    </Compile>
+    <Content Include="备份\beifen.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="导入导出\InfomationIO.exe.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddNewEmployee1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\EmployeeSift1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\a1.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\KJ128A\KJ128A.Controls\KJ128A.Controls.csproj">
+      <Project>{A3B7F9BC-75C7-4D94-A9D8-38E324F1D20F}</Project>
+      <Name>KJ128A.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128A\KJ128A.DataSave\KJ128A.DataSave.csproj">
+      <Project>{D2137943-CFA8-408B-875F-ACBCC42E2A30}</Project>
+      <Name>KJ128A.DataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128A\KJ128AHostBack\KJ128A.HostBack.csproj">
+      <Project>{E300B49F-4A03-4BAC-9817-158058B937E7}</Project>
+      <Name>KJ128A.HostBack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DegonControlLib\DegonControlLib.csproj">
+      <Project>{AE9AC934-E0F1-4021-8B5C-8B2A41C335E2}</Project>
+      <Name>DegonControlLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128NDataBase\KJ128NDataBase.csproj">
+      <Project>{AC098D5A-F5DB-491B-99A0-FA1CA7717936}</Project>
+      <Name>KJ128NDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128NDBTable\KJ128NDBTable.csproj">
+      <Project>{BF71389B-F71C-425D-97BA-D7610D856505}</Project>
+      <Name>KJ128NDBTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128NModel\KJ128NModel.csproj">
+      <Project>{C7BA8FD3-A438-4C1E-BC6B-8D603F3F3B96}</Project>
+      <Name>KJ128NModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128WindowsLibrary\KJ128WindowsLibrary.csproj">
+      <Project>{B5F907AE-49B2-4D0B-A512-2CD945C00F36}</Project>
+      <Name>KJ128WindowsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrintCore\PrintCore.csproj">
+      <Project>{0AE29AC5-B516-4313-8D2F-F6D2E3E15B54}</Project>
+      <Name>PrintCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shine.Command\Shine.Command.csproj">
+      <Project>{FEC62F9C-AC53-46D1-83E7-1F5205B90E42}</Project>
+      <Name>Shine.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shine.Logs\Shine.Logs.csproj">
+      <Project>{08842871-D364-4624-9701-2B5C8F017492}</Project>
+      <Name>Shine.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZdcCommonLibrary\ZdcCommonLibrary.csproj">
+      <Project>{F69BBDD6-6E25-4AA0-9B1A-F3E39AF94682}</Project>
+      <Name>ZdcCommonLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZzhaControlLibrary%28DrawGif版%29\ZzhaControlLibrary.csproj">
+      <Project>{9144037A-CDEE-4BBA-9652-719129C9DB21}</Project>
+      <Name>ZzhaControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="BaseConfig\CommsInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BaseConfig\Stations_Init.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\AlarmSet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\EnumTable.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\AlarmSet.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\alter.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\DataBaseUpdate.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Dept_Detail.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Dept_Detail.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\EnumTable.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\HisPathCheck.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\His_PathAlert.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Menu.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Path_Info.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Path_Info.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Proc.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\RealTimeWalkInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\RealTimeWalkInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\Tables.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\View.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\WalkConfigInfo.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBaseUpdate\WalkConfigInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBase\KJ128N.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DataBase\KJ128N_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>KJ128N.mdf</DependentUpon>
+    </Content>
+    <Content Include="DepartmentManage\CusDll\KJ128N.Command.dll" />
+    <Content Include="Employee.ico" />
+    <Content Include="help\分组编号.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="help\协议.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="HostIPConfig.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ICO\项目 2.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\dfgsdgsdg.gif" />
+    <Content Include="images\dfh.gif" />
+    <Content Include="images\fhfghjtr.gif" />
+    <Content Include="images\xfgdsgsd.gif" />
+    <Content Include="images\人员考勤明细1.jpg" />
+    <Content Include="images\低电量报警1.jpg" />
+    <Content Include="images\实时天线设置1.jpg" />
+    <Content Include="images\新增人员巡检1.jpg" />
+    <Content Include="images\新增传输分站1.jpg" />
+    <Content Include="images\新增假别1.jpg" />
+    <Content Include="images\新增区域信1.jpg" />
+    <Content Include="images\新增区域类型1.jpg" />
+    <Content Include="images\新增员工基本信息1.jpg" />
+    <Content Include="images\新增工种信息1.jpg" />
+    <Content Include="images\新增用户1.jpg" />
+    <Content Include="images\新增职务信息1.jpg" />
+    <Content Include="images\新增证书信息1.jpg" />
+    <Content Include="images\新增部门信息1.jpg" />
+    <Content Include="images\日下井行进路线1.jpg" />
+    <Content Include="images\显示2.gif" />
+    <Content Include="images\标识卡信息1.jpg" />
+    <Content Include="images\补单.gif" />
+    <Content Include="images\设置2.gif" />
+    <Content Include="images\超员报警1.jpg" />
+    <Content Include="IsKJ128AOrKJ128N.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Login.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="logo.ico" />
+    <Content Include="man.ico" />
+    <Compile Include="A_Attendance\A_AttendaceDeptStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendaceDeptStatistic.Designer.cs">
+      <DependentUpon>A_AttendaceDeptStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendacePersonelStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Attendance\A_AttendacePersonelStatistic.designer.cs">
+      <DependentUpon>A_AttendacePersonelStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Associate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.Onlyone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_HisAlarm\A_FrmHisAlarm.TerEmpOver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_InMineDayReport\FrmInMineDayReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_InMineDayReport\FrmInMineDayReport.Designer.cs">
+      <DependentUpon>FrmInMineDayReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Option\A_FrmOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Option\A_FrmOption.Designer.cs">
+      <DependentUpon>A_FrmOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Print\A_FrmPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Print\A_FrmPrint.Designer.cs">
+      <DependentUpon>A_FrmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.CheckCards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm.InWellValidate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm_Associate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm_unchainCheckCards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RTAlarm\A_FrmRTAlarm_unchainCheckCards.Designer.cs">
+      <DependentUpon>A_FrmRTAlarm_unchainCheckCards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_RT_PathCheck\A_RT_PathCheck.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_RT_PathCheck\A_RT_PathCheck.Designer.cs">
+      <DependentUpon>A_RT_PathCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmConfineAreaStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmConfineAreaStatement.Designer.cs">
+      <DependentUpon>A_FrmConfineAreaStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmEmpInWellStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmEmpInWellStatement.Designer.cs">
+      <DependentUpon>A_FrmEmpInWellStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmKeyAreaEmpStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmKeyAreaEmpStatement.Designer.cs">
+      <DependentUpon>A_FrmKeyAreaEmpStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmLeadDayStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmLeadDayStatement.Designer.cs">
+      <DependentUpon>A_FrmLeadDayStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmLeadMonthStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmLeadMonthStatement.Designer.cs">
+      <DependentUpon>A_FrmLeadMonthStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmOverTimeEmpStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmOverTimeEmpStatement.Designer.cs">
+      <DependentUpon>A_FrmOverTimeEmpStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmWorkExceptionStatement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_Statement\A_FrmWorkExceptionStatement.Designer.cs">
+      <DependentUpon>A_FrmWorkExceptionStatement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="A_StationConfigInfo\A_FrmStationConfigInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_StationConfigInfo\A_FrmStationConfigInfo.Designer.cs">
+      <DependentUpon>A_FrmStationConfigInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigXmlWiter.cs" />
+    <Compile Include="FileConfig.cs" />
+    <Compile Include="FormSoftReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSoftReg.Designer.cs">
+      <DependentUpon>FormSoftReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEmployeeInfo_Select.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEmployeeInfo_Select.Designer.cs">
+      <DependentUpon>FrmEmployeeInfo_Select.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOuterProject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOuterProject.Designer.cs">
+      <DependentUpon>FrmOuterProject.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRealTimeOutMineEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRealTimeOutMineEmp.Designer.cs">
+      <DependentUpon>FrmRealTimeOutMineEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmAddPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmAddPic.Designer.cs">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDCfgRealTime.Designer.cs">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDCreateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDCreateConfig.Designer.cs">
+      <DependentUpon>A_FrmDCreateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDDivConfig.Designer.cs">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDFileDialog.Designer.cs">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDpicDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_frmDpicDialog.Designer.cs">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_FrmDRouteConfig.Designer.cs">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic\A_MapXml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmAddPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmAddPic.Designer.cs">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDCfgRealTime.Designer.cs">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDCreateConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDCreateConfig.Designer.cs">
+      <DependentUpon>A_FrmDCreateConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDDivConfig.Designer.cs">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDFileDialog.Designer.cs">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDpicDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_frmDpicDialog.Designer.cs">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_FrmDRouteConfig.Designer.cs">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Expert\A_MapXml.cs" />
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmAddPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmAddPic.Designer.cs">
+      <DependentUpon>A_FrmAddPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDCfgRealTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDCfgRealTime.Designer.cs">
+      <DependentUpon>A_FrmDCfgRealTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDCreateConfig_Simplify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDCreateConfig_Simplify.Designer.cs">
+      <DependentUpon>A_FrmDCreateConfig_Simplify.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDDivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDDivConfig.Designer.cs">
+      <DependentUpon>A_frmDDivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDFileDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDFileDialog.Designer.cs">
+      <DependentUpon>A_frmDFileDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDpicDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_frmDpicDialog.Designer.cs">
+      <DependentUpon>A_frmDpicDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDRouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_FrmDRouteConfig.Designer.cs">
+      <DependentUpon>A_FrmDRouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Simplify\A_MapXml.cs" />
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_AddPicLayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_AddPicLayer.Designer.cs">
+      <DependentUpon>A_DPic_AddPicLayer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_ChooseStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_ChooseStation.Designer.cs">
+      <DependentUpon>A_DPic_ChooseStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_DivConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_DivConfig.Designer.cs">
+      <DependentUpon>A_DPic_DivConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_ImportPic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_ImportPic.Designer.cs">
+      <DependentUpon>A_DPic_ImportPic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_RouteConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_RouteConfig.Designer.cs">
+      <DependentUpon>A_DPic_RouteConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_Welcom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graphics\A_DPic_Wizard\A_DPic_Welcom.Designer.cs">
+      <DependentUpon>A_DPic_Welcom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputFormat.cs" />
+    <Compile Include="SoftReg.cs" />
+    <None Include="Resources\Out2.JPG" />
+    <None Include="Resources\In2.JPG" />
+    <None Include="Resources\left.gif" />
+    <None Include="Resources\ffrm.GIF" />
+    <None Include="Resources\help.gif" />
+    <None Include="Resources\help1.gif" />
+    <None Include="Resources\01.jpg" />
+    <None Include="Resources\06.gif" />
+    <None Include="Resources\07.gif" />
+    <None Include="Resources\08.gif" />
+    <None Include="Resources\09.gif" />
+    <None Include="Resources\03.gif" />
+    <None Include="Resources\03.jpg" />
+    <None Include="Resources\3.gif" />
+    <None Include="Resources\5.gif" />
+    <None Include="Resources\6.gif" />
+    <None Include="Resources\11.jpg" />
+    <Content Include="man1.ico" />
+    <None Include="Resources\BackgroundImage.png" />
+    <None Include="Resources\001.png" />
+    <None Include="Resources\load.gif" />
+    <None Include="Resources\1.jpg" />
+    <None Include="Resources\about.jpg" />
+    <None Include="Resources\load1.gif" />
+    <None Include="Resources\load2.jpg" />
+    <None Include="Resources\Login_01.gif" />
+    <None Include="Resources\His-Track_01.gif" />
+    <None Include="Resources\Delete_01.gif" />
+    <None Include="Resources\Delete_02.gif" />
+    <None Include="Resources\Print_01.gif" />
+    <None Include="Resources\Laws_01.gif" />
+    <None Include="Resources\Add_01.gif" />
+    <None Include="Resources\Left_01.gif" />
+    <None Include="Resources\dsrsdyser.gif" />
+    <None Include="Resources\app_atc.png" />
+    <None Include="Resources\app_share.png" />
+    <None Include="Resources\app_booth.png" />
+    <Content Include="MapGis\OtherImage\上位机.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\OtherImage\分站.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\OtherImage\接口.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\OtherImage\电源.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\ShineImage\Fg.GIF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\ShineImage\No-Signal.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\ShineImage\Signal.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\ShineImage\Station.GIF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="MapGis\ShineImage\Zg.GIF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="PrintSetModel\A_FrmStationConfigInfo.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\re.bmp" />
+    <None Include="Resources\view.bmp" />
+    <None Include="Resources\welcome.jpg" />
+    <None Include="Resources\Write-off_1.gif" />
+    <None Include="Resources\RT-InMine_01.gif" />
+    <None Include="Resources\RT-CodeSender_01.gif" />
+    <None Include="Resources\SelectAll_01.gif" />
+    <None Include="Resources\Right_01.gif" />
+    <None Include="Resources\假别设置1.jpg" />
+    <None Include="Resources\方向性1.jpg" />
+    <None Include="Resources\超员报警.jpg" />
+    <None Include="Resources\超员报警1.jpg" />
+    <None Include="Resources\人员考勤明细1.jpg" />
+    <None Include="Resources\人员配置.jpg" />
+    <None Include="Resources\新增员工基本信息12副本.jpg" />
+    <None Include="Resources\交接班2.jpg" />
+    <None Include="Resources\未标题-1.gif" />
+    <None Include="Resources\日常工具桌面图标下载8.ico" />
+    <Content Include="Resource\2.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\9.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Log.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\notity.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\配置.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ShineControl\ShineTextBox.dll" />
+    <Content Include="Sound\Alarm.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\主备连接报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\交换机直流供电.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\传输分站报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\传输分站故障.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\低电量报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\分站直流供电.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\区域报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\区域超员报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\区域超时报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\多卡报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\工作异常报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\异地交接班报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\欠速报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\求救报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\读卡分站故障.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\超员报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\超时报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sound\超速报警.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="修改记录.txt" />
+    <None Include="Resources\ren1.gif" />
+    <None Include="Resources\登陆界面_本.png" />
+    <None Include="Resources\right.gif" />
+    <None Include="AdminClassDiagram.cd" />
+    <None Include="Resources\Employee.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SQLDMO">
+      <Guid>{10010001-E260-11CF-AE68-00AA004A34D5}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

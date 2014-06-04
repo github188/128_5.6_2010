@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E300B49F-4A03-4BAC-9817-158058B937E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KJ128A.HostBack</RootNamespace>
+    <AssemblyName>KJ128A.HostBack</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DataBaseHelp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KJ128NWinApp_V1\KJ128NMainRun\bin\Release\DataBaseHelp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClientRB.cs" />
+    <Compile Include="FileOperator.cs" />
+    <Compile Include="HostBacker.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="DataSave.cs" />
+    <Compile Include="DataSaveBackUp.cs" />
+    <Compile Include="DataSend.cs" />
+    <Compile Include="RBSqlConn.cs" />
+    <Compile Include="ServerRB.cs" />
+    <Compile Include="SocketClient.cs" />
+    <Compile Include="SocketPacket.cs" />
+    <Compile Include="SockServer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\KJ128NDataBase\KJ128NDataBase.csproj">
+      <Project>{AC098D5A-F5DB-491B-99A0-FA1CA7717936}</Project>
+      <Name>KJ128NDataBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\KJ128NDBTable\KJ128NDBTable.csproj">
+      <Project>{BF71389B-F71C-425D-97BA-D7610D856505}</Project>
+      <Name>KJ128NDBTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Controls\KJ128A.Controls.csproj">
+      <Project>{A3B7F9BC-75C7-4D94-A9D8-38E324F1D20F}</Project>
+      <Name>KJ128A.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.DataAnalyzing\KJ128A.DataAnalyzing.csproj">
+      <Project>{B9E7015C-2977-4F22-AD4E-BFC6F7798E17}</Project>
+      <Name>KJ128A.DataAnalyzing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.DataAPI\KJ128A.DataAPI.csproj">
+      <Project>{CA2CC26D-EAB1-4D75-B646-B8A0E47CEE67}</Project>
+      <Name>KJ128A.DataAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.DataSave\KJ128A.DataSave.csproj">
+      <Project>{D2137943-CFA8-408B-875F-ACBCC42E2A30}</Project>
+      <Name>KJ128A.DataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Ports\KJ128A.Ports.csproj">
+      <Project>{4FE2F33E-95ED-4158-A855-2F4E58E29D2C}</Project>
+      <Name>KJ128A.Ports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Transfer\KJ128A.Transfer.csproj">
+      <Project>{19B9C0A9-893A-4ED6-9CD9-CD81BB3C2D94}</Project>
+      <Name>KJ128A.Transfer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SwitchDatabase\KJ128A.SwitchDatabase.csproj">
+      <Project>{484A6BAA-2569-410A-B1B7-DE22C7C8CC97}</Project>
+      <Name>KJ128A.SwitchDatabase</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Interop.MSAdodcLib.Modle.dll">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DataBaseHelp.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

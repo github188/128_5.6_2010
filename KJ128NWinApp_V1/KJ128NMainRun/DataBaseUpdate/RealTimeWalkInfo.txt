@@ -1,0 +1,42 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[RealTimeWalkInfo]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[RealTimeWalkInfo]
+GO
+
+CREATE TABLE [dbo].[RealTimeWalkInfo] (
+	[RealTimeWalkId] [int] IDENTITY (1, 1) NOT NULL ,
+	[EmpID] [int] NULL ,
+	[FirstStationAddress] [int] NULL ,
+	[FirstStationHeadAddress] [int] NULL ,
+	[FirstStationHeadAntennaA] [bit] NULL ,
+	[FirstStationHeadAntennaB] [bit] NULL ,
+	[FirstArriveTime] [datetime] NULL ,
+	[MiddleStationAddress] [int] NULL ,
+	[MiddleStationHeadAddress] [int] NULL ,
+	[MiddleStationHeadAntennaA] [bit] NULL ,
+	[MiddleStationHeadAntennaB] [bit] NULL ,
+	[MiddleArriveTime] [datetime] NULL ,
+	[LastStationAddress] [int] NULL ,
+	[LastStationHeadAddress] [int] NULL ,
+	[LastStationHeadAntennaA] [bit] NULL ,
+	[LastStationHeadAntennaB] [bit] NULL ,
+	[LastArriveTime] [datetime] NULL ,
+	[IsAlarm] [bit] NULL ,
+	[Measure] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[RealTimeWalkInfo] ADD 
+	CONSTRAINT [PK_RealTimeWalkInfo] PRIMARY KEY  CLUSTERED 
+	(
+		[RealTimeWalkId]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[RealTimeWalkInfo] ADD 
+	CONSTRAINT [FK_RealTimeWalkInfo_Emp_Info] FOREIGN KEY 
+	(
+		[EmpID]
+	) REFERENCES [dbo].[Emp_Info] (
+		[EmpID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO

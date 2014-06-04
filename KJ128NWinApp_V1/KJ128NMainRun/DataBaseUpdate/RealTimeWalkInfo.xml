@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="RealTimeWalkInfo" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="RealTimeWalkInfo">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="RealTimeWalkId" type="xs:int" minOccurs="0" />
+                <xs:element name="EmpID" type="xs:int" minOccurs="0" />
+                <xs:element name="FirstStationAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="FirstStationHeadAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="FirstStationHeadAntennaA" type="xs:boolean" minOccurs="0" />
+                <xs:element name="FirstStationHeadAntennaB" type="xs:boolean" minOccurs="0" />
+                <xs:element name="FirstArriveTime" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="MiddleStationAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="MiddleStationHeadAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="MiddleStationHeadAntennaA" type="xs:boolean" minOccurs="0" />
+                <xs:element name="MiddleStationHeadAntennaB" type="xs:boolean" minOccurs="0" />
+                <xs:element name="MiddleArriveTime" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="LastStationAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="LastStationHeadAddress" type="xs:int" minOccurs="0" />
+                <xs:element name="LastStationHeadAntennaA" type="xs:boolean" minOccurs="0" />
+                <xs:element name="LastStationHeadAntennaB" type="xs:boolean" minOccurs="0" />
+                <xs:element name="LastArriveTime" type="xs:dateTime" minOccurs="0" />
+                <xs:element name="IsAlarm" type="xs:boolean" minOccurs="0" />
+                <xs:element name="Measure" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+</NewDataSet>

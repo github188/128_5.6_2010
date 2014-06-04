@@ -1,0 +1,5 @@
+<?xml version="1.0" standalone="yes"?>
+<StationUpdateConfig>
+	<AutoUpdate>true</AutoUpdate>
+	<TimeInterVal>6000</TimeInterVal>
+</StationUpdateConfig>

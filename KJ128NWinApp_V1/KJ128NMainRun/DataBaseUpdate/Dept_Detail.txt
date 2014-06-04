@@ -1,0 +1,17 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Dept_Detail]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Dept_Detail]
+GO
+
+CREATE TABLE [dbo].[Dept_Detail] (
+	[DeptDetailID] [int] IDENTITY (1, 1) NOT NULL ,
+	[DeptID] [int] NULL ,
+	[DeptTel1] [nvarchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[DeptTel2] [nvarchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[DeptFax] [nvarchar] (20) COLLATE Chinese_PRC_CI_AS NULL ,
+	[DeptPost] [nvarchar] (6) COLLATE Chinese_PRC_CI_AS NULL ,
+	[DeptAddress] [nvarchar] (250) COLLATE Chinese_PRC_CI_AS NULL ,
+	[DeptEmail] [nvarchar] (100) COLLATE Chinese_PRC_CI_AS NULL ,
+	[Remark] [nvarchar] (200) COLLATE Chinese_PRC_CI_AS NULL 
+) ON [PRIMARY]
+GO
+

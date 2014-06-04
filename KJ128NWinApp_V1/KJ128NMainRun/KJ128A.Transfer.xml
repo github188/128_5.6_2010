@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>KJ128A.Transfer</name>
+    </assembly>
+    <members>
+        <member name="T:KJ128A.Transfer.FrmTest">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.FrmTest.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.FrmTest.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Transfer.FrmTest.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.FrmTest.#ctor">
+            <summary>
+            初始化网络参数
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.Form1">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.Form1.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.Form1.components">
+            <summary>
+            必需的设计器变量。
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.Form1.Dispose(System.Boolean)">
+            <summary>
+            清理所有正在使用的资源。
+            </summary>
+            <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        </member>
+        <member name="M:KJ128A.Transfer.Form1.InitializeComponent">
+            <summary>
+            设计器支持所需的方法 - 不要
+            使用代码编辑器修改此方法的内容。
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess">
+            <summary>
+            网络传输类
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.StartListen(System.String,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            初始化监听参数并开始监听
+            </summary>
+            <param name="strIp">远程机器ip</param>
+            <param name="pPort">监听端口</param>
+            <param name="sPort">远程机器端口</param>
+            <param name="size">接收数据字节数组大小</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.Ping">
+            <summary>
+            初次监听时判断网络状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.Start">
+            <summary>
+            开始监听
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.SendTcpFun(System.Byte[])">
+            <summary>
+            发送数据
+            </summary>
+            <param name="byteArray">发送的数据</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.SendTcpFun(System.Byte[],System.Int32)">
+            <summary>
+            发送数据（发送失败会循环发送直到发送成功）
+            </summary>
+            <param name="byteArray">发送的数据</param>
+            <param name="iMillisecond">发送失败后循环发送间隔时间</param>
+            <returns>执行结果</returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.SubByteArray(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            截取byte数组
+            </summary>
+            <param name="byteArray">要截取的byte数组</param>
+            <param name="iStartIndex"></param>
+            <param name="iEndIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.FormatSendData(System.Byte[],System.Byte[]@)">
+            <summary>
+            格式化发送数据
+            </summary>
+            <param name="byteArray">原始数据</param>
+            <param name="bTimeCheckout">发送时间(格式:yyyyMMddHHmmssfff)</param>
+            <returns>格式化后的数据</returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetAccess.Dispose">
+            <summary>
+            释放tcp连接,关闭监听线程
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetAccess.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetAccess.DataReceived">
+            <summary>
+            数据抵达事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetAccess.InitSendLink">
+            <summary>
+            发送初次连接事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetAccess.InitListenLink">
+            <summary>
+            监听初次连接事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetAccess.CutSendLink">
+            <summary>
+            监听初次连接事件
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess.DataReceivedEventHandler">
+            <summary>
+            数据抵达声明
+            </summary>
+            <param name="dataInfo">数据信息</param>
+            <param name="result">返回执行结果</param>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess.InitSendLinkEventHandler">
+            <summary>
+            发送初次连接 在 InitSendSocket 方法中
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess.InitListenLinkEventHandler">
+            <summary>
+            监听初次连接 在 Start 方法中
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetAccess.CutSendLinkEventHandler">
+            <summary>
+            监听初次连接 在 Start 方法中
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner">
+            <summary>
+            网络传输
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            初始化网络连接参数
+            </summary>
+            <param name="strIP">接收机IP</param>
+            /// <param name="iSendPort">接收机器的端口</param>
+            <param name="iLinstenPort">本机监听端口</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.netAccess_InitListenLink">
+            <summary>
+            监听初次连接上触发
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.netAccess_InitSendLink">
+            <summary>
+            发送初次连接上触发
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.netAccess_DataReceived(System.Byte[],System.Boolean@)">
+            <summary>
+            数据抵达
+            </summary>
+            <param name="dataInfo">数据信息</param>
+            <param name="result">执行结果</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.netAccess_ErrorMessage(System.Int32,System.String,System.String,System.String)">
+            <summary>
+            错误消息
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.SendMessage(System.Byte[])">
+            <summary>
+            发送消息
+            </summary>
+            <param name="dataBytes">消息内容</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.SendOnce(System.Byte[])">
+            <summary>
+            发送一单次发送数据命令
+            </summary>
+            <param name="dataBytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.ErrorMessageFun(System.Int32,System.Boolean,System.Boolean)">
+            <summary>
+            处理错误
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="isShowMsgBox">是否在 MessageBox 中显示</param>
+            <param name="isExit">是否退出</param>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.Dispose">
+            <summary>
+            释放tcp连接
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.SetLocalTime(KJ128A.Transfer.NetTraner.SystemTime@)">
+            <summary>
+            设置本地时间
+            </summary>
+            <param name="st"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.EditTime(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:KJ128A.Transfer.NetTraner.SyncTime(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="strTime">yyyy-MM-dd HH:mm:ss</param>
+            <returns></returns>
+        </member>
+        <member name="E:KJ128A.Transfer.NetTraner.ErrorMessage">
+            <summary>
+            错误消息事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetTraner.DataReceived">
+            <summary>
+            数据抵达事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetTraner.InitSendLink">
+            <summary>
+            发送初次连接事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetTraner.InitListenLink">
+            <summary>
+            监听初次连接事件
+            </summary>
+        </member>
+        <member name="E:KJ128A.Transfer.NetTraner.CutSendLink">
+            <summary>
+            发送连接断开
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.ErrorMessageEventHandler">
+            <summary>
+            错误消息声明
+            </summary>
+            <param name="iErrNO">错误编号</param>
+            <param name="strStackTrace">获取当前异常发生时调用堆栈上的帧的字符串表示形式</param>
+            <param name="strSource">标识当前哪一段程序出的错误</param>
+            <param name="strMessage">获取描述当前异常的消息</param>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.DataReceivedEventHandler">
+            <summary>
+            数据抵达声明
+            </summary>
+            <param name="dataInfo">数据信息</param>
+            <param name="result">返回执行结果</param>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.InitSendLinkEventHandler">
+            <summary>
+            发送初次连接 在 InitSendSocket 方法中
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.InitListenLinkEventHandler">
+            <summary>
+            监听初次连接 在 Start 方法中
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.CutSendLinkEventHandler">
+            <summary>
+            发送连接断开
+            </summary>
+        </member>
+        <member name="T:KJ128A.Transfer.NetTraner.SystemTime">
+            <summary>
+            SystemTime
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wYear">
+            <summary>
+            wYear
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wMonth">
+            <summary>
+            wMonth
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wDayOfWeek">
+            <summary>
+            wDayOfWeek
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wDay">
+            <summary>
+            wDay
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wHour">
+            <summary>
+            wHour
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wMinute">
+            <summary>
+            wMinute
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wSecond">
+            <summary>
+            wSecond
+            </summary>
+        </member>
+        <member name="F:KJ128A.Transfer.NetTraner.SystemTime.wMilliseconds">
+            <summary>
+            wMilliseconds
+            </summary>
+        </member>
+        <member name="M:KJ128A.Transfer.Program.Main">
+            <summary>
+            应用程序的主入口点。
+            </summary>
+        </member>
+    </members>
+</doc>

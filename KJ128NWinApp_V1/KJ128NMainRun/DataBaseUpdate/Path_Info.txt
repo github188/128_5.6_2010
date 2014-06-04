@@ -1,0 +1,18 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[Path_Info]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[Path_Info]
+GO
+
+CREATE TABLE [dbo].[Path_Info] (
+	[Id] [int] IDENTITY (1, 1) NOT NULL ,
+	[PathNo] [varchar] (50) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[PathName] [varchar] (100) COLLATE Chinese_PRC_CI_AS NOT NULL ,
+	[Remark] [varchar] (200) COLLATE Chinese_PRC_CI_AS NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[Path_Info] ADD 
+	CONSTRAINT [PK__Path_Info__10E14A6D] PRIMARY KEY  CLUSTERED 
+	(
+		[PathNo]
+	)  ON [PRIMARY] 
+GO

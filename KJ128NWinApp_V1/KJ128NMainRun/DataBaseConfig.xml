@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Main>
+  <DataFilePath>D:\DataBase\KJ128N.mdf</DataFilePath>
+  <LogFilePath>D:\DataBase\KJ128N_log.ldf</LogFilePath>
+  <DataBaseName>KJ128N</DataBaseName>
+  
+  
+</Main>

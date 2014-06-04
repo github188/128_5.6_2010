@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="GBK" standalone="yes"?>
+<!DOCTYPE root[<!ELEMENT Station ANY><!ATTLIST Station SSN ID #REQUIRED>]>
+<MapConfig>
+  <Map MinWidth="500" MaxWidth="20000">-707695197</Map>
+  <Divs>
+    <Div key="新建图形" MinWidth="500" MaxWidth="20000">新建图形</Div>
+  </Divs>
+  <Statics>
+    <Static10265.515595.89>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\上位机.gif</Path>
+      <X>10265.5</X>
+      <Y>15595.89</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10265.515595.89>
+    <Static10314.1715607.69>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\上位机.gif</Path>
+      <X>10314.17</X>
+      <Y>15607.69</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10314.1715607.69>
+    <Static10396.7715610.64>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\接口.gif</Path>
+      <X>10396.77</X>
+      <Y>15610.64</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10396.7715610.64>
+    <Static10500.0215609.17>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\接口.gif</Path>
+      <X>10500.02</X>
+      <Y>15609.17</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10500.0215609.17>
+    <Static1041315069.34>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>10413</X>
+      <Y>15069.34</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static1041315069.34>
+    <Static10482.3215070.82>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>10482.32</X>
+      <Y>15070.82</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10482.3215070.82>
+    <Static10147.5113082.62>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>10147.51</X>
+      <Y>13082.62</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10147.5113082.62>
+    <Static10148.9813162.26>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>10148.98</X>
+      <Y>13162.26</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10148.9813162.26>
+    <Static14789.693179.261>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>14789.69</X>
+      <Y>3179.261</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static14789.693179.261>
+    <Static14793.293384.723>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>14793.29</X>
+      <Y>3384.723</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static14793.293384.723>
+    <Static11095.0315349.35>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>11095.03</X>
+      <Y>15349.35</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static11095.0315349.35>
+    <Static11455.6615377.52>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>11455.66</X>
+      <Y>15377.52</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static11455.6615377.52>
+    <Static10976.4211215.36>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>10976.42</X>
+      <Y>11215.36</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10976.4211215.36>
+    <Static10980.8411308.28>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>10980.84</X>
+      <Y>11308.28</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static10980.8411308.28>
+    <Static12236.019480.84>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>12236.01</X>
+      <Y>9480.84</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static12236.019480.84>
+    <Static12236.019563.436>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>12236.01</X>
+      <Y>9563.436</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static12236.019563.436>
+    <Static11777.196509.887>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>11777.19</X>
+      <Y>6509.887</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static11777.196509.887>
+    <Static11777.196659.805>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>11777.19</X>
+      <Y>6659.805</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static11777.196659.805>
+    <Static14407.15887.914>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>14407.1</X>
+      <Y>5887.914</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static14407.15887.914>
+    <Static14414.485983.785>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>14414.48</X>
+      <Y>5983.785</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static14414.485983.785>
+    <Static17561.975261.07>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>17561.97</X>
+      <Y>5261.07</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static17561.975261.07>
+    <Static17563.455337.766>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>17563.45</X>
+      <Y>5337.766</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static17563.455337.766>
+    <Static22836.325632.751>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\分站.gif</Path>
+      <X>22836.32</X>
+      <Y>5632.751</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static22836.325632.751>
+    <Static22839.275715.348>
+      <Divname>新建图形|</Divname>
+      <Path>\MapGis\OtherImage\电源.gif</Path>
+      <X>22839.27</X>
+      <Y>5715.348</Y>
+      <Width>50</Width>
+      <Height>50</Height>
+      <Word>
+      </Word>
+      <Key>
+      </Key>
+      <Type>Image</Type>
+      <Font Name="宋体" Size="9" Style="Regular">-65536</Font>
+    </Static22839.275715.348>
+  </Statics>
+  <Stations>
+    <Station SSN="安监站">新建图形|</Station>
+    <Station SSN="一水平大泵房">新建图形|</Station>
+    <Station SSN="主井下">新建图形|</Station>
+    <Station SSN="-170大巷">新建图形|</Station>
+    <Station SSN="煤六门口">新建图形|</Station>
+    <Station SSN="煤六大巷">新建图形|</Station>
+    <Station SSN="-170东大巷">新建图形|</Station>
+    <Station SSN="一水平接煤站">新建图形|</Station>
+    <Station SSN="二水平轨道下山上车场">新建图形|</Station>
+    <Station SSN="二水平大泵房">新建图形|</Station>
+    <Station SSN="二水平轨道下山底车场">新建图形|</Station>
+    <Station SSN="二水平轨道下山皮带下山联络巷">新建图形|</Station>
+    <Station SSN="火药库">新建图形|</Station>
+    <Station SSN="二水平东大巷">新建图形|</Station>
+    <Station SSN="-330东翼运输大巷">新建图形|</Station>
+    <Station SSN="-330北运输巷">新建图形|</Station>
+    <Station SSN="六采区大巷">新建图形|</Station>
+    <Station SSN="北Ⅰ巷">新建图形|</Station>
+    <Station SSN="北Ⅱ巷">新建图形|</Station>
+    <Station SSN="-330北回风巷">新建图形|</Station>
+    <Station SSN="26421上材巷">新建图形|</Station>
+    <Station SSN="26421机巷">新建图形|</Station>
+    <Station SSN="26421下材巷">新建图形|</Station>
+    <Station SSN="煤4-2探巷">新建图形|</Station>
+    <Station SSN="27402下材巷">新建图形|</Station>
+    <Station SSN="27402机巷">新建图形|</Station>
+    <Station SSN="27401下材巷">新建图形|</Station>
+    <Station SSN="七采区轨道上车场">新建图形|</Station>
+    <Station SSN="25401西翼机巷">新建图形|</Station>
+    <Station SSN="七采区皮带">新建图形|</Station>
+    <Station SSN="七采区轨道底车场">新建图形|</Station>
+    <Station SSN="25401下材巷">新建图形|</Station>
+    <Station SSN="25401机巷">新建图形|</Station>
+    <Station SSN="井口房">新建图形|</Station>
+    <Station SSN="14601材料联络巷">新建图形|</Station>
+    <Station SSN="14601材料巷">
+    </Station>
+    <Station SSN="-330北运输巷与六采区大巷交叉口">新建图形|</Station>
+    <Station SSN="煤六轨道顶车场">新建图形|</Station>
+    <Station SSN="煤六轨道下山">新建图形|</Station>
+    <Station SSN="27402机联巷">
+    </Station>
+    <Station SSN="14601机巷联络巷">新建图形|</Station>
+  </Stations>
+  <Words />
+</MapConfig>

@@ -1,0 +1,39 @@
+if exists (select * from dbo.sysobjects where id = object_id(N'[dbo].[WalkConfigInfo]') and OBJECTPROPERTY(id, N'IsUserTable') = 1)
+drop table [dbo].[WalkConfigInfo]
+GO
+
+CREATE TABLE [dbo].[WalkConfigInfo] (
+	[WalkConfigId] [int] IDENTITY (1, 1) NOT NULL ,
+	[EmpID] [int] NULL ,
+	[FirstStationAddress] [int] NULL ,
+	[FirstStationHeadAddress] [int] NULL ,
+	[FirstStationHeadAntennaA] [bit] NULL ,
+	[FirstStationHeadAntennaB] [bit] NULL ,
+	[MiddleStationAddress] [int] NULL ,
+	[MiddleStationHeadAddress] [int] NULL ,
+	[MiddleStationHeadAntennaA] [bit] NULL ,
+	[MiddleStationHeadAntennaB] [bit] NULL ,
+	[LastStationAddress] [int] NULL ,
+	[LastStationHeadAddress] [int] NULL ,
+	[LastStationHeadAntennaA] [bit] NULL ,
+	[LastStationHeadAntennaB] [bit] NULL ,
+	[TimeValue] [int] NULL 
+) ON [PRIMARY]
+GO
+
+ALTER TABLE [dbo].[WalkConfigInfo] ADD 
+	CONSTRAINT [PK_WalkConfigInfo] PRIMARY KEY  CLUSTERED 
+	(
+		[WalkConfigId]
+	)  ON [PRIMARY] 
+GO
+
+ALTER TABLE [dbo].[WalkConfigInfo] ADD 
+	CONSTRAINT [FK_WalkConfigInfo_Emp_Info] FOREIGN KEY 
+	(
+		[EmpID]
+	) REFERENCES [dbo].[Emp_Info] (
+		[EmpID]
+	) ON DELETE CASCADE  ON UPDATE CASCADE 
+GO
+

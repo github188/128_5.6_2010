@@ -1,0 +1,6 @@
+<?xml version="1.0" standalone="yes"?>
+<Root>
+  <IsClient>False</IsClient>
+  <HostIP>127.0.0.1</HostIP>
+  <BackIP>192.168.0.104</BackIP>
+</Root>

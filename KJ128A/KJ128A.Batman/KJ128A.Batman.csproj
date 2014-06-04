@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{43F0867D-4A9D-48B4-A075-C6B047EB148A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KJ128A.Batman</RootNamespace>
+    <AssemblyName>KJ128A.Batman</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <ApplicationIcon>notity.ico</ApplicationIcon>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/KJ128A.Batman/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\KJ128NWinApp_V1\KJ128NMainRun\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\KJ128A.Batman.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\KJ128NWinApp_V1\KJ128NMainRun\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ShineTextBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\KJ128NWinApp_V1\KJ128NMainRun\bin\Release\ShineTextBox.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="A_FrmTwo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="A_FrmTwo.Designer.cs">
+      <DependentUpon>A_FrmTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataWrite.cs" />
+    <Compile Include="ErrorWriter.cs" />
+    <Compile Include="FrmABout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmABout.designer.cs">
+      <DependentUpon>FrmABout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmChangePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmChangePwd.Designer.cs">
+      <DependentUpon>FrmChangePwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCompact.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCompact.Designer.cs">
+      <DependentUpon>FrmCompact.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDBSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDBSet.Designer.cs">
+      <DependentUpon>FrmDBSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHostIpSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHostIpSet.Designer.cs">
+      <DependentUpon>FrmHostIpSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParams.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParams.Designer.cs">
+      <DependentUpon>FrmParams.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSqlList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSqlList.Designer.cs">
+      <DependentUpon>FrmSqlList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStation.Designer.cs">
+      <DependentUpon>FrmStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmTwo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTwo.Designer.cs">
+      <DependentUpon>FrmTwo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GetTwoMessage.cs" />
+    <Compile Include="MainHelper.cs" />
+    <Compile Include="MenuHelper.cs">
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="A_FrmTwo.resx">
+      <DependentUpon>A_FrmTwo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmABout.resx">
+      <DependentUpon>FrmABout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmChangePwd.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmChangePwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCompact.resx">
+      <DependentUpon>FrmCompact.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDBSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmDBSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHostIpSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmHostIpSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParams.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmParams.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSqlList.resx">
+      <DependentUpon>FrmSqlList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmStation.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTwo.resx">
+      <DependentUpon>FrmTwo.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="StationUpdateTimer.cs" />
+    <Compile Include="TaskbarNotifier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TcpClientUpdateTimer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\KJ128NDBTable\KJ128NDBTable.csproj">
+      <Project>{BF71389B-F71C-425D-97BA-D7610D856505}</Project>
+      <Name>KJ128NDBTable</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\KJ128NMainRun\KJ128NMainRun.csproj">
+      <Project>{2E15429A-A1C5-41A4-BA00-685635D5B13E}</Project>
+      <Name>KJ128NMainRun</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\Shine.Command\Shine.Command.csproj">
+      <Project>{FEC62F9C-AC53-46D1-83E7-1F5205B90E42}</Project>
+      <Name>Shine.Command</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\KJ128NWinApp_V1\Shine.Logs\Shine.Logs.csproj">
+      <Project>{08842871-D364-4624-9701-2B5C8F017492}</Project>
+      <Name>Shine.Logs</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.BatmanAPI\KJ128A.BatmanAPI.csproj">
+      <Project>{39F529A1-E66F-4ECA-8A6F-1AA561B21593}</Project>
+      <Name>KJ128A.BatmanAPI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Controls\KJ128A.Controls.csproj">
+      <Project>{A3B7F9BC-75C7-4D94-A9D8-38E324F1D20F}</Project>
+      <Name>KJ128A.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.DataSave\KJ128A.DataSave.csproj">
+      <Project>{D2137943-CFA8-408B-875F-ACBCC42E2A30}</Project>
+      <Name>KJ128A.DataSave</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Ports\KJ128A.Ports.csproj">
+      <Project>{4FE2F33E-95ED-4158-A855-2F4E58E29D2C}</Project>
+      <Name>KJ128A.Ports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128A.Protocol\KJ128A.Protocol.csproj">
+      <Project>{72A2DB02-25A7-491F-9150-17C1AD3B59E6}</Project>
+      <Name>KJ128A.Protocol</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KJ128AHostBack\KJ128A.HostBack.csproj">
+      <Project>{E300B49F-4A03-4BAC-9817-158058B937E7}</Project>
+      <Name>KJ128A.HostBack</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Interop.MSAdodcLib.Modle.dll" />
+    <Content Include="bin\Debug\StationUpdateConfig.xml" />
+    <Content Include="KJ128ABatman.sdm" />
+    <Content Include="notity.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SQLDMO">
+      <Guid>{10010001-E260-11CF-AE68-00AA004A34D5}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

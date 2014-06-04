@@ -22,7 +22,7 @@ namespace KJ128NMainRun.EmployeeManage
     {
 
         #region【声明】
-
+		private bool isUserClassEnabled = false;//是否启用用户班制
         private A_AddEmpBLL aebll = new A_AddEmpBLL();
 
         private OpenFileDialog ofd = new OpenFileDialog();
@@ -882,6 +882,23 @@ namespace KJ128NMainRun.EmployeeManage
                 GetEmpTable(tempEmpID);
             }
             tbc_EmpInfo.SelectedTab = tbp_EmpBasic;
+
+
+			#region xxh 2014-6-5 界沟矿定制加用户班制
+			//1 禁用用户班制
+			if (GetConfigValue("IsUserClassEnabled").ToLower().Trim().Equals("1"))
+			{
+				combobox_EmployeeClass.Enabled = false;
+				isUserClassEnabled = false;
+			}
+			//0 启用用户班制
+			else if (GetConfigValue("IsUserClassEnabled").ToLower().Trim().Equals("0"))
+			{
+				combobox_EmployeeClass.Enabled = true;
+				isUserClassEnabled = true;
+				aebll.GetEmpClassCmb(combobox_EmployeeClass);//初始化班制(comboBox)
+			} 
+			#endregion
         }
 
         #endregion

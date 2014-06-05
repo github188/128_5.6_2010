@@ -26,6 +26,7 @@ namespace KJ128NModel
             Sex			bit	1	1	0	Y		性别
             Remark			nvarchar	400	200	0	Y		备注
             EmpNO			nvarchar	20	10	0	Y		员工编号
+		    ClassID			int						Y		班制ID
          *
          */
 
@@ -94,6 +95,18 @@ namespace KJ128NModel
             set { baseRemark = value; }
         }
 
+		/// <summary>
+		/// 员工所属班制ID
+		/// </summary>
+		private int classID;
+		/// <summary>
+		/// 员工所属班制ID
+		/// </summary>
+		public int ClassID
+		{
+			get { return classID; }
+			set { classID = value; }
+		}
         #endregion
 
         #region 员工详细信息[Emp_Detail]

@@ -36,6 +36,8 @@
 			this.tbc_EmpInfo = new System.Windows.Forms.TabControl();
 			this.tbp_EmpBasic = new System.Windows.Forms.TabPage();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
+			this.combobox_EmployeeClass = new System.Windows.Forms.ComboBox();
+			this.label2 = new System.Windows.Forms.Label();
 			this.textBox_EmployeeDemo = new Shine.ShineTextBox();
 			this.label27 = new System.Windows.Forms.Label();
 			this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -150,8 +152,6 @@
 			this.label51 = new System.Windows.Forms.Label();
 			this.textBox_EmpGroup = new Shine.ShineTextBox();
 			this.label50 = new System.Windows.Forms.Label();
-			this.combobox_EmployeeClass = new System.Windows.Forms.ComboBox();
-			this.label2 = new System.Windows.Forms.Label();
 			this.tbc_EmpInfo.SuspendLayout();
 			this.tbp_EmpBasic.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -269,6 +269,24 @@
 			this.groupBox1.Size = new System.Drawing.Size(511, 365);
 			this.groupBox1.TabIndex = 0;
 			this.groupBox1.TabStop = false;
+			// 
+			// combobox_EmployeeClass
+			// 
+			this.combobox_EmployeeClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+			this.combobox_EmployeeClass.FormattingEnabled = true;
+			this.combobox_EmployeeClass.Location = new System.Drawing.Point(224, 116);
+			this.combobox_EmployeeClass.Name = "combobox_EmployeeClass";
+			this.combobox_EmployeeClass.Size = new System.Drawing.Size(98, 20);
+			this.combobox_EmployeeClass.TabIndex = 26;
+			// 
+			// label2
+			// 
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(177, 120);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(41, 12);
+			this.label2.TabIndex = 25;
+			this.label2.Text = "班制：";
 			// 
 			// textBox_EmployeeDemo
 			// 
@@ -746,7 +764,7 @@
 			this.groupBox3.Controls.Add(this.label48);
 			this.groupBox3.Controls.Add(this.textBox_EmployeeIdentityCard);
 			this.groupBox3.Controls.Add(this.label52);
-			this.groupBox3.Location = new System.Drawing.Point(6, 6);
+			this.groupBox3.Location = new System.Drawing.Point(6, 10);
 			this.groupBox3.Name = "groupBox3";
 			this.groupBox3.Size = new System.Drawing.Size(514, 353);
 			this.groupBox3.TabIndex = 1;
@@ -1235,7 +1253,7 @@
 			this.groupBox6.Controls.Add(this.cb_EmployeeProbationDate);
 			this.groupBox6.Controls.Add(this.dtp_EmployeeProbationDate);
 			this.groupBox6.Controls.Add(this.label56);
-			this.groupBox6.Location = new System.Drawing.Point(34, 198);
+			this.groupBox6.Location = new System.Drawing.Point(34, 206);
 			this.groupBox6.Name = "groupBox6";
 			this.groupBox6.Size = new System.Drawing.Size(451, 156);
 			this.groupBox6.TabIndex = 2;
@@ -1399,7 +1417,7 @@
 			this.groupBox5.Controls.Add(this.label53);
 			this.groupBox5.Controls.Add(this.combobox_EmployeeHireType);
 			this.groupBox5.Controls.Add(this.label55);
-			this.groupBox5.Location = new System.Drawing.Point(34, 99);
+			this.groupBox5.Location = new System.Drawing.Point(34, 107);
 			this.groupBox5.Name = "groupBox5";
 			this.groupBox5.Size = new System.Drawing.Size(451, 93);
 			this.groupBox5.TabIndex = 1;
@@ -1473,7 +1491,7 @@
 			this.groupBox4.Controls.Add(this.label51);
 			this.groupBox4.Controls.Add(this.textBox_EmpGroup);
 			this.groupBox4.Controls.Add(this.label50);
-			this.groupBox4.Location = new System.Drawing.Point(34, 6);
+			this.groupBox4.Location = new System.Drawing.Point(34, 14);
 			this.groupBox4.Name = "groupBox4";
 			this.groupBox4.Size = new System.Drawing.Size(451, 80);
 			this.groupBox4.TabIndex = 0;
@@ -1520,24 +1538,6 @@
 			this.label50.Size = new System.Drawing.Size(89, 12);
 			this.label50.TabIndex = 6;
 			this.label50.Text = "所在区队班组：";
-			// 
-			// combobox_EmployeeClass
-			// 
-			this.combobox_EmployeeClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.combobox_EmployeeClass.FormattingEnabled = true;
-			this.combobox_EmployeeClass.Location = new System.Drawing.Point(224, 116);
-			this.combobox_EmployeeClass.Name = "combobox_EmployeeClass";
-			this.combobox_EmployeeClass.Size = new System.Drawing.Size(98, 20);
-			this.combobox_EmployeeClass.TabIndex = 26;
-			// 
-			// label2
-			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(177, 120);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(41, 12);
-			this.label2.TabIndex = 25;
-			this.label2.Text = "班制：";
 			// 
 			// A_FrmEmpInfo_AddEmpInfo
 			// 

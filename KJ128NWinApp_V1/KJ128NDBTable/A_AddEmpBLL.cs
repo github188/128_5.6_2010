@@ -322,11 +322,24 @@ namespace KJ128NDBTable
 		#endregion
 
 		#region [ 方法: 获取员工班次设置Table ]
-		public DataTable GetEmpClassTab(int EmpID)
+		public DataTable GetEmpClassByID(int EmpID)
 		{
-			string strsql = string.Format("select * from Emp_WorkType where EmpID={0}", EmpID);
+			string strsql = string.Format(
+						  "SELECT  ic.ID ,											"
+						+ "        ic.ClassName										"
+						+ "FROM    dbo.Emp_Info ei									"
+						+ "        LEFT JOIN dbo.InfoClass ic ON ic.ID = ei.ClassID	"
+						+ "WHERE ei.EmpID = '{0}'										"
+				, EmpID);
 			return ddal.GetTable(strsql);
 		}
+
+		public DataTable GetClass()
+		{
+			string strsql = "SELECT ID,ClassName FROM dbo.InfoClass";
+			return ddal.GetTable(strsql);
+		}
+
 		#endregion
 
 		#region [ 方法: 根据查询方式得到查询条件 ]
@@ -500,10 +513,10 @@ namespace KJ128NDBTable
 
 		#endregion
 
-		#region [ 方法: 绑定 部门名称(comboBox) ]
+		#region [ 方法: 绑定 班制名称(comboBox) xxh 2014-6-5 界沟]
 		public void GetEmpClassCmb(ComboBox cmb)
 		{
-			DataTable dt = GetEmpClassTab(1);
+			DataTable dt = GetClass();
 			if (dt != null)
 			{
 				cmb.DataSource = null;
@@ -512,11 +525,24 @@ namespace KJ128NDBTable
 				dr[1] = "无";
 				dt.Rows.InsertAt(dr, 0);
 				cmb.DataSource = dt;
-				cmb.DisplayMember = "DeptName";
-				cmb.ValueMember = "DeptID";
+				cmb.DisplayMember = "ClassName";
+				cmb.ValueMember = "ID";
 				cmb.SelectedValue = 0;
 			}
 		}
+
+		public void UpdateClass(bool isClassEnabled)
+		{
+			if (isClassEnabled)
+			{
+				aedal.ExecuteSql("UPDATE dbo.Emp_Info SET IsClassEnabled = 1");
+			}
+			else
+			{
+				aedal.ExecuteSql("UPDATE dbo.Emp_Info SET IsClassEnabled = 0");
+			}
+		}
+		
 		#endregion
 
 		#region [ 方法: 根据部门和发码器得到员工姓名 ]

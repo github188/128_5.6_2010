@@ -1404,6 +1404,9 @@
     <Content Include="KJ128ALogView.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Microsoft.Office.Interop.Excel.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="SerialPort.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -1423,6 +1426,7 @@
     <Content Include="StationUpdateConfig.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Update_2014-6-6_JieGou_Att.sql" />
     <Content Include="Wilson.BaseClassLibrary.dll" />
     <Content Include="Wilson.Controls.dll" />
     <Content Include="win32dll.dll">

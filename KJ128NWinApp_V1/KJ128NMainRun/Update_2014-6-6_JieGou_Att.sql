@@ -575,7 +575,7 @@ end )
 end as DataAttendance ,
 ssa.TimerIntervalID
 from ( select F1 from f_splitstr (@Cards , ',')) as T1
-       join Shine_Shen_AttendanceClass ssa on T1.F1 = ssa.blockID
+       join Shine_Shen_AttendanceClass_User ssa on T1.F1 = ssa.blockID
        LEFT JOIN (SELECT css.CodeSenderAddress, ei.ClassID , ei.IsClassEnabled FROM dbo.Emp_Info ei LEFT JOIN dbo.CodeSender_Set css ON css.UserID = ei.EmpID) atC ON atC.CodeSenderAddress = T1.F1
 where T1.F1 not in( select BlockID from RealTimeAttendance) and
        (( datediff( minute ,convert ( varchar( 2 ),DATEPART ( hh, StartWorkTime ))+':' + convert( varchar (2 ), DATEPART( mi ,StartWorkTime ))+ ':'+ convert (varchar ( 2), DATEPART (ss , StartWorkTime)),

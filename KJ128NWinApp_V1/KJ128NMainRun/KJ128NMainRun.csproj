@@ -2917,6 +2917,9 @@
     <Content Include="导入导出\InfomationIO.exe.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="界沟文档\界沟128考勤配置说明.doc" />
+    <Content Include="界沟文档\界沟矿考勤对接需求.doc" />
+    <Content Include="界沟文档\表.xls" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AddNewEmployee1.gif" />

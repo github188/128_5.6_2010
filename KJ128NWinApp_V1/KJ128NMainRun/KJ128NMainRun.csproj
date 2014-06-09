@@ -1374,9 +1374,6 @@
     <Content Include="IsClient.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="KJ128A.Batman.exe">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="KJ128A.Batman.XML">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -370,9 +370,19 @@ namespace KJ128NInterfaceShow
 
                 if (ds != null && ds.Tables.Count > 0)
                 {
-                    ds.Tables[0].Columns.Remove("ManHourNumber");//工数
+					if (ds.Tables[0].Columns.Contains("ManHourNumber"))
+					{
+						ds.Tables[0].Columns.Remove("ManHourNumber");//工数 
+					}
                     // ds.Tables[0].Columns.Remove("DataAttendance");//计工日期
-                    ds.Tables[0].Columns.Remove("WorkTypeName");//工种
+					if (ds.Tables[0].Columns.Contains("WorkTypeName"))
+					{
+						ds.Tables[0].Columns.Remove("WorkTypeName");//工种 
+					}
+					if (ds.Tables[0].Columns.Contains("CardType"))//卡类型
+					{
+						ds.Tables[0].Columns.Remove("CardType");//卡类型 
+					}
                     ds.Tables[0].TableName = "A_AttendanceParticulars";
                     dgrd.Invoke(new BindData(DgvBindData), new object[] { ds.Tables[0] });
                     //dgrd.Columns[0].HeaderText = "标识卡号";
@@ -882,7 +892,7 @@ namespace KJ128NInterfaceShow
                         strWhere += " and worktime>= " + findTimelong;
                     }
                     //strWhere += " and worktime>= " + findTimelong;
-                    endWhere = "  worktime>= minsecTime";
+                    endWhere = "  worktime>= 28800";
                 }
                 //欠工查询
                 else if (findType.Equals("2"))
@@ -892,7 +902,7 @@ namespace KJ128NInterfaceShow
                         strWhere += " and worktime< " + findTimelong;
                     }
                     // strWhere += " and worktime< " + findTimelong;
-                    endWhere = "  worktime < minsecTime ";
+                    endWhere = "  worktime < 28800 ";
                 }
                 //}
             }

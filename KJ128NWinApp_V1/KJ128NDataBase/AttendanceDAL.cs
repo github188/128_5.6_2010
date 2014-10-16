@@ -805,12 +805,12 @@ namespace KJ128NDataBase
 
             //return DB.RunProcedureByDataSet("Shine_Shen_EmployeeAttendancePersonelStatistic", "dst", sqlpara, out strErrMsg);
             //czlt-2010-8-20  修改，使用新的存储过程进行查询
-            if (isUnoin)
+            if (isUnoin)//合并
             {
                 //Shine_Shen_EmployeeAttendancePersonelStatisticNew_Czlt
                 return DB.RunProcedureByDataSet("Shine_Shen_EmployeeAttendancePersonelStatisticNew_Czlt", "dst", sqlpara, out strErrMsg);
             }
-            else
+            else//合并未选中的所有情况
             {
                 return DB.RunProcedureByDataSet("Shine_Shen_EmployeeAttendancePersonelStatisticNew", "dst", sqlpara, out strErrMsg);
 

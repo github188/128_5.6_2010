@@ -625,7 +625,6 @@ namespace KJ128NMainRun.EmployeeManage
                             comboBox_ClassName.SelectedValue = Convert.ToInt32(drTempDeptInfo.Rows[0][15]);
                         }
                         #endregion
-                        comboBox_ParentDept.Enabled = false;
 
                         //部门工时单价
                         txt_UnitPrice.Text = drTempDeptInfo.Rows[0]["UnitPrice"].ToString();
